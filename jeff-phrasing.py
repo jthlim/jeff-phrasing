@@ -105,13 +105,15 @@ ENDERS = {
 
     # BL - To believe
     "BL": ("present", {None: " believe", "3ps": " believes"}),
+    "BLT": ("present", {None: " believe that", "3ps": " believes that"}),
     "BLD": ("past", {None: " believed", "inf": " believe"}),
+    "BLTD": ("past", {None: " believed that", "inf": " believe that"}),
 
-    # BG - To come (from)
+    # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes"}),
-    "BGT": ("present", {None: " come from", "3ps": " comes from"}),
+    "BGT": ("present", {None: " come to", "3ps": " comes to"}),
     "BGD": ("past", {None: " came", "inf": " come"}),
-    "BGTD": ("past", {None: " came from", "inf": " come from"}),
+    "BGTD": ("past", {None: " came to", "inf": " come to"}),
 
     # PBLG - To find (that)
     "PBLG": ("present", {None: " find", "3ps": " finds"}),
@@ -143,11 +145,11 @@ ENDERS = {
     "TD": ("past", {None: " had", "inf": " have"}),
     "TSDZ": ("past", {None: " had to", "inf": " have to"}),
 
-    # PB: To know (about)
+    # PB: To know (that)
     "PB": ("present", {None: " know", "3ps": " knows"}),
-    "PBT": ("present", {None: " know about", "3ps": " knows about"}),
+    "PBT": ("present", {None: " know that", "3ps": " knows that"}),
     "PBD": ("past", {None: " knew", "inf": " know"}),
-    "PBTD": ("past", {None: " knew about", "inf": " know about"}),
+    "PBTD": ("past", {None: " knew that", "inf": " know that"}),
 
     # BLG - To like
     "BLG": ("present", {None: " like", "3ps": " likes"}),
@@ -189,9 +191,19 @@ ENDERS = {
     "RLT": ("present", {None: " relate", "3ps": " relates"}),
     "RLTD": ("past", {None: " related", "inf": " relate"}),
 
+    # RPL - To remember (that)
+    "RPL": ("present", {None: " remember", "3ps": " remembers"}),
+    "RPLT": ("present", {None: " remember that", "3ps": " remembers that"}),
+    "RPLD": ("past", {None: " remembered", "inf": " realize"}),
+    "RPLTD": ("past", {None: " remembered that", "inf": " remember that"}),
+
     # R - To run
     "R": ("present", {None: " run", "3ps": " runs"}),
     "RD": ("past", {None: " ran", "inf": " run"}),
+
+    # RT - To try
+    "RT": ("present", {None: " try", "3ps": " tries"}),
+    "RTD": ("past", {None: " tried", "inf": " try"}),
 
     # BS - To say
     "BS": ("present", {None: " say", "3ps": " says"}),
@@ -207,11 +219,11 @@ ENDERS = {
     "PLSZ": ("past", {None: " seemed", "inf": " seem"}),
     "PLTSDZ": ("past", {None: " seemed to", "inf": " seem to"}),
 
-    # PBG - To think (about)
+    # PBG - To think (that)
     "PBG": ("present", {None: " think", "3ps": " thinks"}),
-    "PBGT": ("present", {None: " think about", "3ps": " thinks about"}),
+    "PBGT": ("present", {None: " think that", "3ps": " thinks that"}),
     "PBGD": ("past", {None: " thought", "inf": " think"}),
-    "PBGTD": ("past", {None: " thought about", "inf": " think about"}),
+    "PBGTD": ("past", {None: " thought that", "inf": " think that"}),
 
     # PBG - To understand (that)
     "RPB": ("present", {None: " understand", "3ps": " understands"}),
@@ -232,11 +244,6 @@ ENDERS = {
     # RBG - To work
     "RBG": ("present", {None: " work", "3ps": " works"}),
     "RBGD": ("past", {None: " worked", "inf": " work"}),
-
-    # RT - To try
-    "RT": ("present", {None: " try", "3ps": " tries"}),
-    "RTD": ("past", {None: " tried", "inf": " try"}),
-
 }
 
 def lookup(key):

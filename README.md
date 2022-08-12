@@ -7,10 +7,10 @@ typically unusable. For example, the verb endings or tense could mismatch, such
 as: `I really doesn't wanted`.
 
 This phrasing dictionary automatically matches tenses and verb forms,
-which makes it easier to learn and memorize. You can write phrases such
-as:
- `He shouldn't really go`
- `He really goes`
+which makes it easier to learn and memorize. You can write the following
+phrases in a single stroke:
+* `He shouldn't really go`
+* `He really goes`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -136,15 +136,15 @@ Stroke   | Meaning (-T)
 ``       | <empty>
 `D`      | <empty, past tense>
 `B`      | To be
-`BL`     | To believe
-`BG`     | To come (from)
+`BL`     | To believe (that)
+`BG`     | To come (to)
 `PBLG`   | To find (that)
 `RG`     | To forget (to)
 `GT`     | To get
 `GZ`     | To give
 `G`      | To go
 `T`      | To have (to) 
-`PB`     | To know (about)
+`PB`     | To know (that)
 `BLG`    | To like
 `L`      | To look
 `LG`     | To love
@@ -154,11 +154,12 @@ Stroke   | Meaning (-T)
 `RLS`    | To realize (that)
 `RL`     | To recall
 `RLT`    | To relate
+`RPL`    | To remember (that)
 `R`      | To run
 `BS`     | To say
 `S`      | To see
 `PLS`    | To seem (to)
-`PBG`    | To think (about)
+`PBG`    | To think (that)
 `RT`     | To try
 `RPB`    | To understand (that)
 `Z`      | To use
