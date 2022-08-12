@@ -1,47 +1,8 @@
 # Jeff's phrasing dictionary for Plover.
 
-# Starters:
-# 
-# SWR: "I"
-# KPWR: "you"
-# KWHR: "he"
-# SKWHR: "she"
-# KPWH: "it"
-# STKPWHR: "" (empty, 3rd person singular)
-# TWR: "we"
-# TWH: "they"
-# SKWR: "" (empty, 3rd person plural)
-
-# Choices inspired by:
-# * https://books.google.com/ngrams/graph?content=shouldn%27t%2Chaven%27t%2Cwouldn%27t%2Ccouldn%27t%2Ccan%27t%2Cwon%27t%2Cdon%27t&year_start=1800&year_end=2019&corpus=26&smoothing=3&direct_url=t1%3B%2Cshould%20not%3B%2Cc0%3B.t1%3B%2Chave%20not%3B%2Cc0%3B.t1%3B%2Cwould%20not%3B%2Cc0%3B.t1%3B%2Ccould%20not%3B%2Cc0%3B.t1%3B%2Ccan%20not%3B%2Cc0%3B.t1%3B%2Cwill%20not%3B%2Cc0%3B.t1%3B%2Cdo%20not%3B%2Cc0#t1%3B%2Cshould%20not%3B%2Cc0%3B.t1%3B%2Chave%20not%3B%2Cc0%3B.t1%3B%2Cwould%20not%3B%2Cc0%3B.t1%3B%2Ccould%20not%3B%2Cc0%3B.t1%3B%2Ccan%20not%3B%2Cc0%3B.t1%3B%2Cwill%20not%3B%2Cc0%3B.t1%3B%2Cdo%20not%3B%2Cc0
-# * https://books.google.com/ngrams/graph?content=should%2Chave%2Cwould%2Ccould%2Ccan%2Cwill%2Cdo&year_start=1800&year_end=2019&corpus=26&smoothing=3&direct_url=t1%3B%2Cshould%3B%2Cc0%3B.t1%3B%2Chave%3B%2Cc0%3B.t1%3B%2Cwould%3B%2Cc0%3B.t1%3B%2Ccould%3B%2Cc0%3B.t1%3B%2Ccan%3B%2Cc0%3B.t1%3B%2Cwill%3B%2Cc0%3B.t1%3B%2Cdo%3B%2Cc0#t1%3B%2Cshould%3B%2Cc0%3B.t1%3B%2Chave%3B%2Cc0%3B.t1%3B%2Cwould%3B%2Cc0%3B.t1%3B%2Ccould%3B%2Cc0%3B.t1%3B%2Ccan%3B%2Cc0%3B.t1%3B%2Cwill%3B%2Cc0%3B.t1%3B%2Cdo%3B%2Cc0
-# * https://books.google.com/ngrams/graph?content=just%2Ceven%2Creally&year_start=1800&year_end=2019&corpus=26&smoothing=3&direct_url=t1%3B%2Cjust%3B%2Cc0%3B.t1%3B%2Ceven%3B%2Cc0%3B.t1%3B%2Creally%3B%2Cc0#t1%3B%2Cjust%3B%2Cc0%3B.t1%3B%2Ceven%3B%2Cc0%3B.t1%3B%2Creally%3B%2Cc0
-# 
-# EUF
-# ---
-# 000 — <empty>
-# 001 — x even (except for 'do', which just becomes 'do')
-# 010 - just x
-# 011 - x just
-# 100 - really x
-# 101 - x really
-# 110 - still x
-# 111 - x still
-#
-# AO*
-# 000 - do/did
-# 001 - don’t/didn’t 
-# 010 - shall/should
-# 011 - shan’t/shouldn’t 
-# 100 - can/could
-# 101 - can’t/couldn’t 
-# 110 - will/would
-# 111 - won’t/wouldn't
-#
-# Exception: “do” is AOEUF - 00001
+# See README.md for instructions on how the system works.
 
 import re
-from plover import log
 
 LONGEST_KEY = 1
 
@@ -100,8 +61,8 @@ ENDERS = {
     "D": ("past", ""),
 
     # B: To be
-    "B": ("present", { "inf": " be", "1ps": " am", "2p": " are", "3ps": " is", "1pp": " are", "3pp": " are" }),
-    "BD": ("past", { "inf": " be","1ps": " was", "2p": " were", "3ps": " was", "1pp": " were", "3pp": " were" }),
+    "B": ("present", {"inf": " be", "1ps": " am", "2p": " are", "3ps": " is", "1pp": " are", "3pp": " are"}),
+    "BD": ("past", {"inf": " be", "1ps": " was", "2p": " were", "3ps": " was", "1pp": " were", "3pp": " were"}),
 
     # BL - To believe
     "BL": ("present", {None: " believe", "3ps": " believes"}),
@@ -233,18 +194,19 @@ ENDERS = {
 
     # Z - To use
     "Z": ("present", {None: " use", "3ps": " uses"}),
-    "DZ": ("present", {None: " used", "3ps": " use"}),
+    "DZ": ("past", {None: " used", "inf": " use"}),
 
     # P: To want (to)
     "P": ("present", {None: " want", "3ps": " wants"}),
     "PT": ("present", {None: " want to", "3ps": " wants to"}),
-    "PTD": ("present", {None: " wanted to", "inf": " want to"}),
-    "PD": ("present", {None: " wanted", "inf": " want"}),
+    "PD": ("past", {None: " wanted", "inf": " want"}),
+    "PTD": ("past", {None: " wanted to", "inf": " want to"}),
 
     # RBG - To work
     "RBG": ("present", {None: " work", "3ps": " works"}),
     "RBGD": ("past", {None: " worked", "inf": " work"}),
 }
+
 
 def lookup(key):
     match = PARTS_MATCHER.match(key[0])
@@ -265,7 +227,7 @@ def lookup(key):
 
     middle_key = vowels1 + star + vowels2 + f
     middle_result = MIDDLE_EXCEPTIONS.get(middle_key)
-    
+
     middle_word = None
     updated_verb_form = None
 
@@ -273,8 +235,9 @@ def lookup(key):
         middle_word, updated_verb_form = middle_result
     else:
         base = MIDDLES_BASE[vowels1 + star]
-        middle_word, updated_verb_form = lookup_data(lookup_data(base, tense), verb_form)
-        log.info('middle_word: %s updated_verb_form: %s' % (middle_word, updated_verb_form))
+        middle_word, updated_verb_form = lookup_data(
+            lookup_data(base, tense), verb_form)
+
         decorator = MIDDLES_DECORATORS[vowels2 + f]
         middle_word = decorator.replace('*', middle_word)
 
@@ -290,6 +253,7 @@ def lookup(key):
     result += ending
 
     return result
+
 
 def lookup_data(data, key):
     if type(data) is not dict:

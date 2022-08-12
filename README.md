@@ -25,7 +25,7 @@ The phrase is constructed with:
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
 2. An optional `do`/`shall`/`will`/`can` or their negative or past tense forms combined with `really`/`just`/`still`/`even`
 3. A verb ending e.g. `have`,`go`
-4. An optional suffix word with 
+4. An optional suffix word 
 
 For example: `SWR*ERPGT`: `I don't really need to` 
 
