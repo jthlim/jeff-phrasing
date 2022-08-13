@@ -157,7 +157,7 @@ ENDERS = {
     "RPBLD": ("past", {None: " made", "inf": " make"}),
 
     # PL - To may
-    "PL": ("present", "may"),
+    "PL": ("present", " may"),
     "PLD": ("past", {None: " might", "inf": " may"}), # This one doesn't come well with do/can/shall/will
 
     # PLZ - To move

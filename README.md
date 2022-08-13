@@ -7,8 +7,8 @@ typically unusable. For example, the verb endings or tense could mismatch, such
 as: `I really doesn't wanted`.
 
 This phrasing dictionary automatically matches tenses and verb forms,
-which makes it easier to learn and memorize. You can write the following
-phrases in a single stroke:
+which makes it easier to learn and with the key-space freed up, allows for
+more expressive phrases. You can write the following in a single stroke:
 * `KWHRG`: `He goes`
 * `KWHRO*EFGD`: `He really shouldn't go`
 * `SWR-RPB`: `I understand`
@@ -27,7 +27,7 @@ and is currently a work in progress. Expect changes in future versions.
 The phrase is constructed in 5 parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
-2. An optional `do`/`shall`/`will`/`can` or their negative or past tense forms
+2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
 3. A optional adverb `really`/`just`/`still`/`never`/`even`
 4. A verb e.g. `have`,`go`
 5. An optional suffix word 
