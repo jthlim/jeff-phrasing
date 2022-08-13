@@ -3,7 +3,6 @@
 # See README.md for instructions on how the system works.
 
 import re
-from plover import log
 
 LONGEST_KEY = 1
 
@@ -154,9 +153,11 @@ ENDERS = {
     "LT": ("present", {None: " let", "3ps": " lets"}),
     "LTD": ("past", " let"),
 
-    # RPBL - To make
+    # RPBL - To make (the)
     "RPBL": ("present", {None: " make", "3ps": " makes"}),
+    "RPBLT": ("present", {None: " make the", "3ps": " makes the"}),
     "RPBLD": ("past", {None: " made", "inf": " make"}),
+    "RPBLTD": ("past", {None: " made the", "inf": " make the"}),
 
     # PL - To may
     # These do not combine well with do/can/shall/will
@@ -210,6 +211,10 @@ ENDERS = {
     "PLTS": ("present", {None: " seem to", "3ps": " seems to"}),
     "PLSZ": ("past", {None: " seemed", "inf": " seem"}),
     "PLTSDZ": ("past", {None: " seemed to", "inf": " seem to"}),
+
+    # BGT - To take
+    "BGT": ("present", {None: " take", "3ps": " takes"}),
+    "BGTD": ("past", {None: " took", "inf": " take"}),
 
     # PBG - To think (that)
     "PBG": ("present", {None: " think", "3ps": " thinks"}),
@@ -276,9 +281,6 @@ def lookup(key):
         decorator = MIDDLES_DECORATORS[star + vowels2 + f]
 
     middle_word = decorator.replace('*', middle_word)
-
-
-    log.info('middle word: %s, decorator: %s' % (middle_word, decorator))
 
     result += middle_word
 

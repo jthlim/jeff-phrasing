@@ -196,6 +196,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BS`   | To say              |
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
+| `BGT`  | To take             |
 | `PBG`  | To think (that)     |
 | `RT`   | To try (to)         |
 | `RPB`  | To understand (the) |
