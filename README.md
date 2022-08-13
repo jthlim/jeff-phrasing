@@ -7,15 +7,18 @@ typically unusable. For example, the verb endings or tense could mismatch, such
 as: `I really doesn't wanted`.
 
 This phrasing dictionary automatically matches tenses and verb forms,
-which makes it easier to learn and with the key-space freed up, allows for
-more expressive phrases. Some examples of how single stroke phrases:
-* `KWHRG`: `He goes`
-* `KWHRGD`: `He went`
-* `KWHRO*EFGD`: `He really shouldn't go`
-* `SWR-RPB`: `I understand`
-* `SWRA*EUFRPB`: `I still can't understand`
+which makes it easier to learn. With the key-space freed up, extra flexibility
+has been added to enable more expressive phrases.
+
+Some examples of single stroke phrases:
+* `SWRGT`: `I go to`
+* `KWHRGT`: `He goes to`
 * `SWRGTD`: `I went to`
+* `KWHRGTD`: `He went to`
+* `KWHRO*EFGTD`: `He really shouldn't go to`
 * `SWRAOFGTD`: `I would never go to`
+* `SWR-RPBT`: `I understand the`
+* `SWRA*EUFRPBT`: `I still can't understand the`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -152,10 +155,16 @@ This allows typing phrases such as:
 * `KPWRFBSD`: `You never said`
 * `SWRUFPBG`: `I do think`
 
-## Verbs
+## Verbs and suffix words
 
 All verbs have a present and past tense version. The past tense is formed by
 adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
+
+Suffix words are indicated in parentheses, and are added by using `-T`. If the
+stroke includes `-T`, then `-S` is used instead.
+
+For past tense with suffix words that cause a diagonal to be formed
+(`-TZ` or `-SD`), then `-TSDZ` is used instead.
 
 | Stroke | Meaning (-T)        |
 | ------ | ------------------- |
