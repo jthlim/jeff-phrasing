@@ -9,13 +9,17 @@ as: `I really doesn't wanted`.
 This phrasing dictionary automatically matches tenses and verb forms,
 which makes it easier to learn and memorize. You can write the following
 phrases in a single stroke:
-* `He shouldn't really go`
-* `He really goes`
+* `KWHRG`: `He goes`
+* `KWHRO*EGD`: `He shouldn't really go`
+* `SWR-RPB`: `I understand`
+* `SWRA*EUFRPB`: `I still can't understand`
+* `SWRGD`: `I went`
+* `SWRAOUGD`: `I would just go`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
 
-This dictionary had inspiration from Jade and Aerick's phrasing systems,
+This dictionary takes inspiration from Jade and Aerick's phrasing systems,
 and is currently a work in progress. Expect changes in future versions.
 
 # System
@@ -56,6 +60,7 @@ Starters are all formed on the left hand side of the board:
 ```
 
 * `SWR`: I
+* `KPWR`: you
 * `KWHR`: he
 * `SKWHR`: she
 * `KPWH`: it
@@ -74,12 +79,12 @@ The keys `AO*` are used to determine which of the additional words are added.
 The form that is added depends on the tense of the verb. `*` is used to provide
 the negative version.
 
-`A O` | Word             | Negative forms
-------|------------------|-------------------------
-`_ _` | do / does / did  | don't / doesn't / didn't
-`_ O` | shall / should   | shall not / shouldn't
-`A _` | can / could      | can't / couldn't
-`A O` | will / would     | won't / wouldn't
+| `A O` | Word            | Negative forms           |
+| ----- | --------------- | ------------------------ |
+| `_ _` | do / does / did | don't / doesn't / didn't |
+| `_ O` | shall / should  | shall not / shouldn't    |
+| `A _` | can / could     | can't / couldn't         |
+| `A O` | will / would    | won't / wouldn't         |
 
 To get `did`, `should`, `could`, `would`, use a past tense verb (or past tense
 placeholder `-D`).
@@ -96,75 +101,80 @@ placeholder `-D`).
 with `do`, `should`, `could`, `would`. `EU` select the word, while `F` will
 swap the order. `F` by itself appends the word `even`
 
-`E U F` | Word 
---------|------
-`_ _ _` | <empty>
-`_ _ F` | {} e_v_en
-`E _ _` | {} r_e_ally
-`E _ F` | r_e_ally {}
-`_ U _` | {} j_u_st
-`_ U F` | just {}
-`E U _` | {} st_i_ll
-`E U F` | st_i_ll {}
+| `E U F` | Word          |
+| ------- | ------------- |
+| `_ _ _` | <empty>       |
+| `_ _ F` | {} e**v**en   |
+| `E _ _` | {} r**e**ally |
+| `E _ F` | r**e**ally {} |
+| `_ U _` | {} j**u**st   |
+| `_ U F` | just {}       |
+| `E U _` | {} st**i**ll  |
+| `E U F` | st**i**ll {}  |
 
 Examples:
 * `A*E` produces: `can't really`
 * `A*EF` produces: `really can't`
 
-An exception is for `do` (and only the positive form):
+An exception is for `do` (and only the positive form), which is when
+neither `A` nor `O` are pressed.
 
-`A O * E U F` | Result
---------------|------------------
-`_ _ _ _ _ _` | <empty>
-`_ _ _ _ _ F` | even
-`_ _ _ _ U _` | just
-`_ _ _ _ U F` | just do
-`_ _ _ E _ _` | really
-`_ _ _ E _ F` | really do
-`_ _ _ E U _` | still
-`_ _ _ E U F` | still do
+| `A O * E U F` | Result        |
+| ------------- | ------------- |
+| `_ _ _ _ _ _` | <empty>       |
+| `_ _ _ _ _ F` | e**v**en      |
+| `_ _ _ _ U _` | j**u**st      |
+| `_ _ _ _ U F` | {}            |
+| `_ _ _ E _ _` | r**e**ally    |
+| `_ _ _ E _ F` | r**e**ally do |
+| `_ _ _ E U _` | st**i**ll     |
+| `_ _ _ E U F` | st**i**ll do  |
 
-This allows typing phrases such as: `SWREUG`: `I still go`.
+This allows typing phrases such as:
+* `SWREUG`: `I still go`
+* `KPWRFBSD`: `You even said`
+* `SWRUFPBG`: `I do think`
 
 ## Verbs
 
 All verbs have a present and past tense version. The past tense is formed by
 adding `-D`, unless the verb includes `-S`, in which case `-Z` is used
 
-Stroke   | Meaning (-T)
----------|-------------
-``       | <empty>
-`D`      | <empty, past tense>
-`B`      | To be
-`BL`     | To believe (that)
-`BG`     | To come (to)
-`PBLG`   | To find (that)
-`RG`     | To forget (to)
-`GT`     | To get
-`GZ`     | To give
-`G`      | To go
-`T`      | To have (to) 
-`PB`     | To know (that)
-`BLG`    | To like
-`L`      | To look
-`LG`     | To love
-`LT`     | To let
-`RPBL`   | To make
-`RPG`    | To need (to)
-`RLS`    | To realize (that)
-`RL`     | To recall
-`RLT`    | To relate
-`RPL`    | To remember (that)
-`R`      | To run
-`BS`     | To say
-`S`      | To see
-`PLS`    | To seem (to)
-`PBG`    | To think (that)
-`RT`     | To try
-`RPB`    | To understand (that)
-`Z`      | To use
-`P`      | To want (to)
-`RBG`    | To work
+| Stroke | Meaning (-T)        |
+| ------ | ------------------- |
+| ``     | <empty>             |
+| `D`    | <empty, past tense> |
+| `B`    | To be (the)         |
+| `BL`   | To believe (that)   |
+| `BG`   | To come (to)        |
+| `PBLG` | To find (the)       |
+| `RG`   | To forget (to)      |
+| `GT`   | To get              |
+| `GZ`   | To give             |
+| `G`    | To go               |
+| `T`    | To have (to)        |
+| `PB`   | To know (that)      |
+| `BLG`  | To like             |
+| `LZ`   | To live             |
+| `L`    | To look             |
+| `LG`   | To love             |
+| `LT`   | To let              |
+| `RPBL` | To make             |
+| `RPG`  | To need (to)        |
+| `RLS`  | To realize (that)   |
+| `RL`   | To recall           |
+| `RLT`  | To relate           |
+| `RPL`  | To remember (that)  |
+| `R`    | To run              |
+| `BS`   | To say              |
+| `S`    | To see              |
+| `PLS`  | To seem (to)        |
+| `PBG`  | To think (that)     |
+| `RT`   | To try              |
+| `RPB`  | To understand (the) |
+| `Z`    | To use              |
+| `P`    | To want (to)        |
+| `RBG`  | To work             |
 
 Examples:
 *  `SWREB`: I really am
@@ -174,8 +184,9 @@ Examples:
 
 1. In plover, first install plover-python-dictionary
 2. Save jeff-phrasing.py from this repository
-3. Drag and drop the file into plover, and ensure it is listed above `main.json`
+3. Drag and drop the file into plover.
 
-You may also be interested in [jeff-modifiers](https://github.com/jthlim/jeff-modifiers)
-You may also be interested in [jeff-numbers](https://github.com/jthlim/jeff-numbers)
-You may also be interested in [jeff-visual-stroke](https://github.com/jthlim/jeff-visual-stroke)
+You may also be interested in:
+* [jeff-modifiers](https://github.com/jthlim/jeff-modifiers)
+* [jeff-numbers](https://github.com/jthlim/jeff-numbers)
+* [jeff-visual-stroke](https://github.com/jthlim/jeff-visual-stroke)

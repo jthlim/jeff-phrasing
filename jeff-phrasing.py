@@ -26,11 +26,12 @@ STARTERS = {
 }
 
 MIDDLE_EXCEPTIONS = {
-    "": ("", None),
-    "F": (" even", None),
-    "E": (" really", None),
-    "U": (" just", None),
-    "EU": (" still", None),
+    "": ("", False),
+    "F": (" even", False),
+    "E": (" really", False),
+    "U": (" just", False),
+    "UF": (" *", True),
+    "EU": (" still", False),
 }
 
 MIDDLES_BASE = {
@@ -76,11 +77,11 @@ ENDERS = {
     "BGD": ("past", {None: " came", "inf": " come"}),
     "BGTD": ("past", {None: " came to", "inf": " come to"}),
 
-    # PBLG - To find (that)
+    # PBLG - To find (the)
     "PBLG": ("present", {None: " find", "3ps": " finds"}),
-    "PBLGT": ("present", {None: " find that", "3ps": " finds that"}),
+    "PBLGT": ("present", {None: " find the", "3ps": " finds the"}),
     "PBLGD": ("past", {None: " found", "inf": " find"}),
-    "PBLGTD": ("past", {None: " found that", "inf": " find that"}),
+    "PBLGTD": ("past", {None: " found the", "inf": " find the"}),
 
     # RG: To forget (to)
     "RG": ("present", {None: " forget", "3ps": " forgets"}),
@@ -115,6 +116,10 @@ ENDERS = {
     # BLG - To like
     "BLG": ("present", {None: " like", "3ps": " likes"}),
     "BLGD": ("past", {None: " liked", "inf": " like"}),
+
+    # LZ - To live
+    "LZ": ("present", {None: " live", "3ps": " lives"}),
+    "LDZ": ("past", {None: " lived", "inf": " live"}),
 
     # L - To look
     "L": ("present", {None: " look", "3ps": " looks"}),
@@ -186,11 +191,11 @@ ENDERS = {
     "PBGD": ("past", {None: " thought", "inf": " think"}),
     "PBGTD": ("past", {None: " thought that", "inf": " think that"}),
 
-    # PBG - To understand (that)
+    # PBG - To understand (the)
     "RPB": ("present", {None: " understand", "3ps": " understands"}),
-    "RPBT": ("present", {None: " understand that", "3ps": " understands that"}),
+    "RPBT": ("present", {None: " understand the", "3ps": " understands the"}),
     "RPBD": ("past", {None: " understood", "inf": " understand"}),
-    "RPBTD": ("past", {None: " understood that", "inf": " understand that"}),
+    "RPBTD": ("past", {None: " understood the", "inf": " understand the"}),
 
     # Z - To use
     "Z": ("present", {None: " use", "3ps": " uses"}),
@@ -226,20 +231,19 @@ def lookup(key):
     tense, verb = ender_lookup
 
     middle_key = vowels1 + star + vowels2 + f
-    middle_result = MIDDLE_EXCEPTIONS.get(middle_key)
+    middle_exception = MIDDLE_EXCEPTIONS.get(middle_key)
 
-    middle_word = None
-    updated_verb_form = None
+    base = MIDDLES_BASE[vowels1 + star]
+    middle_word, updated_verb_form = lookup_data(lookup_data(base, tense), verb_form)
 
-    if middle_result != None:
-        middle_word, updated_verb_form = middle_result
+    if middle_exception:
+        decorator, allow_verb_update = middle_exception
+        if not allow_verb_update:
+            updated_verb_form = None
     else:
-        base = MIDDLES_BASE[vowels1 + star]
-        middle_word, updated_verb_form = lookup_data(
-            lookup_data(base, tense), verb_form)
-
         decorator = MIDDLES_DECORATORS[vowels2 + f]
-        middle_word = decorator.replace('*', middle_word)
+
+    middle_word = decorator.replace('*', middle_word)
 
     result += middle_word
 
