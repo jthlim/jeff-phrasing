@@ -195,10 +195,6 @@ ENDERS = {
     "R": ("present", {None: " run", "3ps": " runs"}),
     "RD": ("past", {None: " ran", "inf": " run"}),
 
-    # RT - To try
-    "RT": ("present", {None: " try", "3ps": " tries"}),
-    "RTD": ("past", {None: " tried", "inf": " try"}),
-
     # BS - To say
     "BS": ("present", {None: " say", "3ps": " says"}),
     "BSZ": ("past", {None: " said", "inf": " say"}),
@@ -218,6 +214,12 @@ ENDERS = {
     "PBGT": ("present", {None: " think that", "3ps": " thinks that"}),
     "PBGD": ("past", {None: " thought", "inf": " think"}),
     "PBGTD": ("past", {None: " thought that", "inf": " think that"}),
+
+    # RT - To try (to)
+    "RT": ("present", {None: " try", "3ps": " tries"}),
+    "RTS": ("present", {None: " try to", "3ps": " tries to"}),
+    "RTD": ("past", {None: " tried", "inf": " try"}),
+    "RTSDZ": ("past", {None: " tried to", "inf": " try to"}),
 
     # PBG - To understand (the)
     "RPB": ("present", {None: " understand", "3ps": " understands"}),

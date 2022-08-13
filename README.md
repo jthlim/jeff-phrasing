@@ -188,7 +188,7 @@ adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
 | `PBG`  | To think (that)     |
-| `RT`   | To try              |
+| `RT`   | To try (to)         |
 | `RPB`  | To understand (the) |
 | `Z`    | To use              |
 | `P`    | To want (to)        |
