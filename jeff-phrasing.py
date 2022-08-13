@@ -3,6 +3,7 @@
 # See README.md for instructions on how the system works.
 
 import re
+from plover import log
 
 LONGEST_KEY = 1
 
@@ -30,7 +31,7 @@ MIDDLE_EXCEPTIONS = {
     "F": (" even", False),
     "E": (" really", False),
     "U": (" just", False),
-    "UF": (" *", True),
+    "UF": ("*", True),
     "EU": (" still", False),
 }
 
@@ -244,6 +245,9 @@ def lookup(key):
         decorator = MIDDLES_DECORATORS[vowels2 + f]
 
     middle_word = decorator.replace('*', middle_word)
+
+
+    log.info('middle word: %s, decorator: %s' % (middle_word, decorator))
 
     result += middle_word
 
