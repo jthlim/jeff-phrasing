@@ -10,11 +10,11 @@ This phrasing dictionary automatically matches tenses and verb forms,
 which makes it easier to learn and memorize. You can write the following
 phrases in a single stroke:
 * `KWHRG`: `He goes`
-* `KWHRO*EGD`: `He shouldn't really go`
+* `KWHRO*EFGD`: `He really shouldn't go`
 * `SWR-RPB`: `I understand`
 * `SWRA*EUFRPB`: `I still can't understand`
-* `SWRGD`: `I went`
-* `SWRAOUGD`: `I would just go`
+* `SWRGTD`: `I went to`
+* `SWRAOFGTD`: `I would never go to`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -24,21 +24,23 @@ and is currently a work in progress. Expect changes in future versions.
 
 # System
 
-The phrase is constructed with:
+The phrase is constructed in 5 parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
-2. An optional `do`/`shall`/`will`/`can` or their negative or past tense forms combined with `really`/`just`/`still`/`even`
-3. A verb ending e.g. `have`,`go`
-4. An optional suffix word 
+2. An optional `do`/`shall`/`will`/`can` or their negative or past tense forms
+3. A optional adverb `really`/`just`/`still`/`never`/`even`
+4. A verb e.g. `have`,`go`
+5. An optional suffix word 
 
 For example: `SWR*ERPGT`: `I don't really need to` 
 
 1. `SWR` is the starter: 'I'
-2. `*E` is 'don't really'
-3. `RPG` is 'need'
-4. `T` is 'to'
+2. `*` is 'don't'
+3. `E` is 'really'
+4. `RPG` is 'need'
+5. `T` is 'to'
 
-The phrase will always be constructed in a manner that seems grammatically correct:
+The phrase will generally be constructed in a manner that seems grammatically correct:
 
 Example 1:
   * `SWRG`: produces `I go`
@@ -68,7 +70,7 @@ Starters are all formed on the left hand side of the board:
 * `STWR`: <empty -- third person singular form>
 * `STKPWHR`: <empty -- third person plural form>
 
-## Do, Should, Would, Could
+## Do, Can, Shall, Will
 ```
 🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
 🅂🄺🅆🅁 🅾 🅁🄱🄶🅂🅉
@@ -89,7 +91,7 @@ the negative version.
 To get `did`, `should`, `could`, `would`, use a past tense verb (or past tense
 placeholder `-D`).
 
-## Really, Just, Even, Still
+## Really, Just, Still, Never/Even
 
 ```
 🅂🅃🄿🄷 🄾 🅵🄿🄻🅃🄳
@@ -97,32 +99,40 @@ placeholder `-D`).
 　　　🄰🄾 🅴🆄
 ```
 
-`EUF` controls how the adverbs `really`, `just`, `even` and `still` combine
-with `do`, `should`, `could`, `would`. `EU` select the word, while `F` will
-swap the order. `F` by itself appends the word `even`
+`EUF` controls how the adverbs `really`, `just`, `still`, `never` and `even`
+combine with `do`, `can`, `shall`, `will`.
 
-| `E U F` | Word          |
-| ------- | ------------- |
-| `_ _ _` | <empty>       |
-| `_ _ F` | {} e**v**en   |
-| `E _ _` | {} r**e**ally |
-| `E _ F` | r**e**ally {} |
-| `_ U _` | {} j**u**st   |
-| `_ U F` | just {}       |
-| `E U _` | {} st**i**ll  |
-| `E U F` | st**i**ll {}  |
+* `EU` selects the adverb:
+  * `E`: r**e**ally
+  * `U`: j**u**st
+  * `EU`: st**i**ll
+* `F` will swap the order of the above words with do/should/could/would
+* `F` by itself appends the word `never`, but for negative forms, this changes
+  to `even`.
+
+| `* E U F` | Word          |
+| --------- | ------------- |
+| `? _ _ _` | <empty>       |
+| `_ _ _ F` | {} ne**v**er  |
+| `* _ _ F` | {} e**v**en   |
+| `? E _ _` | {} r**e**ally |
+| `? E _ F` | r**e**ally {} |
+| `? _ U _` | {} j**u**st   |
+| `? _ U F` | just {}       |
+| `? E U _` | {} st**i**ll  |
+| `? E U F` | st**i**ll {}  |
 
 Examples:
 * `A*E` produces: `can't really`
 * `A*EF` produces: `really can't`
 
 An exception is for `do` (and only the positive form), which is when
-neither `A` nor `O` are pressed.
+none of `A`, `O` or `*` are pressed.
 
 | `A O * E U F` | Result        |
 | ------------- | ------------- |
 | `_ _ _ _ _ _` | <empty>       |
-| `_ _ _ _ _ F` | e**v**en      |
+| `_ _ _ _ _ F` | ne**v**er     |
 | `_ _ _ _ U _` | j**u**st      |
 | `_ _ _ _ U F` | {}            |
 | `_ _ _ E _ _` | r**e**ally    |
@@ -132,13 +142,13 @@ neither `A` nor `O` are pressed.
 
 This allows typing phrases such as:
 * `SWREUG`: `I still go`
-* `KPWRFBSD`: `You even said`
+* `KPWRFBSD`: `You never said`
 * `SWRUFPBG`: `I do think`
 
 ## Verbs
 
 All verbs have a present and past tense version. The past tense is formed by
-adding `-D`, unless the verb includes `-S`, in which case `-Z` is used
+adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
 
 | Stroke | Meaning (-T)        |
 | ------ | ------------------- |
@@ -149,9 +159,9 @@ adding `-D`, unless the verb includes `-S`, in which case `-Z` is used
 | `BG`   | To come (to)        |
 | `PBLG` | To find (the)       |
 | `RG`   | To forget (to)      |
-| `GT`   | To get              |
+| `GS`   | To get (to)         |
 | `GZ`   | To give             |
-| `G`    | To go               |
+| `G`    | To go (to)          |
 | `T`    | To have (to)        |
 | `PB`   | To know (that)      |
 | `BLG`  | To like             |
@@ -160,6 +170,8 @@ adding `-D`, unless the verb includes `-S`, in which case `-Z` is used
 | `LG`   | To love             |
 | `LT`   | To let              |
 | `RPBL` | To make             |
+| `PL`   | may/might           |
+| `PLZ`  | To move             |
 | `RPG`  | To need (to)        |
 | `RLS`  | To realize (that)   |
 | `RL`   | To recall           |
@@ -178,6 +190,7 @@ adding `-D`, unless the verb includes `-S`, in which case `-Z` is used
 
 Examples:
 *  `SWREB`: I really am
+*  `KPWREB`:  you really are
 *  `SWR*UTD`: I didn't just have
 
 # Installation

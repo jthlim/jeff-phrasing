@@ -28,7 +28,7 @@ STARTERS = {
 
 MIDDLE_EXCEPTIONS = {
     "": ("", False),
-    "F": (" even", False),
+    "F": (" never", False),
     "E": (" really", False),
     "U": (" just", False),
     "UF": ("*", True),
@@ -49,13 +49,21 @@ MIDDLES_BASE = {
 
 MIDDLES_DECORATORS = {
     "": "*",
-    "F": "* even",
+    "*": "*",
+    "F": "* never",
+    "*F": "* even",
     "E": "* really",
+    "*E": "* really",
     "EF": " really*",
+    "*EF": " really*",
     "U": "* just",
+    "*U": "* just",
     "UF": " just*",
+    "*UF": " just*",
     "EU": "* still",
+    "*EU": "* still",
     "EUF": " still*",
+    "*EUF": " still*",
 }
 
 ENDERS = {
@@ -78,6 +86,12 @@ ENDERS = {
     "BGD": ("past", {None: " came", "inf": " come"}),
     "BGTD": ("past", {None: " came to", "inf": " come to"}),
 
+    # LS - To feel (like)
+    "LS": ("present", {None: " feel", "3ps": " feels"}),
+    "LTS": ("present", {None: " feel like", "3ps": " feels like"}),
+    "LSZ": ("past", {None: " felt", "inf": " feel"}),
+    "LTSDZ": ("past", {None: " felt like", "inf": " feel like"}),
+
     # PBLG - To find (the)
     "PBLG": ("present", {None: " find", "3ps": " finds"}),
     "PBLGT": ("present", {None: " find the", "3ps": " finds the"}),
@@ -90,17 +104,21 @@ ENDERS = {
     "RGD": ("past", {None: " forgot", "inf": " forget"}),
     "RGTD": ("past", {None: " forgot to", "inf": " forget to"}),
 
-    # GT: To get
-    "GT": ("present", {None: " get", "3ps": " gets"}),
-    "GTD": ("past", {None: " got", "inf": " get"}),
+    # GS: To get (to)
+    "GS": ("present", {None: " get", "3ps": " gets"}),
+    "GTS": ("present", {None: " get to", "3ps": " gets to"}),
+    "GSZ": ("past", {None: " got", "inf": " get"}),
+    "GTSDZ": ("past", {None: " got to", "inf": " get to"}),
 
     # GZ: To give
     "GZ": ("present", {None: " give", "3ps": " gives"}),
     "GDZ": ("past", {None: " gave", "inf": " give"}),
 
-    # G: To go
+    # G: To go (to)
     "G": ("present", {None: " go", "3ps": " goes"}),
+    "GT": ("present", {None: " go to", "3ps": " goes to"}),
     "GD": ("past", {None: " went", "inf": " go"}),
+    "GTD": ("past", {None: " went to", "inf": " go to"}),
 
     # T - To have (to)
     "T": ("present", {None: " have", "3ps": " has"}),
@@ -137,6 +155,14 @@ ENDERS = {
     # RPBL - To make
     "RPBL": ("present", {None: " make", "3ps": " makes"}),
     "RPBLD": ("past", {None: " made", "inf": " make"}),
+
+    # PL - To may
+    "PL": ("present", "may"),
+    "PLD": ("past", {None: " might", "inf": " may"}), # This one doesn't come well with do/can/shall/will
+
+    # PLZ - To move
+    "PLZ": ("present", {None: " move", "3ps": " moves"}),
+    "PLDZ": ("past", {None: " moved", "inf": " move"}),
 
     # RPG: To need (to)
     "RPG": ("present", {None: " need", "3ps": " needs"}),
@@ -242,7 +268,7 @@ def lookup(key):
         if not allow_verb_update:
             updated_verb_form = None
     else:
-        decorator = MIDDLES_DECORATORS[vowels2 + f]
+        decorator = MIDDLES_DECORATORS[star + vowels2 + f]
 
     middle_word = decorator.replace('*', middle_word)
 
