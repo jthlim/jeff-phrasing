@@ -8,8 +8,9 @@ as: `I really doesn't wanted`.
 
 This phrasing dictionary automatically matches tenses and verb forms,
 which makes it easier to learn and with the key-space freed up, allows for
-more expressive phrases. You can write the following in a single stroke:
+more expressive phrases. Some examples of how single stroke phrases:
 * `KWHRG`: `He goes`
+* `KWHRGD`: `He went`
 * `KWHRO*EFGD`: `He really shouldn't go`
 * `SWR-RPB`: `I understand`
 * `SWRA*EUFRPB`: `I still can't understand`
@@ -29,7 +30,7 @@ The phrase is constructed in 5 parts:
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
 2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
 3. A optional adverb `really`/`just`/`still`/`never`/`even`
-4. A verb e.g. `have`,`go`
+4. A verb e.g. `have`, `go`, `say`, `understand`, etc.
 5. An optional suffix word 
 
 For example: `SWR*ERPGT`: `I don't really need to` 
@@ -68,11 +69,13 @@ Starters are all formed on the left hand side of the board:
 * `KPWH`: it
 * `TWH`: they
 * `STKPWHR`: <empty -- third person singular form>
-* `STWR`: <empty -- infinitive form>
+* `STWR`: <empty -- third person plural form>
 
-Example usage of of `STWR`:
-* `SWR-RPGT/STWRUGT` produces 'I need to just go to'
+Example usage of of `STWR` and `STKPWHR`:
+* `SWR-RPGT/STWRURPBT` produces 'I need to just understand the'
 * `KWHR-PL/STWR-FPBT` produces 'he may never know that'
+* `SWREPLD/STWR-RPGT/STWR-GT` produces 'I really might need to go to'
+* `SKWRAEUPB/STKPWHR-FGT` produces 'Jane never goes to'
 
 ## Do, Can, Shall, Will
 ```
@@ -131,7 +134,7 @@ Examples:
 * `A*EF` produces: `really can't`
 
 An exception is for `do` (and only the positive form), which is when
-none of `A`, `O` or `*` are pressed.
+none of `A`, `O` and `*` are pressed.
 
 | `A O * E U F` | Result        |
 | ------------- | ------------- |
@@ -174,12 +177,11 @@ adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
 | `LG`   | To love             |
 | `LT`   | To let              |
 | `RPBL` | To make             |
-| `PL`   | may/might           |
+| `PL`   | may/might (have)    |
 | `PLZ`  | To move             |
 | `RPG`  | To need (to)        |
 | `RLS`  | To realize (that)   |
-| `RL`   | To recall           |
-| `RLT`  | To relate           |
+| `RL`   | To recall (that)    |
 | `RPL`  | To remember (that)  |
 | `R`    | To run              |
 | `BS`   | To say              |

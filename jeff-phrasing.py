@@ -23,7 +23,7 @@ STARTERS = {
     "TWR": ("we", "1pp"),
     "TWH": ("they", "3pp"),
     "STKPWHR": ("", "3ps"),
-    "STWR": ("", "inf"),
+    "STWR": ("", "3pp"),
 }
 
 MIDDLE_EXCEPTIONS = {
@@ -157,8 +157,11 @@ ENDERS = {
     "RPBLD": ("past", {None: " made", "inf": " make"}),
 
     # PL - To may
+    # These do not combine well with do/can/shall/will
     "PL": ("present", " may"),
-    "PLD": ("past", {None: " might", "inf": " may"}), # This one doesn't come well with do/can/shall/will
+    "PLT": ("present", " may have"),
+    "PLD": ("past", {None: " might", "inf": " may"}), 
+    "PLTD": ("past", {None: " might have", "inf": " may have"}),
 
     # PLZ - To move
     "PLZ": ("present", {None: " move", "3ps": " moves"}),
@@ -172,17 +175,15 @@ ENDERS = {
 
     # RL - To recall
     "RL": ("present", {None: " recall", "3ps": " recalls"}),
+    "RLT": ("present", {None: " recall that", "3ps": " recalls that"}),
     "RLD": ("past", {None: " recalled", "inf": " recall"}),
+    "RLTD": ("past", {None: " recalled that", "inf": " recall that"}),
 
     # RLS - To realize (that)
     "RLS": ("present", {None: " realize", "3ps": " realizes"}),
     "RLTS": ("present", {None: " realize that", "3ps": " realizes that"}),
     "RLSZ": ("past", {None: " realized", "inf": " realize"}),
     "RLTSDZ": ("past", {None: " realized that", "inf": " realize that"}),
-
-    # RLT - To relate
-    "RLT": ("present", {None: " relate", "3ps": " relates"}),
-    "RLTD": ("past", {None: " related", "inf": " relate"}),
 
     # RPL - To remember (that)
     "RPL": ("present", {None: " remember", "3ps": " remembers"}),
