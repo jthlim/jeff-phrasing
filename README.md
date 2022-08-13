@@ -185,7 +185,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `L`    | To look             |
 | `LG`   | To love             |
 | `LT`   | To let              |
-| `RPBL` | To make             |
+| `RPBL` | To make (the)       |
 | `PL`   | may/might (have)    |
 | `PLZ`  | To move             |
 | `RPG`  | To need (to)        |
