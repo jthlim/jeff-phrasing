@@ -22,8 +22,8 @@ STARTERS = {
     "KPWH": ("it", "3ps"),
     "TWR": ("we", "1pp"),
     "TWH": ("they", "3pp"),
-    "STWR": ("", "3ps"),
-    "STKPWHR": ("", "3pp"),
+    "STKPWHR": ("", "3ps"),
+    "STWR": ("", "inf"),
 }
 
 MIDDLE_EXCEPTIONS = {

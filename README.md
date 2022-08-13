@@ -67,8 +67,12 @@ Starters are all formed on the left hand side of the board:
 * `SKWHR`: she
 * `KPWH`: it
 * `TWH`: they
-* `STWR`: <empty -- third person singular form>
-* `STKPWHR`: <empty -- third person plural form>
+* `STKPWHR`: <empty -- third person singular form>
+* `STWR`: <empty -- infinitive form>
+
+Example usage of of `STWR`:
+* `SWR-RPGT/STWRUGT` produces 'I need to just go to'
+* `KWHR-PL/STWR-FPBT` produces 'he may never know that'
 
 ## Do, Can, Shall, Will
 ```
