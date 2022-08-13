@@ -70,9 +70,11 @@ ENDERS = {
     "": ("present", ""),
     "D": ("past", ""),
 
-    # B: To be
+    # B: To be (the)
     "B": ("present", {"inf": " be", "1ps": " am", "2p": " are", "3ps": " is", "1pp": " are", "3pp": " are"}),
+    "BT": ("present", {"inf": " be the", "1ps": " am the", "2p": " are the", "3ps": " is the", "1pp": " are the", "3pp": " are the"}),
     "BD": ("past", {"inf": " be", "1ps": " was", "2p": " were", "3ps": " was", "1pp": " were", "3pp": " were"}),
+    "BTD": ("past", {"inf": " be the", "1ps": " was the", "2p": " were the", "3ps": " was the", "1pp": " were the", "3pp": " were the"}),
 
     # BL - To believe
     "BL": ("present", {None: " believe", "3ps": " believes"}),
