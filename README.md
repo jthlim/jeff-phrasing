@@ -7,8 +7,9 @@ typically unusable. For example, the verb endings or tense could mismatch, such
 as: `I really doesn't wanted`.
 
 This phrasing dictionary automatically matches tenses and verb forms,
-which makes it easier to learn. With the key-space freed up, extra flexibility
-has been added to enable more expressive phrases.
+which makes it easier to learn because there's less to remember. With the
+key-space freed up, extra flexibility has been added to enable more expressive
+phrases.
 
 Some examples of single stroke phrases:
 * `SWRGT`: `I go to`
@@ -25,6 +26,9 @@ Google Books N-gram Viewer.
 
 This dictionary takes inspiration from Jade and Aerick's phrasing systems,
 and is currently a work in progress. Expect changes in future versions.
+
+This dictionary also supports full reverse lookup, so you can see how to
+stroke phrases in Plover's suggestions window.
 
 # System
 
@@ -196,7 +200,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BS`   | To say              |
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
-| `BGT`  | To take             |
+| `RBT`  | To take             |
 | `PBG`  | To think (that)     |
 | `RT`   | To try (to)         |
 | `RPB`  | To understand (the) |

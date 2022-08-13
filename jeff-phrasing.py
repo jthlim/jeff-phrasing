@@ -163,7 +163,7 @@ ENDERS = {
     # These do not combine well with do/can/shall/will
     "PL": ("present", " may"),
     "PLT": ("present", " may have"),
-    "PLD": ("past", {None: " might", "inf": " may"}), 
+    "PLD": ("past", {None: " might", "inf": " may"}),
     "PLTD": ("past", {None: " might have", "inf": " may have"}),
 
     # PLZ - To move
@@ -212,9 +212,9 @@ ENDERS = {
     "PLSZ": ("past", {None: " seemed", "inf": " seem"}),
     "PLTSDZ": ("past", {None: " seemed to", "inf": " seem to"}),
 
-    # BGT - To take
-    "BGT": ("present", {None: " take", "3ps": " takes"}),
-    "BGTD": ("past", {None: " took", "inf": " take"}),
+    # RT - To take
+    "RBT": ("present", {None: " take", "3ps": " takes"}),
+    "RBTD": ("past", {None: " took", "inf": " take"}),
 
     # PBG - To think (that)
     "PBG": ("present", {None: " think", "3ps": " thinks"}),
@@ -271,7 +271,8 @@ def lookup(key):
     middle_exception = MIDDLE_EXCEPTIONS.get(middle_key)
 
     base = MIDDLES_BASE[vowels1 + star]
-    middle_word, updated_verb_form = lookup_data(lookup_data(base, tense), verb_form)
+    middle_word, updated_verb_form = lookup_data(
+        lookup_data(base, tense), verb_form)
 
     if middle_exception:
         decorator, allow_verb_update = middle_exception
@@ -305,3 +306,105 @@ def lookup_data(data, key):
         return result
 
     return data.get(None)
+
+# Proper reverse lookup support.
+#
+# This will show in Plover's suggestions window.
+
+REVERSE_STARTERS = {}
+REVERSE_MIDDLES_BASE = {}
+REVERSE_ADVERBS = {}
+REVERSE_ENDERS = {}
+
+for key in STARTERS:
+    word = STARTERS[key][0]
+    REVERSE_STARTERS.setdefault(word, {})
+    REVERSE_STARTERS[word][key] = True
+
+POSSIBLE_REVERSE_MATCH = re.compile(r"[a-zI ']+")
+
+def add_reverse_middles_base(stroke, data):
+    if type(data) is dict:
+        for k in data:
+            add_reverse_middles_base(stroke, data[k])
+        return
+
+    word = data[0].replace('*', '').strip()
+    REVERSE_MIDDLES_BASE.setdefault(word, {})
+    REVERSE_MIDDLES_BASE[word][stroke] = True
+
+def add_reverse_enders(stroke, data):
+    if type(data) is dict:
+        for k in data:
+            add_reverse_enders(stroke, data[k])
+        return
+
+    word = data.strip()
+    REVERSE_ENDERS.setdefault(word, {})
+    REVERSE_ENDERS[word][stroke] = True
+
+for key in MIDDLES_BASE:
+    add_reverse_middles_base(key, MIDDLES_BASE[key])
+
+for key in MIDDLES_DECORATORS:
+    word = MIDDLES_DECORATORS[key].replace('*', '').strip()
+    REVERSE_ADVERBS.setdefault(word, {})
+    REVERSE_ADVERBS[word][key] = True
+
+for key in MIDDLE_EXCEPTIONS:
+    word = MIDDLE_EXCEPTIONS[key][0].replace('*', '').strip()
+    REVERSE_ADVERBS.setdefault(word, {})
+    REVERSE_ADVERBS[word][key] = True
+
+for key in ENDERS:
+    add_reverse_enders(key, ENDERS[key][1])
+
+def reverse_match(result, full_text, prefix):
+    if lookup([prefix]).strip() == full_text:
+        result.append((prefix,))
+
+def reverse_verb_match(result, full_text, text, prefix):
+    if text not in REVERSE_ENDERS:
+        return
+
+    prefix = prefix.replace('**', '*')
+    for stroke in REVERSE_ENDERS[text]:
+        reverse_match(result, full_text, prefix + stroke)
+
+def reverse_adverbs_match(result, full_text, text, prefix):
+    word = text.split(' ', 1)[0]
+    
+    if word in REVERSE_ADVERBS:
+        for stroke in REVERSE_ADVERBS[word]:
+            reverse_verb_match(result, full_text, text.replace(word, '').strip(), prefix + stroke)
+
+    for stroke in REVERSE_ADVERBS['']:
+        reverse_verb_match(result, full_text, text, prefix + stroke)
+
+def reverse_middle_base_match(result, full_text, text, prefix):
+    for word in REVERSE_MIDDLES_BASE:
+        if word in text:
+            for stroke in REVERSE_MIDDLES_BASE[word]:
+                reverse_adverbs_match(result, full_text, text.replace(word, '').strip(), prefix + stroke)
+
+    reverse_adverbs_match(result, full_text, text, prefix)
+
+def reverse_lookup(text):
+    if not POSSIBLE_REVERSE_MATCH.fullmatch(text):
+        return []
+
+    if len(text.split(' ')) > 6:
+        return []
+
+    result = []
+
+    words = text.split(' ', 1)
+    if words[0] in REVERSE_STARTERS:
+        remainder = words[1] if len(words) > 1 else ''
+        for stroke in REVERSE_STARTERS[words[0]]:
+            reverse_middle_base_match(result, text, remainder, stroke)
+    else:
+        for stroke in REVERSE_STARTERS['']:
+            reverse_middle_base_match(result, text, text, stroke)
+
+    return result
