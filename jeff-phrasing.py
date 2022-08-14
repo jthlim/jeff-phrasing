@@ -94,11 +94,11 @@ ENDERS = {
     "LSZ": ("past", {None: " felt", "inf": " feel"}),
     "LTSDZ": ("past", {None: " felt like", "inf": " feel like"}),
 
-    # PBLG - To find (the)
+    # PBLG - To find (that)
     "PBLG": ("present", {None: " find", "3ps": " finds"}),
-    "PBLGT": ("present", {None: " find the", "3ps": " finds the"}),
+    "PBLGT": ("present", {None: " find that", "3ps": " finds that"}),
     "PBLGD": ("past", {None: " found", "inf": " find"}),
-    "PBLGTD": ("past", {None: " found the", "inf": " find the"}),
+    "PBLGTD": ("past", {None: " found that", "inf": " find that"}),
 
     # RG: To forget (to)
     "RG": ("present", {None: " forget", "3ps": " forgets"}),
