@@ -3,6 +3,8 @@
 # See README.md for instructions on how the system works.
 
 import re
+import traceback
+from plover import log
 
 LONGEST_KEY = 1
 
@@ -12,22 +14,18 @@ PARTS_MATCHER = re.compile(
 
 TO_BE = {
     "present": {
+        None: " are",
         "root": " be",
         "1ps": " am",
-        "2p": " are",
         "3ps": " is",
-        "1pp": " are",
-        "3pp": " are",
         "present-participle": " being",
         "past-participle": " been",
     },
     "past": {
+        None: " were",
         "root": " be",
         "1ps": " was",
-        "2p": " were",
         "3ps": " was",
-        "1pp": " were",
-        "3pp": " were",
         "present-participle": " being",
         "past-participle": " been",
     },
@@ -61,7 +59,7 @@ STARTERS = {
     "TWR": ("we", "1pp"),
     "TWH": ("they", "3pp"),
     "STKPWHR": ("", "3ps"),
-    "STWR": ("", "root"),
+    "STWR": ("", "b3pp"),
 }
 
 MIDDLES_BASE = {
@@ -80,7 +78,7 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "": ("", False, None),
     "F": (" never", False, None),
 
-    "*E": ({"present": {None: "'re not", "1ps": "'m not", "3ps": " isn't", "3pp": " they're", "root": " not"}, "past": {None:  " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
+    "*E": ({"present": {None: "'re not", "1ps": "'m not", "3ps": " isn't", "3pp": "'re not", "b3pp": " not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
     "E": ({tense: {form: TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, False, "present-participle"),
     "*EF": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
     "EF": ({tense: {form: TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, False, "past-participle"),
@@ -136,6 +134,12 @@ ENDERS = {
     "BGT": ("present", {None: " come to", "3ps": " comes to", "present-participle": " coming to", "past-participle": " come to"}),
     "BGD": ("past", {None: " came", "root": " come", "present-participle": " coming", "past-participle": " come"}),
     "BGTD": ("past", {None: " came to", "root": " come to", "present-participle": " coming to", "past-participle": " come to"}),
+
+    # RP - To do (it)
+    "RP": ("present", {None: " do", "3ps": " does", "present-participle": " doing", "past-participle": " done"}),
+    "RPT": ("present", {None: " do it", "3ps": " does it", "present-participle": " doing it", "past-participle": " done it"}),
+    "RPD": ("past", {None: " did", "root": " does", "present-participle": " doing", "past-participle": " done"}),
+    "RPTD": ("past", {None: " did it", "root": " does it", "present-participle": " doing it", "past-participle": " done it"}),
 
     # LS - To feel (like)
     "LS": ("present", {None: " feel", "3ps": " feels", "present-participle": " feeling", "past-participle": " felt"}),
@@ -277,10 +281,10 @@ ENDERS = {
     "PBGTD": ("past", {None: " thought that", "root": " think that", "present-participle": " thinking that", "past-participle": " thought that"}),
 
     # RT - To try (to)
-    "RT": ("present", {None: " try", "3ps": " tries", "present-participle": " trying", "past-participle": " trying"}),
-    "RTS": ("present", {None: " try to", "3ps": " tries to", "present-participle": " trying to", "past-participle": " trying to"}),
-    "RTD": ("past", {None: " tried", "root": " try", "present-participle": " trying", "past-participle": " trying"}),
-    "RTSDZ": ("past", {None: " tried to", "root": " try to", "present-participle": " trying to", "past-participle": " trying to"}),
+    "RT": ("present", {None: " try", "3ps": " tries", "present-participle": " trying", "past-participle": " tried"}),
+    "RTS": ("present", {None: " try to", "3ps": " tries to", "present-participle": " trying to", "past-participle": " tried to"}),
+    "RTD": ("past", {None: " tried", "root": " try", "present-participle": " trying", "past-participle": " tried"}),
+    "RTSDZ": ("past", {None: " tried to", "root": " try to", "present-participle": " trying to", "past-participle": " tried to"}),
 
     # PBG - To understand (the)
     "RPB": ("present", {None: " understand", "3ps": " understands", "present-participle": " understanding", "past-participle": " understood"}),
@@ -312,6 +316,7 @@ def lookup(key):
 
     starter_lookup = STARTERS.get(starter)
     if not starter_lookup:
+        log.info('Starter: %s' % starter)
         raise KeyError
 
     ender_lookup = ENDERS.get(ender)
@@ -358,7 +363,7 @@ def lookup_data(data, key):
         return data
 
     result = data.get(key)
-    if result:
+    if result != None:
         return result
 
     return data.get(None)
@@ -445,11 +450,16 @@ for key in ENDERS:
 
 
 def reverse_match(result, full_text, prefix):
-    if lookup([prefix]).strip() == full_text:
-        result.append((prefix,))
+    try:
+        if lookup([prefix]).strip() == full_text:
+            result.append((prefix,))
+    except KeyError:
+        log.error("KeyError during reverse match for %s: %s" % (prefix, traceback.format_exc()))
+        pass
 
 
 def reverse_verb_match(result, full_text, text, prefix):
+
     if text not in REVERSE_ENDERS:
         return
 
@@ -458,16 +468,21 @@ def reverse_verb_match(result, full_text, text, prefix):
         reverse_match(result, full_text, prefix + stroke)
 
 
+def add_verb_stroke(prefix, suffix):
+    if 'A' in prefix or 'O' in prefix or '*' in prefix or 'E' in prefix or 'U' in prefix:
+        return prefix + suffix
+    return prefix + '-' + suffix
+
 def reverse_modifier_match(result, full_text, text, prefix):
     word = text.split(' ', 1)[0]
 
     if word in REVERSE_MODIFIERS:
         for stroke in REVERSE_MODIFIERS[word]:
             reverse_verb_match(result, full_text, text.replace(
-                word, '').strip(), prefix + stroke)
+                word, '').strip(), add_verb_stroke(prefix, stroke))
 
     for stroke in REVERSE_MODIFIERS['']:
-        reverse_verb_match(result, full_text, text, prefix + stroke)
+        reverse_verb_match(result, full_text, text, add_verb_stroke(prefix, stroke))
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):

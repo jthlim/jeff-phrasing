@@ -196,6 +196,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `B`    | To be (the)         |
 | `BL`   | To believe (that)   |
 | `BG`   | To come (to)        |
+| `RP`   | To do (it)          |
 | `PBLG` | To find (that)      |
 | `RG`   | To forget (to)      |
 | `GS`   | To get (to)         |
