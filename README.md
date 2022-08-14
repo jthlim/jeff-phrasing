@@ -114,13 +114,13 @@ placeholder `-D`).
 　　　🄰🄾 🅴🆄
 ```
 
-`EUF` controls how the decorators `really`, `just`, `all`, `still`, `never`
-and `even` combine with `do`, `can`, `shall`, `will`.
+`EUF` controls how the decorators `really`, `just`, `still`, `never`
+and `even` and `all.
 
 * `EU` selects the word:
   * `E`: r**e**ally
   * `U`: j**u**st
-  * `EU`: all (after) / st**i**ll (before, with -F)
+  * `EU`: st**i**ll
 * `F` will swap the order of the above words with do/should/could/would
 * `F` by itself appends the word `never`, but for negative forms, this changes
   to `even`.
@@ -134,7 +134,7 @@ and `even` combine with `do`, `can`, `shall`, `will`.
 | `? E _ F` | r**e**ally {} |
 | `? _ U _` | {} j**u**st   |
 | `? _ U F` | just {}       |
-| `? E U _` | {} all        |
+| `? E U _` | {} still      |
 | `? E U F` | st**i**ll {}  |
 
 Examples:
@@ -152,14 +152,14 @@ none of `A`, `O` and `*` are pressed.
 | `_ _ _ _ U F` | {}            |
 | `_ _ _ E _ _` | r**e**ally    |
 | `_ _ _ E _ F` | r**e**ally {} |
-| `_ _ _ E U _` | all           |
-| `_ _ _ E U F` | st**i**ll     |
+| `_ _ _ E U _` | st**i**ll     |
+| `_ _ _ E U F` | all           |
 
 This allows typing phrases such as:
 * `SWREUFG`: `I still go`
 * `KPWRFBSD`: `you never said`
 * `SWRUFPBG`: `I do think`
-* `KPWRA*EUG`: `you can't all go`
+
 ## Verbs and suffix words
 
 All verbs have a present and past tense version. The past tense is formed by

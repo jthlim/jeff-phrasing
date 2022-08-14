@@ -31,8 +31,8 @@ MIDDLE_EXCEPTIONS = {
     "E": (" really", False),
     "U": (" just", False),
     "UF": ("*", True),
-    "EU": (" all", False),
-    "EUF": (" still", False),
+    "EU": (" still", False),
+    "EUF": (" all", False),
 }
 
 MIDDLES_BASE = {
@@ -60,8 +60,8 @@ MIDDLES_DECORATORS = {
     "*U": "* just",
     "UF": " just*",
     "*UF": " just*",
-    "EU": "* all",
-    "*EU": "* all",
+    "EU": "* still",
+    "*EU": "* still",
     "EUF": " still*",
     "*EUF": " still*",
 }
