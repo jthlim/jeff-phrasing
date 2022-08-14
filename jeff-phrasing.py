@@ -31,7 +31,8 @@ MIDDLE_EXCEPTIONS = {
     "E": (" really", False),
     "U": (" just", False),
     "UF": ("*", True),
-    "EU": (" still", False),
+    "EU": (" all", False),
+    "EUF": (" still", False),
 }
 
 MIDDLES_BASE = {
@@ -59,8 +60,8 @@ MIDDLES_DECORATORS = {
     "*U": "* just",
     "UF": " just*",
     "*UF": " just*",
-    "EU": "* still",
-    "*EU": "* still",
+    "EU": "* all",
+    "*EU": "* all",
     "EUF": " still*",
     "*EUF": " still*",
 }
@@ -135,7 +136,9 @@ ENDERS = {
 
     # BLG - To like
     "BLG": ("present", {None: " like", "3ps": " likes"}),
+    "BLGT": ("present", {None: " like to", "3ps": " likes to"}),
     "BLGD": ("past", {None: " liked", "inf": " like"}),
+    "BLGTD": ("past", {None: " liked to", "inf": " like to"}),
 
     # LZ - To live
     "LZ": ("present", {None: " live", "3ps": " lives"}),
@@ -311,6 +314,7 @@ def lookup_data(data, key):
 #
 # This will show in Plover's suggestions window.
 
+
 REVERSE_STARTERS = {}
 REVERSE_MIDDLES_BASE = {}
 REVERSE_ADVERBS = {}
@@ -323,6 +327,7 @@ for key in STARTERS:
 
 POSSIBLE_REVERSE_MATCH = re.compile(r"[a-zI ']+")
 
+
 def add_reverse_middles_base(stroke, data):
     if type(data) is dict:
         for k in data:
@@ -333,6 +338,7 @@ def add_reverse_middles_base(stroke, data):
     REVERSE_MIDDLES_BASE.setdefault(word, {})
     REVERSE_MIDDLES_BASE[word][stroke] = True
 
+
 def add_reverse_enders(stroke, data):
     if type(data) is dict:
         for k in data:
@@ -342,6 +348,7 @@ def add_reverse_enders(stroke, data):
     word = data.strip()
     REVERSE_ENDERS.setdefault(word, {})
     REVERSE_ENDERS[word][stroke] = True
+
 
 for key in MIDDLES_BASE:
     add_reverse_middles_base(key, MIDDLES_BASE[key])
@@ -359,9 +366,11 @@ for key in MIDDLE_EXCEPTIONS:
 for key in ENDERS:
     add_reverse_enders(key, ENDERS[key][1])
 
+
 def reverse_match(result, full_text, prefix):
     if lookup([prefix]).strip() == full_text:
         result.append((prefix,))
+
 
 def reverse_verb_match(result, full_text, text, prefix):
     if text not in REVERSE_ENDERS:
@@ -371,23 +380,28 @@ def reverse_verb_match(result, full_text, text, prefix):
     for stroke in REVERSE_ENDERS[text]:
         reverse_match(result, full_text, prefix + stroke)
 
-def reverse_adverbs_match(result, full_text, text, prefix):
+
+def reverse_decorator_match(result, full_text, text, prefix):
     word = text.split(' ', 1)[0]
-    
+
     if word in REVERSE_ADVERBS:
         for stroke in REVERSE_ADVERBS[word]:
-            reverse_verb_match(result, full_text, text.replace(word, '').strip(), prefix + stroke)
+            reverse_verb_match(result, full_text, text.replace(
+                word, '').strip(), prefix + stroke)
 
     for stroke in REVERSE_ADVERBS['']:
         reverse_verb_match(result, full_text, text, prefix + stroke)
+
 
 def reverse_middle_base_match(result, full_text, text, prefix):
     for word in REVERSE_MIDDLES_BASE:
         if word in text:
             for stroke in REVERSE_MIDDLES_BASE[word]:
-                reverse_adverbs_match(result, full_text, text.replace(word, '').strip(), prefix + stroke)
+                reverse_decorator_match(result, full_text, text.replace(
+                    word, '').strip(), prefix + stroke)
 
-    reverse_adverbs_match(result, full_text, text, prefix)
+    reverse_decorator_match(result, full_text, text, prefix)
+
 
 def reverse_lookup(text):
     if not POSSIBLE_REVERSE_MATCH.fullmatch(text):

@@ -20,6 +20,7 @@ Some examples of single stroke phrases:
 * `SWRAOFGTD`: `I would never go to`
 * `SWR-RPBT`: `I understand the`
 * `SWRA*EUFRPBT`: `I still can't understand the`
+* `KPWHEUFLTSDZ`: `It all felt like`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -36,7 +37,7 @@ The phrase is constructed in 5 parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
 2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
-3. A optional adverb `really`/`just`/`still`/`never`/`even`
+3. A optional decorator word `really`/`just`/`still`/`all`/`never`/`even`
 4. A verb e.g. `have`, `go`, `say`, `understand`, etc.
 5. An optional suffix word 
 
@@ -105,7 +106,7 @@ the negative version.
 To get `did`, `should`, `could`, `would`, use a past tense verb (or past tense
 placeholder `-D`).
 
-## Really, Just, Still, Never/Even
+## Really, Just, Still/All, Never/Even
 
 ```
 🅂🅃🄿🄷 🄾 🅵🄿🄻🅃🄳
@@ -113,13 +114,13 @@ placeholder `-D`).
 　　　🄰🄾 🅴🆄
 ```
 
-`EUF` controls how the adverbs `really`, `just`, `still`, `never` and `even`
-combine with `do`, `can`, `shall`, `will`.
+`EUF` controls how the decorators `really`, `just`, `all`, `still`, `never`
+and `even` combine with `do`, `can`, `shall`, `will`.
 
-* `EU` selects the adverb:
+* `EU` selects the word:
   * `E`: r**e**ally
   * `U`: j**u**st
-  * `EU`: st**i**ll
+  * `EU`: all (after) / st**i**ll (before, with -F)
 * `F` will swap the order of the above words with do/should/could/would
 * `F` by itself appends the word `never`, but for negative forms, this changes
   to `even`.
@@ -133,7 +134,7 @@ combine with `do`, `can`, `shall`, `will`.
 | `? E _ F` | r**e**ally {} |
 | `? _ U _` | {} j**u**st   |
 | `? _ U F` | just {}       |
-| `? E U _` | {} st**i**ll  |
+| `? E U _` | {} all        |
 | `? E U F` | st**i**ll {}  |
 
 Examples:
@@ -150,15 +151,15 @@ none of `A`, `O` and `*` are pressed.
 | `_ _ _ _ U _` | j**u**st      |
 | `_ _ _ _ U F` | {}            |
 | `_ _ _ E _ _` | r**e**ally    |
-| `_ _ _ E _ F` | r**e**ally do |
-| `_ _ _ E U _` | st**i**ll     |
-| `_ _ _ E U F` | st**i**ll do  |
+| `_ _ _ E _ F` | r**e**ally {} |
+| `_ _ _ E U _` | all           |
+| `_ _ _ E U F` | st**i**ll     |
 
 This allows typing phrases such as:
-* `SWREUG`: `I still go`
-* `KPWRFBSD`: `You never said`
+* `SWREUFG`: `I still go`
+* `KPWRFBSD`: `you never said`
 * `SWRUFPBG`: `I do think`
-
+* `KPWRA*EUG`: `you can't all go`
 ## Verbs and suffix words
 
 All verbs have a present and past tense version. The past tense is formed by
@@ -184,7 +185,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `G`    | To go (to)          |
 | `T`    | To have (to)        |
 | `PB`   | To know (that)      |
-| `BLG`  | To like             |
+| `BLG`  | To like (to)        |
 | `LZ`   | To live             |
 | `L`    | To look             |
 | `LG`   | To love             |
