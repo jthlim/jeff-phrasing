@@ -11,25 +11,27 @@ which makes it easier to learn because there's less to remember. With the
 key-space freed up, extra flexibility has been added to enable more expressive
 phrases.
 
-Some examples of single stroke phrases:
-* `SWRGT`: `I go to`
-* `KWHRGT`: `He goes to`
-* `SWRGTD`: `I went to`
-* `KWHRGTD`: `He went to`
-* `KWHRO*EFGTD`: `He really shouldn't go to`
-* `SWRAOFGTD`: `I would never go to`
-* `SWR-RPBT`: `I understand the`
-* `SWRA*EUFRPBT`: `I still can't understand the`
-* `KPWHEUFLTSDZ`: `It all felt like`
+Some examples:
+* `SWRGT` produces `I go to`
+* `KWHRGT` produces `He goes to`
+* `SWRGTD` produces `I went to`
+* `KWHRGTD` produces `He went to`
+* `SWRAEFGTD` produces `I could have gone to`
+* `KWHRO*EUFGTD` produces `He really shouldn't go to`
+* `KWHRO*EGTD` produces `He shouldn't be going to`
+* `SWRAOFGTD` produces `I would never go to`
+* `SWR-RPBT` produces `I understand the`
+* `SWRA*EURPBT` produces `I still can't understand the`
+* `SWR*UFPBTD/TWRAOEPBLGD` produces `I just didn't know that we would be finding`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
 
-This dictionary takes inspiration from Jade and Aerick's phrasing systems,
-and is currently a work in progress. Expect changes in future versions.
-
 This dictionary also supports full reverse lookup, so you can see how to
 stroke phrases in Plover's suggestions window.
+
+# Warning
+This is currently a work in progress. Expect changes in future versions.
 
 # System
 
@@ -37,30 +39,33 @@ The phrase is constructed in 5 parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
 2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
-3. A optional decorator word `really`/`just`/`still`/`all`/`never`/`even`
-4. A verb e.g. `have`, `go`, `say`, `understand`, etc.
+3. A optional modifier word `really`/`just`/`still`/`never`/`even`/`have`/`be`
+4. A verb e.g. `go`, `say`, `understand`, etc.
 5. An optional suffix word 
 
-For example: `SWR*ERPGT`: `I don't really need to` 
+For example: `SWRO*EGTD`: `I shouldn't be going to` 
 
 1. `SWR` is the starter: 'I'
-2. `*` is 'don't'
-3. `E` is 'really'
-4. `RPG` is 'need'
+2. `O*` is 'shouldn't'
+3. `E` is 'be'
+4. `G` is 'go'
 5. `T` is 'to'
 
 The phrase will generally be constructed in a manner that seems grammatically correct:
 
 Example 1:
-  * `SWRG`: produces `I go`
-  * `SWRGD`: produces `I went` (`-D` for past tense)
-  * `SWRAGD`: produces ` I could go` -- the addition of 'can' in past tense becomes 'could' and 'went' changes to 'go'.
-
+  * `SWRG` produces `I go`
+  * `SWRGD` produces `I went` (`-D` for past tense)
+  * `SWRAGD` produces `I could go` -- the addition of 'can' in past tense becomes 'could' and 'went' changes to 'go'.
+  * `SWREG` produces `I am going`
+  * `SWREGD`: produces `I was going`
+  * `SWRAOEGD`: produces `I would be going`
+ 
 Example 2:
-  *  `SWREB`: produces `I really am`
-  *  `SWREBD`: produces `I really was`
-  *  `SWROEBD`: produces `I should really be`
-
+  *  `SWREUFB`: produces `I really am`
+  *  `SWREUFBD`: produces `I really was`
+  *  `SWROEUFBD`: produces `I really should be`
+ 
 ## Starters
 
 Starters are all formed on the left hand side of the board:
@@ -70,19 +75,19 @@ Starters are all formed on the left hand side of the board:
 　　　🄰🄾 🄴🅄
 ```
 
-* `SWR`: I
-* `KPWR`: you
-* `KWHR`: he
-* `SKWHR`: she
-* `KPWH`: it
-* `TWH`: they
+* `SWR`: `I`
+* `KPWR`: `you`
+* `KWHR`: `he`
+* `SKWHR`: `she`
+* `KPWH`: `it`
+* `TWH`: `they`
 * `STKPWHR`: <empty -- third person singular form>
-* `STWR`: <empty -- third person plural form>
+* `STWR`: <empty -- root form>
 
 Example usage of of `STWR` and `STKPWHR`:
 * `SWR-RPGT/STWRURPBT` produces 'I need to just understand the'
-* `KWHR-PL/STWR-FPBT` produces 'he may never know that'
-* `SWREPLD/STWR-RPGT/STWR-GT` produces 'I really might need to go to'
+* `KWHR-PL/STWR-FPBT` produces 'he may have known that'
+* `SWREUFPLD/STWR-RPGT/STWR-GT` produces 'I really might need to go to'
 * `SKWRAEUPB/STKPWHR-FGT` produces 'Jane never goes to'
 
 ## Do, Can, Shall, Will
@@ -93,8 +98,8 @@ Example usage of of `STWR` and `STKPWHR`:
 ```
 
 The keys `AO*` are used to determine which of the additional words are added.
-The form that is added depends on the tense of the verb. `*` is used to provide
-the negative version.
+The form that is added depends on the tense of the verb. `*` is added to
+get the negative version.
 
 | `A O` | Word            | Negative forms           |
 | ----- | --------------- | ------------------------ |
@@ -106,7 +111,7 @@ the negative version.
 To get `did`, `should`, `could`, `would`, use a past tense verb (or past tense
 placeholder `-D`).
 
-## Really, Just, Still/All, Never/Even
+## Modifiers
 
 ```
 🅂🅃🄿🄷 🄾 🅵🄿🄻🅃🄳
@@ -114,51 +119,64 @@ placeholder `-D`).
 　　　🄰🄾 🅴🆄
 ```
 
-`EUF` controls how the decorators `really`, `just`, `still`, `never`
-and `even` and `all.
+`EUF` controls how the words `really`, `just`, `still`, `never`, `even`, 
+`be` and `have`.
 
-* `EU` selects the word:
-  * `E`: r**e**ally
-  * `U`: j**u**st
-  * `EU`: st**i**ll
-* `F` will swap the order of the above words with do/should/could/would
-* `F` by itself appends the word `never`, but for negative forms, this changes
-  to `even`.
+The way these work is sometimes dependent upon whether '*' is used.
 
-| `* E U F` | Word          |
-| --------- | ------------- |
-| `? _ _ _` | <empty>       |
-| `_ _ _ F` | {} ne**v**er  |
-| `* _ _ F` | {} e**v**en   |
-| `? E _ _` | {} r**e**ally |
-| `? E _ F` | r**e**ally {} |
-| `? _ U _` | {} j**u**st   |
-| `? _ U F` | just {}       |
-| `? E U _` | {} still      |
-| `? E U F` | st**i**ll {}  |
+* `still` is used as a prefix for negative forms, and as a suffix
+for positive form:
+
+  * `...AEU...`: `... can still ...`
+  * `...A*EU..`: `... still can't ...`
+
+* `-F` appends the word `never` for positive forms, and `even` for negative
+  forms.
+
+  * `...AF...`: `... can never ...`
+  * `...A*F...`: `... can't even ...`
+
+Full table:
+
+| `* E U F` | Modifier                |
+| --------- | ----------------------- |
+| `? _ _ _` | <empty>                 |
+| `_ _ _ F` | {} ne**v**er            |
+| `* _ _ F` | {} e**v**en             |
+| `? _ U _` | {} j**u**st             |
+| `? _ U F` | j**u**st {}             |
+| `_ E U _` | {} st**i**ll            |
+| `* E U _` | st**i**ll {}            |
+| `? E U F` | really {}               |
+| `? E _ _` | 'be' + -ing verb form   |
+| `? E _ F` | 'have' + past verb form |
 
 Examples:
-* `A*E` produces: `can't really`
-* `A*EF` produces: `really can't`
+* `SWRUPB` produces: `I just know`
+* `SWREGTD` produces:  `I am going to`
+* `SWROEGTD` produces:  `I should be going to`
 
-An exception is for `do` (and only the positive form), which is when
-none of `A`, `O` and `*` are pressed.
+An exception is for `do`:
 
-| `A O * E U F` | Result        |
-| ------------- | ------------- |
-| `_ _ _ _ _ _` | <empty>       |
-| `_ _ _ _ _ F` | ne**v**er     |
-| `_ _ _ _ U _` | j**u**st      |
-| `_ _ _ _ U F` | {}            |
-| `_ _ _ E _ _` | r**e**ally    |
-| `_ _ _ E _ F` | r**e**ally {} |
-| `_ _ _ E U _` | st**i**ll     |
-| `_ _ _ E U F` | all           |
+| `A O * E U F` | Result                    |
+| ------------- | ------------------------- |
+| `_ _ _ _ _ _` | <empty>                   |
+| `_ _ _ _ _ F` | ne**v**er                 |
+| `_ _ _ _ U _` | j**u**st                  |
+| `_ _ _ _ U F` | {}                        |
+| `_ _ _ E _ _` | be + -ing verb form       |
+| `_ _ * E _ _` | not be + -ing verb form   |
+| `_ _ _ E _ F` | have + past verb form     |
+| `_ _ * E _ F` | have not + past verb form |
+| `_ _ _ E U _` | st**i**ll                 |
+| `_ _ _ E U F` | really                    |
 
 This allows typing phrases such as:
-* `SWREUFG`: `I still go`
+
+* `SWREUG`: `I still go`
 * `KPWRFBSD`: `you never said`
-* `SWRUFPBG`: `I do think`
+* `SWREGT`: `I am going to`
+* `SWREFGT`: `I have gone to`
 
 ## Verbs and suffix words
 
@@ -198,7 +216,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RL`   | To recall (that)    |
 | `RPL`  | To remember (that)  |
 | `R`    | To run              |
-| `BS`   | To say              |
+| `BS`   | To say (to)         |
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
 | `RBT`  | To take             |
@@ -210,9 +228,9 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RBG`  | To work             |
 
 Examples:
-*  `SWREB`: I really am
-*  `KPWREB`:  you really are
-*  `SWR*UTD`: I didn't just have
+*  `SWRB`: `I am`
+*  `KPWRB`:  `you are`
+*  `SWRAB`: `I can be`
 
 # Installation
 
@@ -224,3 +242,6 @@ You may also be interested in:
 * [jeff-modifiers](https://github.com/jthlim/jeff-modifiers)
 * [jeff-numbers](https://github.com/jthlim/jeff-numbers)
 * [jeff-visual-stroke](https://github.com/jthlim/jeff-visual-stroke)
+
+# Credits
+This dictionary takes inspiration from both Jade and Aerick's phrasing systems.
