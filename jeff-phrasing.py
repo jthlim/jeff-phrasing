@@ -3,7 +3,7 @@
 # See README.md for instructions on how the system works.
 
 import re
-\
+
 LONGEST_KEY = 1
 
 PARTS_MATCHER = re.compile(
@@ -78,12 +78,12 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
 
     # To make reverse look-ups work correctly, longer results must be listed first
 
-    "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "3pp": "'re not", "b3pp": " not", "1pp": "'re not", "3pp": "'re not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
-    "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
+    "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "1pp": "'re not", "3pp": "'re not", "b3pp": " are not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
+    "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re", "b3pp": " are"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
     "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "b3ps": " has", "1pp": "'ve", "3pp": "'ve"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d"}}, False, "past-participle"),
+    "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "b3ps": " has", "1pp": "'ve", "3pp": "'ve", "b3pp": " have"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d", "b3pp": " had"}}, False, "past-participle"),
     "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
-    "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "1pp": "'d been", "3pp": "'d been"}}, False, "present-participle"),
+    "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been", "b3pp": " have been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "b3ps": " had been", "1pp": "'d been", "3pp": "'d been", "b3pp": " had been"}}, False, "present-participle"),
 
     "U": (" just", False, None),
     "UF": ("*", True, None),
@@ -235,9 +235,7 @@ ENDERS = {
 
     # RL - To recall
     "RL": ("present", {None: " recall", "3ps": " recalls", "present-participle": " recalling", "past-participle": " recalled"}),
-    "RLT": ("present", {None: " recall that", "3ps": " recalls that", "present-participle": " recalling that", "past-participle": " recalled that"}),
     "RLD": ("past", {None: " recalled", "root": " recall", "present-participle": " recalling", "past-participle": " recalled"}),
-    "RLTD": ("past", {None: " recalled that", "root": " recall that", "present-participle": " recalling that", "past-participle": " recalled that"}),
 
     # RLS - To realize (that)
     "RLS": ("present", {None: " realize", "3ps": " realizes", "present-participle": " realizing", "past-participle": " realized"}),
@@ -274,6 +272,10 @@ ENDERS = {
     # RT - To take
     "RBT": ("present", {None: " take", "3ps": " takes", "present-participle": " taking", "past-participle": " taken"}),
     "RBTD": ("past", {None: " took", "root": " take", "present-participle": " taking", "past-participle": " taken"}),
+
+    # RLT - To tell
+    "RLT": ("present", {None: " tell", "3ps": " tells", "present-participle": " telling", "past-participle": " told"}),
+    "RLTD": ("past", {None: " told", "root": " tell", "present-participle": " telling", "past-participle": " told"}),
 
     # PBG - To think (that)
     "PBG": ("present", {None: " think", "3ps": " thinks", "present-participle": " thinking", "past-participle": " thought"}),
@@ -393,6 +395,7 @@ for key in STARTERS:
 POSSIBLE_REVERSE_MATCH = re.compile(r"[a-zI ']+")
 HYPHEN_OMIT_PATTERN = re.compile(r"[AO*EU-]")
 
+
 def add_reverse_middles_base(stroke, data):
     if type(data) is dict:
         for k in data:
@@ -463,6 +466,7 @@ for key in ENDERS:
 def reverse_match(result, full_text, prefix):
     if lookup([prefix]).strip() == full_text:
         result.append((prefix,))
+
 
 def add_verb_stroke(prefix, suffix):
     if HYPHEN_OMIT_PATTERN.search(prefix) or HYPHEN_OMIT_PATTERN.search(suffix):
@@ -537,4 +541,3 @@ def reverse_lookup(text):
             reverse_middle_base_match(result, full_text, text, stroke)
 
     return result
-

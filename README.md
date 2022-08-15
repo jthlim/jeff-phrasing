@@ -230,13 +230,14 @@ For past tense with suffix words that cause a diagonal to be formed
 | `PLZ`  | To move             |
 | `RPG`  | To need (to)        |
 | `RLS`  | To realize (that)   |
-| `RL`   | To recall (that)    |
+| `RL`   | To recall           |
 | `RPL`  | To remember (that)  |
 | `R`    | To run              |
 | `BS`   | To say (that)       |
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
 | `RBT`  | To take             |
+| `RLT`  | To tell             |
 | `PBG`  | To think (that)     |
 | `RT`   | To try (to)         |
 | `RPB`  | To understand (the) |
