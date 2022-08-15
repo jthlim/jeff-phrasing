@@ -76,18 +76,19 @@ MIDDLES_BASE = {
 
 MIDDLE_MODIFIER_EXCEPTIONS = {
     "": ("", False, None),
-    "F": (" never", False, None),
 
     "*E": ({"present": {None: "'re not", "1ps": "'m not", "3ps": " isn't", "3pp": "'re not", "b3pp": " not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
     "E": ({tense: {form: TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, False, "present-participle"),
-    "*EF": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    "EF": ({tense: {form: TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, False, "past-participle"),
+    "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
+    "F": ({tense: {form: TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, False, "past-participle"),
+    "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
+    "EF": ({tense: {form: TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, False, "present-participle"),
 
     "U": (" just", False, None),
     "UF": ("*", True, None),
 
     "EU": (" still", False, None),
-    "EUF": (" really", False, None),
+    "EUF": (" never", False, None),
 }
 
 MIDDLES_MODIFIERS = {
@@ -96,16 +97,15 @@ MIDDLES_MODIFIERS = {
 
     "*E": ({tense: {form: "*" + TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, True, "present-participle"),
     "E": ({tense: {form: "*" + TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, True, "present-participle"),
-    "*EF": ({tense: {form: "*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
-    "EF": ({tense: {form: "*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
-
-    "*F": ("* even", True, None),
-    "F": ("* never", True, None),
+    "*EF": ({tense: {form: "*" + TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "present-participle"),
+    "EF": ({tense: {form: "*" + TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "present-participle"),
+    "*F": ({tense: {form: "*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
+    "F": ({tense: {form: "*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
 
     "*EU": (" still*", True, None),
     "EU": ("* still", True, None),
-    "*EUF": (" really*", True, None),
-    "EUF": (" really*", True, None),
+    "*EUF": ("* even", True, None),
+    "EUF": ("* never", True, None),
 
     "*U": ("* just", True, None),
     "U": ("* just", True, None),
@@ -425,6 +425,7 @@ def add_reverse_middle_modifiers(stroke, data):
     if replacement != word:
         REPLACEMENTS.append((word, replacement))
 
+
 def add_reverse_enders(stroke, data):
     if type(data) is dict:
         for k in data:
@@ -454,7 +455,8 @@ def reverse_match(result, full_text, prefix):
         if lookup([prefix]).strip() == full_text:
             result.append((prefix,))
     except KeyError:
-        log.error("KeyError during reverse match for %s: %s" % (prefix, traceback.format_exc()))
+        log.error("KeyError during reverse match for %s: %s" %
+                  (prefix, traceback.format_exc()))
         pass
 
 
@@ -473,6 +475,7 @@ def add_verb_stroke(prefix, suffix):
         return prefix + suffix
     return prefix + '-' + suffix
 
+
 def reverse_modifier_match(result, full_text, text, prefix):
     word = text.split(' ', 1)[0]
 
@@ -482,7 +485,8 @@ def reverse_modifier_match(result, full_text, text, prefix):
                 word, '').strip(), add_verb_stroke(prefix, stroke))
 
     for stroke in REVERSE_MODIFIERS['']:
-        reverse_verb_match(result, full_text, text, add_verb_stroke(prefix, stroke))
+        reverse_verb_match(result, full_text, text,
+                           add_verb_stroke(prefix, stroke))
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):
@@ -519,4 +523,3 @@ def reverse_lookup(text):
             reverse_middle_base_match(result, full_text, text, stroke)
 
     return result
-

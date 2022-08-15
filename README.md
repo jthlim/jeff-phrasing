@@ -16,10 +16,10 @@ Some examples:
 * `KWHRGT` produces `He goes to`
 * `SWRGTD` produces `I went to`
 * `KWHRGTD` produces `He went to`
-* `SWRAEFGTD` produces `I could have gone to`
-* `KWHRO*EUFGTD` produces `He really shouldn't go to`
+* `SWRAFGTD` produces `I could have gone to`
+* `KWHRO*UFGTD` produces `He just shouldn't go to`
 * `KWHRO*EGTD` produces `He shouldn't be going to`
-* `SWRAOFGTD` produces `I would never go to`
+* `SWRAOEUFGTD` produces `I would never go to`
 * `SWR-RPBT` produces `I understand the`
 * `SWRA*EURPBT` produces `I still can't understand the`
 * `SWR*UFPBTD/TWRAOEPBLGD` produces `I just didn't know that we would be finding`
@@ -35,37 +35,42 @@ This is currently a work in progress. Expect changes in future versions.
 
 # System
 
-The phrase is constructed in 5 parts:
+The phrase is constructed in 6 parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
 2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
-3. A optional modifier word `really`/`just`/`still`/`never`/`even`/`have`/`be`
+3. A optional modifier word `just`/`still`/`never`/`even`/`have`/`be`
 4. A verb e.g. `go`, `say`, `understand`, etc.
 5. An optional suffix word 
+6. A tense
 
-For example: `SWRO*EGTD`: `I shouldn't be going to` 
+For example: `SWRO*FGTD`: `I shouldn't have gone to` 
 
 1. `SWR` is the starter: 'I'
 2. `O*` is 'shouldn't'
-3. `E` is 'be'
+3. `F` is 'have'
 4. `G` is 'go'
 5. `T` is 'to'
+6. `D` is for past tense
 
 The phrase will generally be constructed in a manner that seems grammatically correct:
 
 Example 1:
-  * `SWRG` produces `I go`
-  * `SWRGD` produces `I went` (`-D` for past tense)
+  * `SWR-G` produces `I go`
+  * `SWR-GD` produces `I went`
   * `SWRAGD` produces `I could go` -- the addition of 'can' in past tense becomes 'could' and 'went' changes to 'go'.
   * `SWREG` produces `I am going`
   * `SWREGD`: produces `I was going`
   * `SWRAOEGD`: produces `I would be going`
- 
+  * `SWRFG`: produces `I have gone`
+  * `SWRFGD`: produces `I had gone`
+  * `SWREFG`: produces `I have been going`
+  * `SWREFGD`: produces `I had been going`
+
 Example 2:
-  *  `SWREUFB`: produces `I really am`
-  *  `SWREUFBD`: produces `I really was`
-  *  `SWROEUFBD`: produces `I really should be`
- 
+  *  `SWREUFB`: produces `I never am`
+  *  `SWREUFBD`: produces `I never was`
+  *  `SWROEUFBD`: produces `I should never be`
 ## Starters
 
 Starters are all formed on the left hand side of the board:
@@ -81,16 +86,15 @@ Starters are all formed on the left hand side of the board:
 * `SKWHR`: `she`
 * `KPWH`: `it`
 * `TWH`: `they`
-* `STKPWHR`: <empty -- third person singular form>
-* `STWR`: <empty -- root form>
+* `STKPWHR`: `` (empty -- third person singular form)
+* `STWR`: `` (empty -- third person plural form)
 
 Example usage of of `STWR` and `STKPWHR`:
 * `SWR-RPGT/STWRURPBT` produces 'I need to just understand the'
 * `KWHR-PL/STWR-FPBT` produces 'he may have known that'
-* `SWREUFPLD/STWR-RPGT/STWR-GT` produces 'I really might need to go to'
-* `SKWRAEUPB/STKPWHR-FGT` produces 'Jane never goes to'
-
-## Do, Can, Shall, Will
+* `SKWRAEUPB/STKPWHR-EUFGT` produces 'Jane never goes to'
+ 
+ # Do, Can, Shall, Will
 ```
 🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
 🅂🄺🅆🅁 🅾 🅁🄱🄶🅂🅉
@@ -119,64 +123,74 @@ placeholder `-D`).
 　　　🄰🄾 🅴🆄
 ```
 
-`EUF` controls how the words `really`, `just`, `still`, `never`, `even`, 
-`be` and `have`.
+`EUF` controls how the words `just`, `still`, `never`, `even`, `be` and `have`.
 
-The way these work is sometimes dependent upon whether '*' is used.
+* `E` is used for verb forms of `to be`.
 
-* `still` is used as a prefix for negative forms, and as a suffix
-for positive form:
+* `F` is used for verb forms of `to have`.
+  
+* `EF` is used for verb forms of `have been`.
+
+* `U` is used to suffix `just`, `UF` is used to prefix `just`.
+
+The way these work is sometimes dependent upon whether a negative form ('*')
+is used.
+
+* `EU` gives the word `still` and is used as a suffix in positive form,
+  but as a prefix for negative form
 
   * `...AEU...`: `... can still ...`
-  * `...A*EU..`: `... still can't ...`
+  * `...A*EU...`: `... still can't ...`
 
-* `-F` appends the word `never` for positive forms, and `even` for negative
+* `-EUF` appends the word `never` for positive forms, and `even` for negative
   forms.
 
-  * `...AF...`: `... can never ...`
-  * `...A*F...`: `... can't even ...`
+  * `...AEUF...`: `... can never ...`
+  * `...A*EUF...`: `... can't even ...`
 
 Full table:
 
-| `* E U F` | Modifier                |
-| --------- | ----------------------- |
-| `? _ _ _` | <empty>                 |
-| `_ _ _ F` | {} ne**v**er            |
-| `* _ _ F` | {} e**v**en             |
-| `? _ U _` | {} j**u**st             |
-| `? _ U F` | j**u**st {}             |
-| `_ E U _` | {} st**i**ll            |
-| `* E U _` | st**i**ll {}            |
-| `? E U F` | really {}               |
-| `? E _ _` | 'be' + -ing verb form   |
-| `? E _ F` | 'have' + past verb form |
+| `* E U F` | Modifier                           |
+| --------- | ---------------------------------- |
+| `? _ _ _` | <empty>                            |
+| `? _ U _` | {} j**u**st                        |
+| `? _ U F` | j**u**st {}                        |
+| `_ E U _` | {} st**i**ll                       |
+| `* E U _` | st**i**ll {}                       |
+| `_ E U F` | {} n**ev**er                       |
+| `* E U F` | {} **ev**en                        |
+| `? E _ _` | 'be' + -ing verb form              |
+| `? _ _ F` | 'have' + past participle verb form |
+| `? E _ F` | 'have been' + -ing verb form       |
 
 Examples:
 * `SWRUPB` produces: `I just know`
-* `SWREGTD` produces:  `I am going to`
+* `SWREGT` produces:  `I am going to`
 * `SWROEGTD` produces:  `I should be going to`
 
 An exception is for `do`:
 
-| `A O * E U F` | Result                    |
-| ------------- | ------------------------- |
-| `_ _ _ _ _ _` | <empty>                   |
-| `_ _ _ _ _ F` | ne**v**er                 |
-| `_ _ _ _ U _` | j**u**st                  |
-| `_ _ _ _ U F` | {}                        |
-| `_ _ _ E _ _` | be + -ing verb form       |
-| `_ _ * E _ _` | not be + -ing verb form   |
-| `_ _ _ E _ F` | have + past verb form     |
-| `_ _ * E _ F` | have not + past verb form |
-| `_ _ _ E U _` | st**i**ll                 |
-| `_ _ _ E U F` | really                    |
+| `A O * E U F` | Result                         |
+| ------------- | ------------------------------ |
+| `_ _ _ _ _ _` | <empty>                        |
+| `_ _ _ _ _ F` | have been + past verb form     |
+| `_ _ * _ _ F` | have not been + past verb form |
+| `_ _ _ _ U _` | j**u**st                       |
+| `_ _ _ _ U F` | {}                             |
+| `_ _ _ E _ _` | be + -ing verb form            |
+| `_ _ * E _ _` | not be + -ing verb form        |
+| `_ _ _ E _ F` | have been + -ing verb form     |
+| `_ _ * E _ F` | have not been + -ing verb form |
+| `_ _ _ E U _` | st**i**ll                      |
+| `_ _ _ E U F` | n**ev**er                      |
 
 This allows typing phrases such as:
 
 * `SWREUG`: `I still go`
-* `KPWRFBSD`: `you never said`
+* `KPWREUFBSZ`: `you never said`
 * `SWREGT`: `I am going to`
-* `SWREFGT`: `I have gone to`
+* `SWRFGT`: `I have gone to`
+* `SWREFGT`: `I have been going to`
 
 ## Verbs and suffix words
 
