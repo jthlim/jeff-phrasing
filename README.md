@@ -72,6 +72,7 @@ Example 2:
   *  `SWREUFB`: produces `I never am`
   *  `SWREUFBD`: produces `I never was`
   *  `SWROEUFBD`: produces `I should never be`
+
 ## Starters
 
 Starters are all formed on the left hand side of the board:
@@ -91,10 +92,10 @@ Starters are all formed on the left hand side of the board:
 * `STWR`: `` (empty -- third person plural form)
 
 Example usage of of `STWR` and `STKPWHR`:
-* `SWR-RPGT/STWRURPBT` produces 'I need to just understand the'
+* `SWR-RPGT/STWR-RPBT` produces 'I need to understand the'
 * `KWHR-PL/STWR-FPBT` produces 'he may have known that'
 * `SKWRAEUPB/STKPWHR-EUFGT` produces 'Jane never goes to'
- 
+
  # Do, Can, Shall, Will
 ```
 🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
@@ -192,6 +193,10 @@ This allows typing phrases such as:
 * `SWREGT`: `I'm going to`
 * `SWRFGT`: `I've gone to`
 * `SWREFGT`: `I've been going to`
+
+Finally, the special prefix `STWRU` will give the infinitive form of the verb.
+* `STWRUGT`: `to go to`
+* `STWRULTS`: `to feel like`
 
 ## Verbs and suffix words
 

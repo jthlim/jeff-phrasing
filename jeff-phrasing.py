@@ -90,6 +90,8 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
 
     "EU": (" still", False, None),
     "EUF": (" never", False, None),
+
+    "STWRU": (" to", False, "root"),
 }
 
 MIDDLES_MODIFIERS = {
@@ -328,16 +330,15 @@ def lookup(key):
     result, verb_form = starter_lookup
     tense, verb = ender_lookup
 
-    middle_key = vowels1 + star + vowels2 + f
-    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(middle_key)
-
     base = MIDDLES_BASE[vowels1 + star]
     middle_word, updated_verb_form = lookup_data(
         lookup_data(base, tense), verb_form)
 
+    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(starter + vowels1 + star + vowels2 + f)
+    if not modifier:
+        modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(vowels1 + star + vowels2 + f)
     if not modifier:
         modifier = MIDDLES_MODIFIERS[star + vowels2 + f]
-
     modifier_format, use_base_verb_form, modifier_verb_update = modifier
 
     if use_base_verb_form:
@@ -345,7 +346,7 @@ def lookup(key):
             verb_form = updated_verb_form
 
     middle_word = lookup_data(lookup_data(
-        modifier_format, tense), verb_form).replace('*', middle_word)
+        modifier_format, tense), verb_form).replace('*', middle_word, 1)
     result += middle_word
 
     if modifier_verb_update:
@@ -377,8 +378,7 @@ def lookup_data(data, key):
 
 # Proper reverse lookup support.
 #
-# This will show in Plover's suggestions window.
-
+# This will show phrasing strokes in Plover's suggestions window.
 
 REVERSE_STARTERS = {}
 REVERSE_MIDDLES_BASE = {}
@@ -469,8 +469,14 @@ def reverse_match(result, full_text, prefix):
 
 
 def add_verb_stroke(prefix, suffix):
+    # This check enables finding `STRWU` special prefix words.
+    if suffix.startswith(prefix):
+        return suffix
+
+    # This check prevents adding in extra '-' when it will cause issues in lookup().
     if HYPHEN_OMIT_PATTERN.search(prefix) or HYPHEN_OMIT_PATTERN.search(suffix):
         return prefix + suffix
+
     return prefix + '-' + suffix
 
 
@@ -483,7 +489,7 @@ def reverse_verb_match(result, full_text, text, prefix):
     if text not in REVERSE_ENDERS:
         return
 
-    prefix = prefix.replace('**', '*')
+    prefix = prefix.replace('**', '*', 1)
     for stroke in REVERSE_ENDERS[text]:
         reverse_match(result, full_text, add_verb_stroke(prefix, stroke))
 
@@ -494,13 +500,13 @@ def reverse_modifier_match(result, full_text, text, prefix):
     if word in REVERSE_MODIFIERS:
         for stroke in REVERSE_MODIFIERS[word]:
             reverse_verb_match(result, full_text, text.replace(
-                word, '').strip(), add_verb_stroke(prefix, stroke))
+                word, '', 1).strip(), add_verb_stroke(prefix, stroke))
 
     if '_' in word:
         word = word.split('_', 1)[0]
         for stroke in REVERSE_MODIFIERS[word]:
             reverse_verb_match(result, full_text, text.replace(
-                word, '').strip(), add_verb_stroke(prefix, stroke))
+                word, '', 1).strip(), add_verb_stroke(prefix, stroke))
 
     for stroke in REVERSE_MODIFIERS['']:
         reverse_verb_match(result, full_text, text,
@@ -512,7 +518,7 @@ def reverse_middle_base_match(result, full_text, text, prefix):
         if word in text:
             for stroke in REVERSE_MIDDLES_BASE[word]:
                 reverse_modifier_match(result, full_text, text.replace(
-                    word, '').strip(), prefix + stroke)
+                    word, '', 1).strip(), prefix + stroke)
 
     reverse_modifier_match(result, full_text, text, prefix)
 
