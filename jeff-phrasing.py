@@ -141,8 +141,8 @@ ENDERS = {
     # RP - To do (it)
     "RP": ("present", {None: " do", "3ps": " does", "present-participle": " doing", "past-participle": " done"}),
     "RPT": ("present", {None: " do it", "3ps": " does it", "present-participle": " doing it", "past-participle": " done it"}),
-    "RPD": ("past", {None: " did", "root": " does", "present-participle": " doing", "past-participle": " done"}),
-    "RPTD": ("past", {None: " did it", "root": " does it", "present-participle": " doing it", "past-participle": " done it"}),
+    "RPD": ("past", {None: " did", "root": " do", "present-participle": " doing", "past-participle": " done"}),
+    "RPTD": ("past", {None: " did it", "root": " do it", "present-participle": " doing it", "past-participle": " done it"}),
 
     # LS - To feel (like)
     "LS": ("present", {None: " feel", "3ps": " feels", "present-participle": " feeling", "past-participle": " felt"}),
