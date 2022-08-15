@@ -231,7 +231,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RL`   | To recall (that)    |
 | `RPL`  | To remember (that)  |
 | `R`    | To run              |
-| `BS`   | To say (to)         |
+| `BS`   | To say (that)       |
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
 | `RBT`  | To take             |

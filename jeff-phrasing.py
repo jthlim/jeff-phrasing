@@ -254,11 +254,11 @@ ENDERS = {
     "R": ("present", {None: " run", "3ps": " runs", "present-participle": " running", "past-participle": " run"}),
     "RD": ("past", {None: " ran", "root": " run", "present-participle": " running", "past-participle": " run"}),
 
-    # BS - To say (to)
+    # BS - To say (that)
     "BS": ("present", {None: " say", "3ps": " says", "present-participle": " saying", "past-participle": " said"}),
-    "BTS": ("present", {None: " say to", "3ps": " says to", "present-participle": " saying to", "past-participle": " said to"}),
+    "BTS": ("present", {None: " say that", "3ps": " says that", "present-participle": " saying that", "past-participle": " said that"}),
     "BSZ": ("past", {None: " said", "root": " say", "present-participle": " saying", "past-participle": " said"}),
-    "BTSDZ": ("past", {None: " said to", "root": " say to", "present-participle": " saying to", "past-participle": " said to"}),
+    "BTSDZ": ("past", {None: " said that", "root": " say that", "present-participle": " saying that", "past-participle": " said that"}),
 
     # S - To see
     "S": ("present", {None: " see", "3ps": " sees", "present-participle": " seeing", "past-participle": " seen"}),
