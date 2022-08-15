@@ -316,7 +316,6 @@ def lookup(key):
 
     starter_lookup = STARTERS.get(starter)
     if not starter_lookup:
-        log.info('Starter: %s' % starter)
         raise KeyError
 
     ender_lookup = ENDERS.get(ender)
@@ -377,7 +376,7 @@ REVERSE_STARTERS = {}
 REVERSE_MIDDLES_BASE = {}
 REVERSE_MODIFIERS = {}
 REVERSE_ENDERS = {}
-REPLACEMENTS = []
+REPLACEMENTS = {}
 
 for key in STARTERS:
     word = STARTERS[key][0]
@@ -396,7 +395,7 @@ def add_reverse_middles_base(stroke, data):
     word = data[0].strip()
     if ' ' in word:
         replacement = word.replace(' ', '_')
-        REPLACEMENTS.append((word, replacement))
+        REPLACEMENTS[word] = replacement
         word = replacement
 
     REVERSE_MIDDLES_BASE.setdefault(word, {})
@@ -423,7 +422,7 @@ def add_reverse_middle_modifiers(stroke, data):
         replacement = ' ' + replacement
 
     if replacement != word:
-        REPLACEMENTS.append((word, replacement))
+        REPLACEMENTS[word] = replacement
 
 
 def add_reverse_enders(stroke, data):
@@ -461,7 +460,9 @@ def reverse_match(result, full_text, prefix):
 
 
 def reverse_verb_match(result, full_text, text, prefix):
-
+    if text[0] == '_':
+        text = text[1:]
+    text = text.replace('_', ' ')
     if text not in REVERSE_ENDERS:
         return
 
@@ -480,6 +481,12 @@ def reverse_modifier_match(result, full_text, text, prefix):
     word = text.split(' ', 1)[0]
 
     if word in REVERSE_MODIFIERS:
+        for stroke in REVERSE_MODIFIERS[word]:
+            reverse_verb_match(result, full_text, text.replace(
+                word, '').strip(), add_verb_stroke(prefix, stroke))
+
+    if '_' in word:
+        word = word.split('_', 1)[0]
         for stroke in REVERSE_MODIFIERS[word]:
             reverse_verb_match(result, full_text, text.replace(
                 word, '').strip(), add_verb_stroke(prefix, stroke))
@@ -505,8 +512,8 @@ def reverse_lookup(text):
 
     full_text = text
 
-    for key, replacement in REPLACEMENTS:
-        text = text.replace(key, replacement)
+    for key in REPLACEMENTS:
+        text = text.replace(key, REPLACEMENTS[key])
 
     if len(text.split(' ')) > 6:
         return []
