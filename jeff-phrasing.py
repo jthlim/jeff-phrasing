@@ -162,10 +162,10 @@ ENDERS = {
     "RGTD": ("past", {None: " forgot to", "root": " forget to", "present-participle": " forgetting to", "past-participle": " forgotten to"}),
 
     # GS: To get (to)
-    "GS": ("present", {None: " get", "3ps": " gets", "present-participle": " getting", "past-participle": " gotten"}),
-    "GTS": ("present", {None: " get to", "3ps": " gets to", "present-participle": " getting to", "past-participle": " gotten to"}),
-    "GSZ": ("past", {None: " got", "root": " get", "present-participle": " getting", "past-participle": " gotten"}),
-    "GTSDZ": ("past", {None: " got to", "root": " get to", "present-participle": " getting to", "past-participle": " gotten to"}),
+    "GS": ("present", {None: " get", "3ps": " gets", "present-participle": " getting", "past-participle": " got"}),
+    "GTS": ("present", {None: " get to", "3ps": " gets to", "present-participle": " getting to", "past-participle": " got to"}),
+    "GSZ": ("past", {None: " got", "root": " get", "present-participle": " getting", "past-participle": " got"}),
+    "GTSDZ": ("past", {None: " got to", "root": " get to", "present-participle": " getting to", "past-participle": " got to"}),
 
     # GZ: To give
     "GZ": ("present", {None: " give", "3ps": " gives", "present-participle": " giving", "past-participle": " given"}),
