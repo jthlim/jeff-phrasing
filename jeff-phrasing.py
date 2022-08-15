@@ -460,9 +460,11 @@ def reverse_match(result, full_text, prefix):
 
 
 def reverse_verb_match(result, full_text, text, prefix):
-    if text[0] == '_':
-        text = text[1:]
-    text = text.replace('_', ' ')
+    if len(text) > 0:
+        if text[0] == '_':
+            text = text[1:]
+        text = text.replace('_', ' ')
+
     if text not in REVERSE_ENDERS:
         return
 
