@@ -77,12 +77,14 @@ MIDDLES_BASE = {
 MIDDLE_MODIFIER_EXCEPTIONS = {
     "": ("", False, None),
 
-    "*E": ({"present": {None: "'re not", "1ps": "'m not", "3ps": " isn't", "3pp": "'re not", "b3pp": " not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
-    "E": ({tense: {form: TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, False, "present-participle"),
+    # To make reverse look-ups work correctly, longer results must be listed first
+
+    "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "3pp": "'re not", "b3pp": " not", "1pp": "'re not", "3pp": "'re not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
+    "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "1pp": "'re", "3pp": "'re"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
     "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    "F": ({tense: {form: TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, False, "past-participle"),
+    "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "1pp": "'ve", "3pp": "'ve"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d"}}, False, "past-participle"),
     "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
-    "EF": ({tense: {form: TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, False, "present-participle"),
+    "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "1pp": "'ve been", "3pp": "'ve been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "1pp": "'d been", "3pp": "'d been"}}, False, "present-participle"),
 
     "U": (" just", False, None),
     "UF": ("*", True, None),
@@ -376,7 +378,8 @@ REVERSE_STARTERS = {}
 REVERSE_MIDDLES_BASE = {}
 REVERSE_MODIFIERS = {}
 REVERSE_ENDERS = {}
-REPLACEMENTS = {}
+REPLACEMENTS = []
+REPLACEMENTS_SET = {}
 
 for key in STARTERS:
     word = STARTERS[key][0]
@@ -395,7 +398,9 @@ def add_reverse_middles_base(stroke, data):
     word = data[0].strip()
     if ' ' in word:
         replacement = word.replace(' ', '_')
-        REPLACEMENTS[word] = replacement
+        if word not in REPLACEMENTS_SET:
+            REPLACEMENTS.append((word, replacement))
+            REPLACEMENTS_SET[word] = True
         word = replacement
 
     REVERSE_MIDDLES_BASE.setdefault(word, {})
@@ -422,7 +427,9 @@ def add_reverse_middle_modifiers(stroke, data):
         replacement = ' ' + replacement
 
     if replacement != word:
-        REPLACEMENTS[word] = replacement
+        if word not in REPLACEMENTS_SET:
+            REPLACEMENTS.append((word, replacement))
+            REPLACEMENTS_SET[word] = True
 
 
 def add_reverse_enders(stroke, data):
@@ -436,14 +443,14 @@ def add_reverse_enders(stroke, data):
     REVERSE_ENDERS[word][stroke] = True
 
 
+for key in MIDDLE_MODIFIER_EXCEPTIONS:
+    add_reverse_middle_modifiers(key, MIDDLE_MODIFIER_EXCEPTIONS[key][0])
+
 for key in MIDDLES_BASE:
     add_reverse_middles_base(key, MIDDLES_BASE[key])
 
 for key in MIDDLES_MODIFIERS:
     add_reverse_middle_modifiers(key, MIDDLES_MODIFIERS[key][0])
-
-for key in MIDDLE_MODIFIER_EXCEPTIONS:
-    add_reverse_middle_modifiers(key, MIDDLE_MODIFIER_EXCEPTIONS[key][0])
 
 for key in ENDERS:
     add_reverse_enders(key, ENDERS[key][1])
@@ -456,7 +463,6 @@ def reverse_match(result, full_text, prefix):
     except KeyError:
         log.error("KeyError during reverse match for %s: %s" %
                   (prefix, traceback.format_exc()))
-        pass
 
 
 def reverse_verb_match(result, full_text, text, prefix):
@@ -474,7 +480,7 @@ def reverse_verb_match(result, full_text, text, prefix):
 
 
 def add_verb_stroke(prefix, suffix):
-    if 'A' in prefix or 'O' in prefix or '*' in prefix or 'E' in prefix or 'U' in prefix:
+    if 'A' in prefix or 'O' in prefix or '*' in prefix or 'E' in prefix or 'U' in prefix or '*' in suffix:
         return prefix + suffix
     return prefix + '-' + suffix
 
@@ -514,8 +520,8 @@ def reverse_lookup(text):
 
     full_text = text
 
-    for key in REPLACEMENTS:
-        text = text.replace(key, REPLACEMENTS[key])
+    for key, replacement in REPLACEMENTS:
+        text = text.replace(key, replacement)
 
     if len(text.split(' ')) > 6:
         return []
@@ -532,3 +538,4 @@ def reverse_lookup(text):
             reverse_middle_base_match(result, full_text, text, stroke)
 
     return result
+

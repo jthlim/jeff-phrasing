@@ -62,10 +62,10 @@ Example 1:
   * `SWREG` produces `I am going`
   * `SWREGD`: produces `I was going`
   * `SWRAOEGD`: produces `I would be going`
-  * `SWRFG`: produces `I have gone`
-  * `SWRFGD`: produces `I had gone`
-  * `SWREFG`: produces `I have been going`
-  * `SWREFGD`: produces `I had been going`
+  * `SWRFG`: produces `I've gone`
+  * `SWRFGD`: produces `I'd gone`
+  * `SWREFG`: produces `I've been going`
+  * `SWREFGD`: produces `I'd been going`
 
 Example 2:
   *  `SWREUFB`: produces `I never am`
