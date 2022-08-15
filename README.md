@@ -20,6 +20,7 @@ Some examples:
 * `KWHRO*UFGTD` produces `He just shouldn't go to`
 * `KWHRO*EGTD` produces `He shouldn't be going to`
 * `SWRAOEUFGTD` produces `I would never go to`
+* `SWREFGT` produces `I've been going to`
 * `SWR-RPBT` produces `I understand the`
 * `SWRA*EURPBT` produces `I still can't understand the`
 * `SWR*UFPBTD/TWRAOEPBLGD` produces `I just didn't know that we would be finding`
@@ -188,9 +189,9 @@ This allows typing phrases such as:
 
 * `SWREUG`: `I still go`
 * `KPWREUFBSZ`: `you never said`
-* `SWREGT`: `I am going to`
-* `SWRFGT`: `I have gone to`
-* `SWREFGT`: `I have been going to`
+* `SWREGT`: `I'm going to`
+* `SWRFGT`: `I've gone to`
+* `SWREFGT`: `I've been going to`
 
 ## Verbs and suffix words
 
