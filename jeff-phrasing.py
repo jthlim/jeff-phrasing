@@ -3,9 +3,7 @@
 # See README.md for instructions on how the system works.
 
 import re
-import traceback
-from plover import log
-
+\
 LONGEST_KEY = 1
 
 PARTS_MATCHER = re.compile(
@@ -49,6 +47,7 @@ TO_HAVE = {
 
 STARTERS = {
     # Map of stroke -> word, verb-form.
+    #  * 'b' for blank
     #  * '1p', '2p', '3p' for 1st, 2nd, 3rd person
     #  * 'p/s' for plural/singular
     "SWR": ("I", "1ps"),
@@ -58,7 +57,7 @@ STARTERS = {
     "KPWH": ("it", "3ps"),
     "TWR": ("we", "1pp"),
     "TWH": ("they", "3pp"),
-    "STKPWHR": ("", "3ps"),
+    "STKPWHR": ("", "b3ps"),
     "STWR": ("", "b3pp"),
 }
 
@@ -80,11 +79,11 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     # To make reverse look-ups work correctly, longer results must be listed first
 
     "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "3pp": "'re not", "b3pp": " not", "1pp": "'re not", "3pp": "'re not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
-    "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "1pp": "'re", "3pp": "'re"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
+    "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
     "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "1pp": "'ve", "3pp": "'ve"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d"}}, False, "past-participle"),
+    "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "b3ps": " has", "1pp": "'ve", "3pp": "'ve"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d"}}, False, "past-participle"),
     "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
-    "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "1pp": "'ve been", "3pp": "'ve been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "1pp": "'d been", "3pp": "'d been"}}, False, "present-participle"),
+    "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "1pp": "'d been", "3pp": "'d been"}}, False, "present-participle"),
 
     "U": (" just", False, None),
     "UF": ("*", True, None),
@@ -367,6 +366,11 @@ def lookup_data(data, key):
     if result != None:
         return result
 
+    if key[0] == 'b':
+        result = data.get(key[1:])
+        if result != None:
+            return result
+
     return data.get(None)
 
 # Proper reverse lookup support.
@@ -387,7 +391,7 @@ for key in STARTERS:
     REVERSE_STARTERS[word][key] = True
 
 POSSIBLE_REVERSE_MATCH = re.compile(r"[a-zI ']+")
-
+HYPHEN_OMIT_PATTERN = re.compile(r"[AO*EU-]")
 
 def add_reverse_middles_base(stroke, data):
     if type(data) is dict:
@@ -457,12 +461,13 @@ for key in ENDERS:
 
 
 def reverse_match(result, full_text, prefix):
-    try:
-        if lookup([prefix]).strip() == full_text:
-            result.append((prefix,))
-    except KeyError:
-        log.error("KeyError during reverse match for %s: %s" %
-                  (prefix, traceback.format_exc()))
+    if lookup([prefix]).strip() == full_text:
+        result.append((prefix,))
+
+def add_verb_stroke(prefix, suffix):
+    if HYPHEN_OMIT_PATTERN.search(prefix) or HYPHEN_OMIT_PATTERN.search(suffix):
+        return prefix + suffix
+    return prefix + '-' + suffix
 
 
 def reverse_verb_match(result, full_text, text, prefix):
@@ -476,13 +481,7 @@ def reverse_verb_match(result, full_text, text, prefix):
 
     prefix = prefix.replace('**', '*')
     for stroke in REVERSE_ENDERS[text]:
-        reverse_match(result, full_text, prefix + stroke)
-
-
-def add_verb_stroke(prefix, suffix):
-    if 'A' in prefix or 'O' in prefix or '*' in prefix or 'E' in prefix or 'U' in prefix or '*' in suffix:
-        return prefix + suffix
-    return prefix + '-' + suffix
+        reverse_match(result, full_text, add_verb_stroke(prefix, stroke))
 
 
 def reverse_modifier_match(result, full_text, text, prefix):
@@ -530,7 +529,7 @@ def reverse_lookup(text):
 
     words = text.split(' ', 1)
     if words[0] in REVERSE_STARTERS:
-        remainder = words[1] if len(words) > 1 else ''
+        remainder = words[1].strip() if len(words) > 1 else ''
         for stroke in REVERSE_STARTERS[words[0]]:
             reverse_middle_base_match(result, full_text, remainder, stroke)
     else:
