@@ -78,12 +78,24 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
 
     # To make reverse look-ups work correctly, longer results must be listed first
 
-    "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "1pp": "'re not", "3pp": "'re not", "b3pp": " are not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
-    "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re", "b3pp": " are"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
+    "*E": ({"present": {None: " aren't", "1ps": " am not", "3ps": " isn't"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
+    "E": ({"present": {None: " are", "1ps": " am", "3ps": " is"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
     "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "b3ps": " has", "1pp": "'ve", "3pp": "'ve", "b3pp": " have"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d", "b3pp": " had"}}, False, "past-participle"),
+    "F": ({"present": {None: " have", "3ps": " has"}, "past": " had"}, False, "past-participle"),
     "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
-    "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been", "b3pp": " have been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "b3ps": " had been", "1pp": "'d been", "3pp": "'d been", "b3pp": " had been"}}, False, "present-participle"),
+    "EF": ({"present": {None: " have been", "3ps": " has been"}, "past": " had been"}, False, "present-participle"),
+
+    # The following alternate definitions cause phrases to use contracted forms, e.g.:
+    #
+    # * `I'm going to` instead of `I am going to`
+    # * `I've gone to` instead of `I have gone to`
+    #
+    # "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "1pp": "'re not", "3pp": "'re not", "b3pp": " are not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
+    # "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re", "b3pp": " are"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
+    # "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
+    # "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "b3ps": " has", "1pp": "'ve", "3pp": "'ve", "b3pp": " have"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d", "b3pp": " had"}}, False, "past-participle"),
+    # "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
+    # "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been", "b3pp": " have been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "b3ps": " had been", "1pp": "'d been", "3pp": "'d been", "b3pp": " had been"}}, False, "present-participle"),
 
     "UF": ("*", True, None),
 

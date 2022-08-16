@@ -21,7 +21,7 @@ Some examples:
 * `KWHRO*UFGTD` produces `he just shouldn't go to`
 * `KWHRO*EGTD` produces `he shouldn't be going to`
 * `SWRAOEUFGTD` produces `I would never go to`
-* `SWREFGT` produces `I've been going to`
+* `SWREFGT` produces `I have been going to`
 * `SWR-RPBT` produces `I understand the`
 * `SWRA*EURPBT` produces `I still can't understand the`
 * `SWR*UFBGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
@@ -37,44 +37,51 @@ This is currently a work in progress. Expect changes in future versions.
 
 # System
 
-The phrase is constructed in 6 parts:
+The phrase is constructed in multiple parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
-2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
-3. A optional modifier `just`/`still`/`never`/`even`/`have`/`be`
-4. A verb e.g. `go`, `say`, `understand`, etc.
-5. An optional suffix word
-6. A tense
+2. An optional `do`/`can`/`shall`/`will`
+3. An optional `not`
+4. A optional modifier `just`/`still`/`never`/`even`/`have`/`be`
+5. A verb e.g. `go`, `say`, `understand`, etc.
+6. An optional suffix word
+7. A tense
 
-For example: `SWRO*FGTD`: `I shouldn't have gone to`
+The phrase will generally be constructed in a manner that feels grammatically
+correct.
 
-1. `SWR` is the starter: 'I'
-2. `O*` is 'shouldn't'
-3. `F` is 'have'
-4. `G` is 'go'
-5. `T` is 'to'
-6. `D` is for past tense
+Example 1: For the stroke `SWRO*FGTD`:
 
-The phrase will generally be constructed in a manner that seems grammatically correct:
+1. `SWR` is the starter: `I`
+2. `O` is `shall`
+3. `*` is `not`
+4. `F` is `have`
+5. `G` is `go`
+6. `T` is `to`
+7. `D` is for past tense
+
+Once the verb forms, tenses and short forms are matched up, this results in:
+`I shouldn't have gone to`
 
 Example 1:
   * `SWR-G` produces `I go`
   * `SWRUG` produces `do I go`
   * `SWR-GD` produces `I went`
-  * `SWRAGD` produces `I could go` -- the addition of 'can' in past tense becomes 'could' and 'went' changes to 'go'.
+  * `SWRAGD` produces `I could go`
   * `SWRAUGD` produces `could I go`
   * `SWREG` produces `I am going`
-  * `SWREGD`: produces `I was going`
-  * `SWRAOEGD`: produces `I would be going`
-  * `SWRFG`: produces `I've gone`
-  * `SWRFGD`: produces `I'd gone`
-  * `SWREFG`: produces `I've been going`
-  * `SWREFGD`: produces `I'd been going`
+  * `SWREGD` produces `I was going`
+  * `SWRAOEGD` produces `I would be going`
+  * `SWRFG` produces `I have gone`
+  * `SWRFGD` produces `I had gone`
+  * `SWREFG` produces `I have been going`
+  * `SWREFGD` produces `I had been going`
 
-Example 2:
-  *  `SWREUFB`: produces `I never am`
-  *  `SWREUFBD`: produces `I never was`
-  *  `SWROEUFBD`: produces `I should never be`
+Example 2: See how the verb 'be' changes:
+  * `SWREUFB` produces `I never am`
+  * `SWREUFBD` produces `I never was`
+  * `SWROEUFB` produces `I shall never be`
+  * `SWROEUFBD` produces `I should never be`
 
 ## Starters
 
@@ -183,12 +190,12 @@ An exception is for `do`:
 | ------------- | ------------------------------ | ---------------------- |
 | `_ _ _ _ _ _` | <empty>                        | `I go`                 |
 | `_ _ _ _ U _` | <swap word order>              | `do I go`              |
-| `_ _ _ _ U F` | {}                             | `I do go`              |
-| `_ _ _ _ _ F` | have + past verb form          | `I've gone`            |
+| `_ _ _ _ U F` | `{}`                           | `I do go`              |
+| `_ _ _ _ _ F` | have + past verb form          | `I have gone`          |
 | `_ _ * _ _ F` | have not  + past verb form     | `I haven't gone`       |
-| `_ _ _ E _ _` | be + -ing verb form            | `I'm going`            |
-| `_ _ * E _ _` | not be + -ing verb form        | `I'm not going`        |
-| `_ _ _ E _ F` | have been + -ing verb form     | `I've been going`      |
+| `_ _ _ E _ _` | be + -ing verb form            | `I am going`           |
+| `_ _ * E _ _` | not be + -ing verb form        | `I am not going`       |
+| `_ _ _ E _ F` | have been + -ing verb form     | `I have been going`    |
 | `_ _ * E _ F` | have not been + -ing verb form | `I haven't been going` |
 | `_ _ _ E U _` | st**i**ll                      | `I still go`           |
 | `_ _ _ E U F` | n**ev**er                      | `I never go`           |
@@ -254,11 +261,11 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RBG`  | To work             |
 
 Examples:
-*  `SWRB`: `I am`
-*  `KPWRB`:  `you are`
-*  `SWRAB`: `I can be`
+*  `SWRB` produces `I am`
+*  `KPWRB` produces `you are`
+*  `SWRAB` produces `I can be`
 
-Memorization hint: `live`, `give` and `move` use `Z`.
+Memorization hint: `live`, `give` and `move` use `LZ`, `GZ` and `MZ`.
 
 # Installation
 
