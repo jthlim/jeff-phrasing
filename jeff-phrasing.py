@@ -85,7 +85,6 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
     "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been", "b3pp": " have been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "b3ps": " had been", "1pp": "'d been", "3pp": "'d been", "b3pp": " had been"}}, False, "present-participle"),
 
-    "U": (" just", False, None),
     "UF": ("*", True, None),
 
     "EU": (" still", False, None),
@@ -110,10 +109,10 @@ MIDDLES_MODIFIERS = {
     "*EUF": ("* even", True, None),
     "EUF": ("* never", True, None),
 
-    "*U": ("* just", True, None),
-    "U": ("* just", True, None),
+    "*U": ("* !", True, None),
+    "U": ("* !", True, None),
     "*UF": (" just*", True, None),
-    "UF": (" just*", True, None),
+    "UF": ("* just", True, None),
 }
 
 ENDERS = {
@@ -344,7 +343,8 @@ def lookup(key):
     middle_word, updated_verb_form = lookup_data(
         lookup_data(base, tense), verb_form)
 
-    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(starter + vowels1 + star + vowels2 + f)
+    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(
+        starter + vowels1 + star + vowels2 + f)
     if not modifier:
         modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(vowels1 + star + vowels2 + f)
     if not modifier:
@@ -357,7 +357,11 @@ def lookup(key):
 
     middle_word = lookup_data(lookup_data(
         modifier_format, tense), verb_form).replace('*', middle_word, 1)
-    result += middle_word
+
+    if '!' in middle_word:
+        result = middle_word.replace('!', result)
+    else:
+        result += middle_word
 
     if modifier_verb_update:
         verb_form = modifier_verb_update
@@ -390,7 +394,8 @@ def lookup_data(data, key):
 #
 # This will show phrasing strokes in Plover's suggestions window.
 
-REVERSE_STARTERS = {}
+
+REVERSE_STARTERS = { "": {"": True}}
 REVERSE_MIDDLES_BASE = {}
 REVERSE_MODIFIERS = {}
 REVERSE_ENDERS = {}
@@ -474,8 +479,11 @@ for key in ENDERS:
 
 
 def reverse_match(result, full_text, prefix):
-    if lookup([prefix]).strip() == full_text:
-        result.append((prefix,))
+    try:
+        if lookup([prefix]).strip() == full_text:
+            result.append((prefix,))
+    except KeyError:
+        pass
 
 
 def add_verb_stroke(prefix, suffix):
@@ -507,20 +515,32 @@ def reverse_verb_match(result, full_text, text, prefix):
 def reverse_modifier_match(result, full_text, text, prefix):
     word = text.split(' ', 1)[0]
 
-    if word in REVERSE_MODIFIERS:
-        for stroke in REVERSE_MODIFIERS[word]:
-            reverse_verb_match(result, full_text, text.replace(
-                word, '', 1).strip(), add_verb_stroke(prefix, stroke))
+    match = PARTS_MATCHER.fullmatch(prefix)
+    has_starter = match.group(1) != '' if match else False
 
-    if '_' in word:
-        word = word.split('_', 1)[0]
-        for stroke in REVERSE_MODIFIERS[word]:
-            reverse_verb_match(result, full_text, text.replace(
-                word, '', 1).strip(), add_verb_stroke(prefix, stroke))
+    if not has_starter:
+        if word in REVERSE_STARTERS:
+            for stroke in REVERSE_STARTERS[word]:
+                subject_stroke = add_verb_stroke(stroke, prefix)
 
-    for stroke in REVERSE_MODIFIERS['']:
-        reverse_verb_match(result, full_text, text,
-                           add_verb_stroke(prefix, stroke))
+                for reverse_modifier_stroke in REVERSE_MODIFIERS['!']:
+                    reverse_verb_match(result, full_text, text.replace(
+                        word, '', 1).strip(), add_verb_stroke(subject_stroke, reverse_modifier_stroke))
+    else:
+        if word in REVERSE_MODIFIERS:
+            for stroke in REVERSE_MODIFIERS[word]:
+                reverse_verb_match(result, full_text, text.replace(
+                    word, '', 1).strip(), add_verb_stroke(prefix, stroke))
+
+        if '_' in word:
+            word = word.split('_', 1)[0]
+            for stroke in REVERSE_MODIFIERS[word]:
+                reverse_verb_match(result, full_text, text.replace(
+                    word, '', 1).strip(), add_verb_stroke(prefix, stroke))
+
+        for stroke in REVERSE_MODIFIERS['']:
+            reverse_verb_match(result, full_text, text,
+                            add_verb_stroke(prefix, stroke))
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):
