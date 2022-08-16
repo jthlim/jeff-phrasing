@@ -120,6 +120,10 @@ ENDERS = {
     "": ("present", ""),
     "D": ("past", ""),
 
+    # RB: To ask
+    "RB": ("present", {None: " ask", "3ps": " asks", "present-participle": " asking", "past-participle": " asked"}),
+    "RBD": ("past", {None: " asked", "root": " ask", "present-participle": " asking", "past-participle": " asked"}),
+
     # B: To be (the)
     "B": ("present", TO_BE["present"]),
     "BT": ("present", {key: TO_BE["present"][key] + " the" for key in TO_BE["present"]}),
@@ -224,6 +228,12 @@ ENDERS = {
     "PLT": ("present", " may have"),
     "PLD": ("past", {None: " might", "root": " may"}),
     "PLTD": ("past", {None: " might have", "root": " may have"}),
+
+    # PBL - To mean (that)
+    "PBL": ("present", {None: " mean", "3ps": " means", "present-participle": " meaning", "past-participle": " meant"}),
+    "PBLT": ("present", {None: " mean that", "3ps": " means that", "present-participle": " meaning that", "past-participle": " meant that"}),
+    "PBLD": ("past", {None: " meant", "root": " mean", "present-participle": " meaning", "past-participle": " meant"}),
+    "PBLTD": ("past", {None: " meant that", "root": " mean that", "present-participle": " meaning that", "past-participle": " meant that"}),
 
     # PLZ - To move
     "PLZ": ("present", {None: " move", "3ps": " moves", "present-participle": " moving", "past-participle": " moved"}),

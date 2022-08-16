@@ -42,10 +42,10 @@ The phrase is constructed in 6 parts:
 2. An optional `do`/`can`/`shall`/`will` or their negative or past tense forms
 3. A optional modifier word `just`/`still`/`never`/`even`/`have`/`be`
 4. A verb e.g. `go`, `say`, `understand`, etc.
-5. An optional suffix word 
+5. An optional suffix word
 6. A tense
 
-For example: `SWRO*FGTD`: `I shouldn't have gone to` 
+For example: `SWRO*FGTD`: `I shouldn't have gone to`
 
 1. `SWR` is the starter: 'I'
 2. `O*` is 'shouldn't'
@@ -238,6 +238,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `LT`   | To let              |
 | `RPBL` | To make (the)       |
 | `PL`   | may/might (have)    |
+| `PBL`  | To mean             |
 | `PLZ`  | To move             |
 | `RPG`  | To need (to)        |
 | `RLS`  | To realize (that)   |
