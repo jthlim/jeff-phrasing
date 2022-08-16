@@ -24,7 +24,7 @@ Some examples:
 * `SWREFGT` produces `I've been going to`
 * `SWR-RPBT` produces `I understand the`
 * `SWRA*EURPBT` produces `I still can't understand the`
-* `SWR*UFPBTD/TWRAOEPBLGTD` produces `I just didn't know that we would be finding that`
+* `SWR*UFBGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -214,8 +214,10 @@ For past tense with suffix words that cause a diagonal to be formed
 | `D`    | <empty, past tense> |
 | `B`    | To be (the)         |
 | `BL`   | To believe (that)   |
+| `BLG`  | To call             |
 | `BG`   | To come (to)        |
 | `RP`   | To do (it)          |
+| `BGS`  | To expect (that)    |
 | `LS`   | To feel (like)      |
 | `PBLG` | To find (that)      |
 | `RG`   | To forget (to)      |
@@ -241,6 +243,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BS`   | To say (that)       |
 | `S`    | To see              |
 | `PLS`  | To seem (to)        |
+| `RBZ`  | To show             |
 | `RBT`  | To take             |
 | `RLT`  | To tell             |
 | `PBG`  | To think (that)     |
@@ -254,6 +257,8 @@ Examples:
 *  `SWRB`: `I am`
 *  `KPWRB`:  `you are`
 *  `SWRAB`: `I can be`
+
+Memorization hint: `live`, `give` and `move` use `Z`.
 
 # Installation
 

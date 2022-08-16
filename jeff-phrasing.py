@@ -135,6 +135,10 @@ ENDERS = {
     "BLD": ("past", {None: " believed", "root": " believe", "present-participle": " believing", "past-participle": " believed"}),
     "BLTD": ("past", {None: " believed that", "root": " believe that", "present-participle": " believing that", "past-participle": " believed that"}),
 
+    # BLG - To call
+    "BLG": ("present", {None: " call", "3ps": " calls", "present-participle": " calling", "past-participle": " called"}),
+    "BLGD": ("past", {None: " called", "root": " call", "present-participle": " calling", "past-participle": " called"}),
+
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),
     "BGT": ("present", {None: " come to", "3ps": " comes to", "present-participle": " coming to", "past-participle": " come to"}),
@@ -146,6 +150,12 @@ ENDERS = {
     "RPT": ("present", {None: " do it", "3ps": " does it", "present-participle": " doing it", "past-participle": " done it"}),
     "RPD": ("past", {None: " did", "root": " do", "present-participle": " doing", "past-participle": " done"}),
     "RPTD": ("past", {None: " did it", "root": " do it", "present-participle": " doing it", "past-participle": " done it"}),
+
+    # PGS: To expect (that)
+    "PGS": ("present", {None: " expect", "3ps": " expects", "present-participle": " expecting", "past-participle": " expected"}),
+    "PGTS": ("present", {None: " expect that", "3ps": " expects that", "present-participle": " expecting that", "past-participle": " expected that"}),
+    "PGSZ": ("past", {None: " expected", "root": " expect", "present-participle": " expecting", "past-participle": " expected"}),
+    "PGTSDZ": ("past", {None: " expected that", "root": " expect that", "present-participle": " expecting that", "past-participle": " expected that"}),
 
     # LS - To feel (like)
     "LS": ("present", {None: " feel", "3ps": " feels", "present-participle": " feeling", "past-participle": " felt"}),
@@ -279,6 +289,10 @@ ENDERS = {
     "PLTS": ("present", {None: " seem to", "3ps": " seems to", "present-participle": " seeming to", "past-participle": " seemed to"}),
     "PLSZ": ("past", {None: " seemed", "root": " seem", "present-participle": " seeming", "past-participle": " seemed"}),
     "PLTSDZ": ("past", {None: " seemed to", "root": " seem to", "present-participle": " seeming to", "past-participle": " seemed to"}),
+
+    # RBZ - To show
+    "RBZ": ("present", {None: " show", "3ps": " shows", "present-participle": " showing", "past-participle": " showed"}),
+    "RBDZ": ("past", {None: " showed", "root": " show", "present-participle": " showing", "past-participle": " showed"}),
 
     # RT - To take
     "RBT": ("present", {None: " take", "3ps": " takes", "present-participle": " taking", "past-participle": " taken"}),
