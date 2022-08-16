@@ -167,8 +167,14 @@ Full table:
 
 Examples:
 * `SWRUPB` produces: `I just know`
-* `SWREGT` produces:  `I am going to`
+* `SWREGT` produces:  `I'm going to`
+* `SWRFGT` produces:  `I've gone to`
+* `SWREFGT` produces: `I've been going to`
 * `SWROEGTD` produces:  `I should be going to`
+* `KWHRGT` produces: `he goes to`
+* `KWHREGT` produces: `he's going to`
+* `KWHRFGT` produces: `he's gone to`
+* `KWHREFGT` produces: `he's been going to`
 
 An exception is for `do`:
 
