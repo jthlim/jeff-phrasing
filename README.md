@@ -205,7 +205,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | ------ | ------------------- |
 | ``     | <empty>             |
 | `D`    | <empty, past tense> |
-| `B`    | To be (the)         |
+| `B`    | To be (a)           |
 | `BL`   | To believe (that)   |
 | `RBLG` | To call             |
 | `BG`   | To come (to)        |
