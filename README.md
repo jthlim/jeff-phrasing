@@ -63,20 +63,6 @@ Example 1: For the stroke `SWRO*FGTD`:
 Once the verb forms, tenses and short forms are matched up, this results in:
 `I shouldn't have gone to`
 
-Example 1:
-  * `SWR-G` produces `I go`
-  * `SWRUG` produces `do I go`
-  * `SWR-GD` produces `I went`
-  * `SWRAGD` produces `I could go`
-  * `SWRAUGD` produces `could I go`
-  * `SWREG` produces `I am going`
-  * `SWREGD` produces `I was going`
-  * `SWRAOEGD` produces `I would be going`
-  * `SWRFG` produces `I have gone`
-  * `SWRFGD` produces `I had gone`
-  * `SWREFG` produces `I have been going`
-  * `SWREFGD` produces `I had been going`
-
 Example 2: See how the verb 'be' changes:
   * `SWREUFB` produces `I never am`
   * `SWREUFBD` produces `I never was`
