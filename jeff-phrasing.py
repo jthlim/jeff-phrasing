@@ -148,8 +148,8 @@ ENDERS = {
     "BLTD": ("past", {None: " believed that", "root": " believe that", "present-participle": " believing that", "past-participle": " believed that"}),
 
     # BLG - To call
-    "BLG": ("present", {None: " call", "3ps": " calls", "present-participle": " calling", "past-participle": " called"}),
-    "BLGD": ("past", {None: " called", "root": " call", "present-participle": " calling", "past-participle": " called"}),
+    "RBLG": ("present", {None: " call", "3ps": " calls", "present-participle": " calling", "past-participle": " called"}),
+    "RBLGD": ("past", {None: " called", "root": " call", "present-participle": " calling", "past-participle": " called"}),
 
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),
