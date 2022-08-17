@@ -310,6 +310,10 @@ ENDERS = {
     "RBT": ("present", {None: " take", "3ps": " takes", "present-participle": " taking", "past-participle": " taken"}),
     "RBTD": ("past", {None: " took", "root": " take", "present-participle": " taking", "past-participle": " taken"}),
 
+    # BLGT - To talk
+    "BLGT": ("present", {None: " talk", "3ps": " talks", "present-participle": " talking", "past-participle": " talked"}),
+    "BLGTD": ("past", {None: " talked", "root": " talk", "present-participle": " talking", "past-participle": " talked"}),
+
     # RLT - To tell
     "RLT": ("present", {None: " tell", "3ps": " tells", "present-participle": " telling", "past-participle": " told"}),
     "RLTD": ("past", {None: " told", "root": " tell", "present-participle": " telling", "past-participle": " told"}),

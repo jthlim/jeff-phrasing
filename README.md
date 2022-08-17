@@ -238,6 +238,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `PLS`  | To seem (to)        |
 | `RBZ`  | To show             |
 | `RBT`  | To take             |
+| `BLGT` | To talk             |
 | `RLT`  | To tell             |
 | `PBG`  | To think (that)     |
 | `RT`   | To try (to)         |
