@@ -137,9 +137,9 @@ ENDERS = {
 
     # B: To be (the)
     "B": ("present", TO_BE["present"]),
-    "BT": ("present", {key: TO_BE["present"][key] + " the" for key in TO_BE["present"]}),
+    "BT": ("present", {key: TO_BE["present"][key] + " a" for key in TO_BE["present"]}),
     "BD": ("past", TO_BE["past"]),
-    "BTD": ("past", {key: TO_BE["past"][key] + " the" for key in TO_BE["past"]}),
+    "BTD": ("past", {key: TO_BE["past"][key] + " a" for key in TO_BE["past"]}),
 
     # BL - To believe
     "BL": ("present", {None: " believe", "3ps": " believes", "present-participle": " believing", "past-participle": " believed"}),
