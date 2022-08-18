@@ -229,9 +229,11 @@ ENDERS = {
     "L": ("present", {None: " look", "3ps": " looks", "present-participle": " looking", "past-participle": " looked"}),
     "LD": ("past", {None: " looked", "root": " look", "present-participle": " looking", "past-participle": " looked"}),
 
-    # LG - To love
+    # LG - To love (to)
     "LG": ("present", {None: " love", "3ps": " loves", "present-participle": " loving", "past-participle": " loved"}),
+    "LGT": ("present", {None: " love to", "3ps": " loves to", "present-participle": " loving to", "past-participle": " loved to"}),
     "LGD": ("past", {None: " loved", "root": " love", "present-participle": " loving", "past-participle": " loved"}),
+    "LGTD": ("past", {None: " loved to", "root": " love to", "present-participle": " loving to", "past-participle": " loved to"}),
 
     # LT - To let
     "LT": ("present", {None: " let", "3ps": " lets", "present-participle": " letting", "past-participle": " let"}),
@@ -265,6 +267,12 @@ ENDERS = {
     "RPGT": ("present", {None: " need to", "3ps": " needs to", "present-participle": " needing to", "past-participle": " needed to"}),
     "RPGD": ("past", {None: " needed", "root": " need", "present-participle": " needing", "past-participle": " needed"}),
     "RPGTD": ("past", {None: " needed to", "root": " need to", "present-participle": " needing", "past-participle": " needed to"}),
+
+    # PS: To put (it)
+    "PS": ("present", {None: " put", "3ps": " puts", "present-participle": " putting", "past-participle": " put"}),
+    "PTS": ("present", {None: " put it", "3ps": " puts it", "present-participle": " putting it", "past-participle": " put it"}),
+    "PSZ": ("past", {None: " put", "root": " put", "present-participle": " putting", "past-participle": " put"}),
+    "PTSDZ": ("past", {None: " put", "root": " put it", "present-participle": " putting it", "past-participle": " put it"}),
 
     # RL - To recall
     "RL": ("present", {None: " recall", "3ps": " recalls", "present-participle": " recalling", "past-participle": " recalled"}),

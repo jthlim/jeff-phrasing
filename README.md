@@ -222,13 +222,14 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BLG`  | To like (to)        |
 | `LZ`   | To live             |
 | `L`    | To look             |
-| `LG`   | To love             |
+| `LG`   | To love (to)        |
 | `LT`   | To let              |
 | `RPBL` | To make (the)       |
 | `PL`   | may/might (have)    |
 | `PBL`  | To mean             |
 | `PLZ`  | To move             |
 | `RPG`  | To need (to)        |
+| `PS`   | To put (it)         |
 | `RLS`  | To realize (that)   |
 | `RL`   | To recall           |
 | `RPL`  | To remember (that)  |
@@ -252,7 +253,9 @@ Examples:
 *  `KPWRB` produces `you are`
 *  `SWRAB` produces `I can be`
 
-Memorization hint: `live`, `give` and `move` use `LZ`, `GZ` and `MZ`.
+Memorization hints:
+* `live`, `give` and `move` use `LZ`, `GZ` and `MZ`.
+* ``get` and `put` use `GS` and `PS`
 
 # Installation
 
