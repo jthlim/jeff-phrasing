@@ -28,6 +28,7 @@ Some examples:
 * `SWRA*EURPBT` produces `I still can't understand the`
 * `SWR*UFBGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
 * `WHA/KPWRUPBG/TWROERPD` produces `what do you think we should be doing`
+* `KWR/KPWRURPTD` produces `why did you do it`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -45,7 +46,7 @@ The phrase is constructed in multiple parts:
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`, `that`, `this`, `there`)
 2. An optional `do`/`can`/`shall`/`will`
 3. An optional `not`
-4. A optional modifier `just`/`still`/`never`/`even`/`have`/`be`
+4. An optional modifier `just`/`still`/`never`/`even`/`have`/`be`
 5. A verb e.g. `go`, `say`, `understand`, etc.
 6. An optional suffix word
 7. A tense
@@ -67,12 +68,14 @@ Once the verb forms and tenses are matched and short form applied, this results
 in: `I shouldn't have gone to`
 
 Example 2: See how the verb 'be' changes:
-  * `SWREUFB` produces `I never am`
-  * `SWREUFBD` produces `I never was`
-  * `SWROEUFB` produces `I shall never be`
-  * `SWROEUFBD` produces `I should never be`
+  * `SWR-B` produces `I am`
+  * `SWR-BD` produces `I was`
+  * `SWR-FB`  produces `I have been`
+  * `SWR-FBD`  produces `I had been`
+  * `SWROB` produces `I shall be`
+  * `SWROBD` produces `I should be`
 
-## Starters
+ # Starters
 
 Starters are formed using keys on the left hand side of the board:
 ```
@@ -87,22 +90,22 @@ Starters are formed using keys on the left hand side of the board:
 * `SKWHR`: `she`
 * `KPWH`: `it`
 * `TWH`: `they`
-* `STKPWHR`: `` (empty -- third person singular form)
-* `STWR`: `` (empty -- third person plural form)
 * `STKH`: `this`
 * `STWH`: `that`
 * `STHR`: `there` (third person singular form -- *)
 * `STPHR`: `there` (third person plural form -- *)
+* `STKPWHR`: `` (empty -- third person singular form)
+* `STWR`: `` (empty -- third person plural form)
 
 (*) Note that `there` can only use a limited set of verbs to avoid collisions
 with the main dictionary.
 
 Examples:
+* `SWR-RPGT/STWR-RPBT` produces 'I need to understand the'
 * `STHR-BG` produces `there comes`
 * `STPHR-BG` produces `there come`
 * `STHRAOEFD` produces `there would have been`
 * `STHRAOEURPGT` produces `there will still need to`
-* `SWR-RPGT/STWR-RPBT` produces 'I need to understand the'
 * `KWHR-PL/STWR-FPBT` produces 'he may have known that'
 * `SKWRAEUPB/STKPWHREUFGT` produces 'Jane never goes to'
 
@@ -168,41 +171,59 @@ placeholder `-D`).
 
 Full table:
 
-| `* E U F` | Modifier                             | `SWRAGD`                  |
-| --------- | ------------------------------------ | ------------------------- |
-| `? _ _ _` | <empty>                              | `I could go`              |
-| `? E _ _` | 'be' + -ing verb form                | `I could be going`        |
-| `? _ _ F` | 'have' + past participle verb form   | `I could have gone`       |
-| `? E _ F` | 'have been' + -ing verb form         | `I could have been going` |
-| `? _ U _` | <swap starter and do/can/shall/will> | `could I go`              |
-| `_ _ U F` | `{}` j**u**st                        | `I could just go`         |
-| `* _ U F` | j**u**st `{}`                        | `I just couldn't go`      |
-| `_ E U _` | `{}` st**i**ll                       | `I could still go`        |
-| `* E U _` | st**i**ll `{}`                       | `I still couldn't go`     |
-| `_ E U F` | `{}` n**ev**er                       | `I could never go`        |
-| `* E U F` | `{}` **ev**en                        | `I couldn't even go`      |
+| `* E U F` | Modifier                     | `SWRAGD`                  |
+| --------- | ---------------------------- | ------------------------- |
+| `? _ _ _` | {empty}                      | `I could go`              |
+| `? E _ _` | 'be' + -ing verb form        | `I could be going`        |
+| `? _ _ F` | 'have' + past  verb form     | `I could have gone`       |
+| `? E _ F` | 'have been' + -ing verb form | `I could have been going` |
+| `? _ U _` | {middle} {starter}           | `could I go`              |
+| `_ _ U F` | `{}` j**u**st                | `I could just go`         |
+| `* _ U F` | j**u**st `{}`                | `I just couldn't go`      |
+| `_ E U _` | `{}` st**i**ll               | `I could still go`        |
+| `* E U _` | st**i**ll `{}`               | `I still couldn't go`     |
+| `_ E U F` | `{}` n**ev**er               | `I could never go`        |
+| `* E U F` | `{}` **ev**en                | `I couldn't even go`      |
 
 Note: The `{}` in the table represents `do`/`can`/`shall`/`will`
 
-An exception is for `do`:
+An exception is for `do`, where:
+* `F` always represents the verb `to have`
+* `E` always represents `to be`
+* `U` always swaps the starter
 
-| `A O * E U F` | Result                         | `SWR-G`:               |
-| ------------- | ------------------------------ | ---------------------- |
-| `_ _ _ _ _ _` | <empty>                        | `I go`                 |
-| `_ _ _ _ U _` | <swap word order>              | `do I go`              |
-| `_ _ _ _ U F` | `{}`                           | `I do go`              |
-| `_ _ _ _ _ F` | have + past verb form          | `I have gone`          |
-| `_ _ * _ _ F` | have not  + past verb form     | `I haven't gone`       |
-| `_ _ _ E _ _` | be + -ing verb form            | `I am going`           |
-| `_ _ * E _ _` | not be + -ing verb form        | `I am not going`       |
-| `_ _ _ E _ F` | have been + -ing verb form     | `I have been going`    |
-| `_ _ * E _ F` | have not been + -ing verb form | `I haven't been going` |
-| `_ _ _ E U _` | st**i**ll                      | `I still go`           |
-| `_ _ _ E U F` | n**ev**er                      | `I never go`           |
+Full table:
 
-Finally, the special prefix `STWRU` will give the infinitive form of the verb.
-* `STWRUGT`: `to go to`
-* `STWRULTS`: `to feel like`
+| `A O * E U F` | Result                                         | `KPWR-G`:                |
+| ------------- | ---------------------------------------------- | ------------------------ |
+| `_ _ _ _ _ _` | {empty}                                        | `you go`                 |
+| `_ _ * _ _ _` | {empty}                                        | `you don't go`           |
+| `_ _ _ _ U _` | {middle} {starter}                             | `do you go`              |
+| `_ _ * _ U _` | {middle} {starter}                             | `don't you go`           |
+| `_ _ _ _ _ F` | have + past verb form                          | `you have gone`          |
+| `_ _ _ _ U F` | have + {starter} + past verb form              | `have you gone`          |
+| `_ _ * _ _ F` | haven't + past verb form                       | `you haven't gone`       |
+| `_ _ * _ U F` | haven't + {starter} + past verb form           | `haven't you gone`       |
+| `_ _ _ E _ _` | be + -ing verb form                            | `you are going`          |
+| `_ _ _ E U _` | be + {starter} + -ing verb form                | `are you going`          |
+| `_ _ * E _ _` | not be + -ing verb form                        | `you aren't going`       |
+| `_ _ * E U _` | not be + {starter} + -ing verb form            | `aren't you going`       |
+| `_ _ _ E _ F` | have been + -ing verb form                     | `you have been going`    |
+| `_ _ _ E U F` | <swap word order> + have been + -ing verb form | `have you been going`    |
+| `_ _ * E _ F` | haven't been + -ing verb form                  | `you haven't been going` |
+| `_ _ * E U F` | haven't {starter} + been + -ing verb form      | `haven't you been going` |
+
+Finally, with the empty prefixes `STWR` and `STKPWHR`:
+
+* `-U` will give the infinitive form of the verb.
+  * `STWRUGT`: `to go to`
+  * `STWR*UGT`: `not to go to`
+  * `STWRULTS`: `to feel like`
+
+* `-UF` will append `just`
+* `-EU` will append `still`
+* `-EUF` will append `never`
+* `-*EUF` will append `even`
 
 ## Verbs and suffix words
 
@@ -223,8 +244,8 @@ For past tense with suffix words that cause a diagonal to be formed
 
 | Stroke | Meaning (-T)        | Meaning when using `there` |
 | ------ | ------------------- | -------------------------- |
-| ``     | <empty>             | <empty>                    |
-| `D`    | <empty, past tense> | <empty, past tense>        |
+| ``     | {empty}             | {empty}                    |
+| `D`    | {empty, past tense} | {empty, past tense}        |
 | `B`    | To be (a)           | To be (a)                  |
 | `BL`   | To believe (that)   |
 | `RBLG` | To call             |

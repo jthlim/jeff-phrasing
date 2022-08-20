@@ -98,17 +98,19 @@ MIDDLES_BASE = {
     "AO*": {"present": (" won't", "root"), "past": (" wouldn't", "root")},
 }
 
+# `!` represents the starter
+# `*` represents the middle
 MIDDLE_MODIFIER_EXCEPTIONS = {
-    "": ("", False, None),
+    "": ("!", False, None),
 
     # To make reverse look-ups work correctly, longer results must be listed first
 
-    "*E": ({"present": {None: " aren't", "1ps": " am not", "3ps": " isn't"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
-    "E": ({"present": {None: " are", "1ps": " am", "3ps": " is"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
-    "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    "F": ({"present": {None: " have", "3ps": " has"}, "past": " had"}, False, "past-participle"),
-    "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
-    "EF": ({"present": {None: " have been", "3ps": " has been"}, "past": " had been"}, False, "present-participle"),
+    "*E": ({"present": {None: "! aren't", "1ps": "! am not", "3ps": "! isn't"}, "past": {None: "! weren't", "1ps": "! wasn't", "3ps": "! wasn't"}}, False, "present-participle"),
+    "E": ({"present": {None: "! are", "1ps": "! am", "3ps": "! is"}, "past": {None: "! were", "1ps": "! was", "3ps": "! was"}}, False, "present-participle"),
+    "*F": ({"present": {None: "! haven't", "3ps": "! hasn't"}, "past": "! hadn't"}, False, "past-participle"),
+    "F": ({"present": {None: "! have", "3ps": " has"}, "past": "! had"}, False, "past-participle"),
+    "*EF": ({"present": {None: "! haven't been", "3ps": "! hasn't been"}, "past": "! hadn't been"}, False, "present-participle"),
+    "EF": ({"present": {None: "! have been", "3ps": "! has been"}, "past": "! had been"}, False, "present-participle"),
 
     # The following alternate definitions cause phrases to use contracted forms, e.g.:
     #
@@ -117,41 +119,69 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     #
     # To use contracted forms, uncomment out the next 6 definitions.
     #
-    # "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "1pp": "'re not", "3pp": "'re not", "b3pp": " are not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
-    # "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re", "b3pp": " are"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
-    # "*F": ({"present": {None: " haven't", "3ps": " hasn't"}, "past": " hadn't"}, False, "past-participle"),
-    # "F": ({"present": {None: " have", "1ps": "'ve", "2p": "'ve", "3ps": "'s", "b3ps": " has", "1pp": "'ve", "3pp": "'ve", "b3pp": " have"}, "past": {None: " had", "1ps": "'d", "2p": "'d", "3ps": "'d", "1pp": "'d", "3pp": "'d", "b3pp": " had"}}, False, "past-participle"),
-    # "*EF": ({"present": {None: " haven't been", "3ps": " hasn't been"}, "past": " hadn't been"}, False, "present-participle"),
-    # "EF": ({"present": {None: " have been", "1ps": "'ve been", "2p": "'ve been", "3ps": "'s been", "b3ps": " has been", "1pp": "'ve been", "3pp": "'ve been", "b3pp": " have been"}, "past": {None: " had been", "1ps": "'d been", "2p": "'d been", "3ps": "'d been", "b3ps": " had been", "1pp": "'d been", "3pp": "'d been", "b3pp": " had been"}}, False, "present-participle"),
+    # "*E": ({"present": {None: "! are not", "1ps": "!'m not", "2p": "!'re not", "3ps": "! isn't", "1pp": "!'re not", "3pp": "!'re not", "b3pp": "! are not"}, "past": {None: "! weren't", "1ps": "! wasn't", "3ps": "! wasn't"}}, False, "present-participle"),
+    # "E": ({"present": {None: "! are", "1ps": "!'m", "2p": "!'re", "3ps": "!'s", "b3ps": "! is", "1pp": "!'re", "3pp": "!'re", "b3pp": "! are"}, "past": {None: "! were", "1ps": "! was", "3ps": "! was"}}, False, "present-participle"),
+    # "*F": ({"present": {None: "! haven't", "3ps": "! hasn't"}, "past": "! hadn't"}, False, "past-participle"),
+    # "F": ({"present": {None: "! have", "1ps": "!'ve", "2p": "!'ve", "3ps": "!'s", "b3ps": "! has", "1pp": "!'ve", "3pp": "!'ve", "b3pp": "! have"}, "past": {None: "! had", "1ps": "!'d", "2p": "!'d", "3ps": "!'d", "1pp": "!'d", "3pp": "!'d", "b3pp": "! had"}}, False, "past-participle"),
+    # "*EF": ({"present": {None: "! haven't been", "3ps": "! hasn't been"}, "past": "! hadn't been"}, False, "present-participle"),
+    # "EF": ({"present": {None: "! have been", "1ps": "!'ve been", "2p": "!'ve been", "3ps": "!'s been", "b3ps": "! has been", "1pp": "!'ve been", "3pp": "!'ve been", "b3pp": "! have been"}, "past": {None: "! had been", "1ps": "!'d been", "2p": "!'d been", "3ps": "!'d been", "b3ps": "! had been", "1pp": "!'d been", "3pp": "!'d been", "b3pp": "! had been"}}, False, "present-participle"),
 
-    "UF": ("*", True, None),
+    "*EU": ({"present": {None: " aren't !", "1ps": " am ! not", "3ps": " isn't !"}, "past": {None: " weren't !", "1ps": " wasn't !", "3ps": " wasn't !"}}, False, "present-participle"),
+    "EU": ({"present": {None: " are !", "1ps": " am", "3ps": " is"}, "past": {None: " were !", "1ps": " was !", "3ps": " was !"}}, False, "present-participle"),
+    "*UF": ({"present": {None: " haven't !", "3ps": " hasn't !"}, "past": " hadn't !"}, False, "past-participle"),
+    "UF": ({"present": {None: " have !", "3ps": " has !"}, "past": " had !"}, False, "past-participle"),
+    "*EUF": ({"present": {None: " haven't ! been", "3ps": " hasn't ! been"}, "past": " hadn't ! been"}, False, "present-participle"),
+    "EUF": ({"present": {None: " have ! been", "3ps": " has ! been"}, "past": " had ! been"}, False, "present-participle"),
 
-    "EU": (" still", False, None),
-    "EUF": (" never", False, None),
+    # "UF": ("*", True, None),
 
-    "STWRU": (" to", False, "root"),
+    # "EU": (" still", False, None),
+    # "EUF": (" never", False, None),
+
+    # Special cases for empty starters.
+    # - infinitive forms.
+    "STWRU": ("to", False, "root"),
+    "STWR*U": ("not to", False, "root"),
+    "STKPWHRU": ("to", False, "root"),
+    "STKPWHR*U": ("not to", False, "root"),
+
+    # - single word modifiers
+    "STWRUF": ("just", True, None),
+    "STWR*UF": ("just", True, None),
+    "STKPWHRUF": ("just", True, None),
+    "STKPWHR*UF": ("just", True, None),
+
+    "STWREU": ("still", True, None),
+    "STWR*EU": ("still", True, None),
+    "STKPWHREU": ("still", True, None),
+    "STKPWHR*EU": ("still", True, None),
+
+    "STWREUF": ("never", True, None),
+    "STWR*EUF": ("even", True, None),
+    "STKPWHREUF": ("never", True, None),
+    "STKPWHR*EUF": ("even", True, None),
 }
 
 MIDDLES_MODIFIERS = {
-    "": ("*", True, None),
-    "*": ("*", True, None),
+    "": ("!*", True, None),
+    "*": ("!*", True, None),
 
-    "*E": ({tense: {form: "*" + TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, True, "present-participle"),
-    "E": ({tense: {form: "*" + TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, True, "present-participle"),
-    "*EF": ({tense: {form: "*" + TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "present-participle"),
-    "EF": ({tense: {form: "*" + TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "present-participle"),
-    "*F": ({tense: {form: "*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
-    "F": ({tense: {form: "*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
+    "*E": ({tense: {form: "!*" + TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, True, "present-participle"),
+    "E": ({tense: {form: "!*" + TO_BE[tense][form] for form in TO_BE[tense]} for tense in TO_BE}, True, "present-participle"),
+    "*EF": ({tense: {form: "!*" + TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "present-participle"),
+    "EF": ({tense: {form: "!*" + TO_HAVE[tense][form] + " been" for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "present-participle"),
+    "*F": ({tense: {form: "!*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
+    "F": ({tense: {form: "!*" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
 
-    "*EU": (" still*", True, None),
-    "EU": ("* still", True, None),
-    "*EUF": ("* even", True, None),
-    "EUF": ("* never", True, None),
+    "*EU": ("! still*", True, None),
+    "EU": ("!* still", True, None),
+    "*EUF": ("!* even", True, None),
+    "EUF": ("!* never", True, None),
 
     "*U": ("* !", True, None),
     "U": ("* !", True, None),
-    "*UF": (" just*", True, None),
-    "UF": ("* just", True, None),
+    "*UF": ("! just*", True, None),
+    "UF": ("!* just", True, None),
 }
 
 ENDERS = {
@@ -472,8 +502,6 @@ REVERSE_STARTERS = {"": {"": True}}
 REVERSE_MIDDLES_BASE = {}
 REVERSE_MODIFIERS = {}
 REVERSE_ENDERS = {}
-REPLACEMENTS = []
-REPLACEMENTS_SET = {}
 
 for key in STARTERS:
     word = STARTERS[key][0]
@@ -491,12 +519,6 @@ def add_reverse_middles_base(stroke, data):
         return
 
     word = data[0].strip()
-    if ' ' in word:
-        replacement = word.replace(' ', '_')
-        if word not in REPLACEMENTS_SET:
-            REPLACEMENTS.append((word, replacement))
-            REPLACEMENTS_SET[word] = True
-        word = replacement
 
     REVERSE_MIDDLES_BASE.setdefault(word, {})
     REVERSE_MIDDLES_BASE[word][stroke] = True
@@ -508,24 +530,15 @@ def add_reverse_middle_modifiers(stroke, data):
             add_reverse_middle_modifiers(stroke, data[k])
         return
 
-    word = data.replace('*', '').strip()
+    word = data.strip()
 
-    replacement = word
+    REVERSE_MODIFIERS.setdefault(word, {})
+    REVERSE_MODIFIERS[word][stroke] = True
 
-    if ' ' in word:
-        replacement = replacement.replace(' ', '_')
-
-    REVERSE_MODIFIERS.setdefault(replacement, {})
-    REVERSE_MODIFIERS[replacement][stroke] = True
-
-    if not data.startswith(' ') and not data.startswith('*') and data != '':
-        replacement = ' ' + replacement
-
-    if replacement != word:
-        if word not in REPLACEMENTS_SET:
-            REPLACEMENTS.append((word, replacement))
-            REPLACEMENTS_SET[word] = True
-
+    # To lookup empty starters, have entries that don't include '!'
+    word = word.replace('!', '').strip()
+    REVERSE_MODIFIERS.setdefault(word, {})
+    REVERSE_MODIFIERS[word][stroke] = True
 
 def add_reverse_enders(stroke, data):
     if type(data) is dict:
@@ -560,10 +573,6 @@ def reverse_match(result, full_text, prefix):
 
 
 def add_verb_stroke(prefix, suffix):
-    # This check enables finding `STRWU` special prefix words.
-    if suffix.startswith(prefix):
-        return suffix
-
     # This check prevents adding in extra '-' when it will cause issues in lookup().
     if HYPHEN_OMIT_PATTERN.search(prefix) or HYPHEN_OMIT_PATTERN.search(suffix):
         return prefix + suffix
@@ -572,11 +581,6 @@ def add_verb_stroke(prefix, suffix):
 
 
 def reverse_verb_match(result, full_text, text, prefix):
-    if len(text) > 0:
-        if text[0] == '_':
-            text = text[1:]
-        text = text.replace('_', ' ')
-
     if text not in REVERSE_ENDERS:
         return
 
@@ -586,43 +590,24 @@ def reverse_verb_match(result, full_text, text, prefix):
 
 
 def reverse_modifier_match(result, full_text, text, prefix):
-    word = text.split(' ', 1)[0]
+    words = text.split(' ')
+    for i in range(len(words)):
+        phrase = ' '.join(words[:i])
+        if phrase not in REVERSE_MODIFIERS:
+            continue
 
-    match = PARTS_MATCHER.fullmatch(prefix)
-    has_starter = match.group(1) != '' if match else False
-
-    if not has_starter:
-        if word in REVERSE_STARTERS:
-            for stroke in REVERSE_STARTERS[word]:
-                subject_stroke = add_verb_stroke(stroke, prefix)
-
-                for reverse_modifier_stroke in REVERSE_MODIFIERS['!']:
-                    reverse_verb_match(result, full_text, text.replace(
-                        word, '', 1).strip(), add_verb_stroke(subject_stroke, reverse_modifier_stroke))
-    else:
-        if word in REVERSE_MODIFIERS:
-            for stroke in REVERSE_MODIFIERS[word]:
-                reverse_verb_match(result, full_text, text.replace(
-                    word, '', 1).strip(), add_verb_stroke(prefix, stroke))
-
-        if '_' in word:
-            word = word.split('_', 1)[0]
-            if word in REVERSE_MODIFIERS:
-                for stroke in REVERSE_MODIFIERS[word]:
-                    reverse_verb_match(result, full_text, text.replace(
-                        word, '', 1).strip(), add_verb_stroke(prefix, stroke))
-
-        for stroke in REVERSE_MODIFIERS['']:
-            reverse_verb_match(result, full_text, text,
-                               add_verb_stroke(prefix, stroke))
+        for modifier_stroke in REVERSE_MODIFIERS[phrase]:
+            remainder = text.replace(phrase, '', 1).strip()
+            reverse_verb_match(result, full_text, remainder, add_verb_stroke(prefix, modifier_stroke))
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):
     for word in REVERSE_MIDDLES_BASE:
         if word in text:
+            remainder = text.replace(word, '*', 1)
+            remainder = remainder.replace(' *', '*')
             for stroke in REVERSE_MIDDLES_BASE[word]:
-                reverse_modifier_match(result, full_text, text.replace(
-                    word, '', 1).strip(), prefix + stroke)
+                reverse_modifier_match(result, full_text, remainder, prefix + stroke)
 
     reverse_modifier_match(result, full_text, text, prefix)
 
@@ -633,21 +618,26 @@ def reverse_lookup(text):
 
     full_text = text
 
-    for key, replacement in REPLACEMENTS:
-        text = text.replace(key, replacement)
-
-    if len(text.split(' ')) > 6:
+    # Maximum phrase is 6 words, so early out if this isn't valid.
+    words = text.split(' ')
+    if len(words) > 6:
         return []
 
     result = []
 
-    words = text.split(' ', 1)
-    if words[0] in REVERSE_STARTERS:
-        remainder = words[1].strip() if len(words) > 1 else ''
-        for stroke in REVERSE_STARTERS[words[0]]:
-            reverse_middle_base_match(result, full_text, remainder, stroke)
-    else:
-        for stroke in REVERSE_STARTERS['']:
-            reverse_middle_base_match(result, full_text, text, stroke)
+    for word in REVERSE_STARTERS:
+        if word == "":
+            continue
+
+        if word in text:
+            remainder = text.replace(word, '!', 1)
+            for stroke in REVERSE_STARTERS[word]:
+                reverse_middle_base_match(result, full_text, remainder, stroke)
+
+    # Testing for empty starters
+    for stroke in REVERSE_STARTERS['']:
+        reverse_middle_base_match(result, full_text, text, stroke)
 
     return result
+
+
