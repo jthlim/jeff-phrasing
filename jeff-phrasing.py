@@ -58,7 +58,7 @@ THERE_SUFFIXES = {
     "PBLGS": True, "PBLGTS": True,                            # Must (have)
     "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
     "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
-    "Z": True, "DZ": True,                                    # Use
+    "Z": True, "DZ": True, "TZ": True, "TDZ": True,           # Use (to)
 }
 
 NON_PHRASE_STROKES = {
@@ -310,12 +310,12 @@ ENDERS = {
     "RPBLD": ("past", {None: " made", "root": " make", "present-participle": " making", "past-participle": " made"}),
     "RPBLTD": ("past", {None: " made the", "root": " make the", "present-participle": " making the", "past-participle": " made the"}),
 
-    # PL - Auxiliary verb may (have)
+    # PL - Auxiliary verb may (be)
     # These do not combine naturally with middle/modifiers.
     "PL": ("present", " may"),
-    "PLT": ("present", " may have"),
+    "PLT": ("present", " may be"),
     "PLD": ("past", " might"),
-    "PLTD": ("past", " might have"),
+    "PLTD": ("past", " might be"),
 
     # PBL - To mean (that)
     "PBL": ("present", {None: " mean", "3ps": " means", "present-participle": " meaning", "past-participle": " meant"}),
@@ -327,10 +327,10 @@ ENDERS = {
     "PLZ": ("present", {None: " move", "3ps": " moves", "present-participle": " moving", "past-participle": " moved"}),
     "PLDZ": ("past", {None: " moved", "root": " move", "present-participle": " moving", "past-participle": " moved"}),
 
-    # PBLGS - Auxiliary verb must (have)
+    # PBLGS - Auxiliary verb must (be)
     # These do not combine naturally with middle/modifiers.
     "PBLGS": ("present", " must"),
-    "PBLGTS": ("present", " must have"),
+    "PBLGTS": ("present", " must be"),
 
     # RPG: To need (to)
     "RPG": ("present", {None: " need", "3ps": " needs", "present-participle": " needing", "past-participle": " needed"}),
@@ -417,6 +417,9 @@ ENDERS = {
     # Z - To use
     "Z": ("present", {None: " use", "3ps": " uses", "present-participle": " using", "past-participle": " used"}),
     "DZ": ("past", {None: " used", "root": " use", "present-participle": " using", "past-participle": " used"}),
+    # TZ -- Special case
+    "TZ": ("present", " used to"),
+    "TDZ": ("past", " used to"),
 
     # P: To want (to)
     "P": ("present", {None: " want", "3ps": " wants", "present-participle": " wanting", "past-participle": " wanted"}),
@@ -424,9 +427,11 @@ ENDERS = {
     "PD": ("past", {None: " wanted", "root": " want", "present-participle": " wanting", "past-participle": " wanted"}),
     "PTD": ("past", {None: " wanted to", "root": " want to", "present-participle": " wanting to", "past-participle": " wanted to"}),
 
-    # RBG - To work
+    # RBG - To work (on)
     "RBG": ("present", {None: " work", "3ps": " works", "present-participle": " working", "past-participle": " worked"}),
+    "RBGT": ("present", {None: " work on", "3ps": " works on", "present-participle": " working on", "past-participle": " worked on"}),
     "RBGD": ("past", {None: " worked", "root": " work", "present-participle": " working", "past-participle": " worked"}),
+    "RBGTD": ("past", {None: " worked on", "root": " work on", "present-participle": " working on", "past-participle": " worked on"}),
 }
 
 

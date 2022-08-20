@@ -247,54 +247,60 @@ stroke includes `-T`, then `-S` is used instead.
 For past tense with suffix words that cause a diagonal to be formed
 (`-TZ` or `-SD`), then `-TSDZ` is used instead.
 
-| Stroke  | Meaning (-T)                 | Meaning when using `there`   |
-| ------- | ---------------------------- | ---------------------------- |
-| ``      | {empty}                      | {empty}                      |
-| `D`     | {empty, past tense}          | {empty, past tense}          |
-| `B`     | To be (a)                    | To be (a)                    |
-| `BL`    | To believe (that)            |
-| `RBLG`  | To call                      |
-| `BG`    | To come (to)                 | To come                      |
-| `RP`    | To do (it)                   |
-| `BGS`   | To expect (that)             |
-| `LT`    | To feel (like)               |
-| `PBLG`  | To find (that)               |
-| `RG`    | To forget (to)               |
-| `GS`    | To get (to)                  |
-| `GZ`    | To give                      |
-| `G`     | To go (to)                   | To go                        |
-| `PZ`    | To happen                    | To happen                    |
-| `T`     | To have (to)                 |
-| `PB`    | To know (that)               |
-| `BLG`   | To like (to)                 |
-| `LZ`    | To live                      | To live                      |
-| `L`     | To look                      |
-| `LG`    | To love (to)                 |
-| `LS`    | To let                       |
-| `RPBL`  | To make (the)                |
-| `PL`    | May/Might (have)             | May/Might (have)             |
-| `PBL`   | To mean                      |
-| `PLZ`   | To move                      |
-| `PBLGS` | Must (have) -- no past tense | Must (have) -- no past tense |
-| `RPG`   | To need (to)                 | To need (to)                 |
-| `PS`    | To put (it)                  |
-| `RLS`   | To realize (that)            |
-| `RL`    | To recall                    |
-| `RPL`   | To remember (that)           |
-| `R`     | To run                       |
-| `BS`    | To say (that)                |
-| `S`     | To see                       |
-| `PLS`   | To seem (to)                 | To seem (to)                 |
-| `RBZ`   | To show                      |
-| `RBT`   | To take                      |
-| `BLGT`  | To talk                      |
-| `RLT`   | To tell                      |
-| `PBG`   | To think (that)              |
-| `RT`    | To try (to)                  |
-| `RPB`   | To understand (the)          |
-| `Z`     | To use                       | To use                       |
-| `P`     | To want (to)                 |
-| `RBG`   | To work                      |
+| Stroke  | Meaning (-T)               | Meaning when using `there` |
+| ------- | -------------------------- | -------------------------- |
+| ``      | {empty}                    | {empty}                    |
+| `D`     | {empty, past tense}        | {empty, past tense}        |
+| `B`     | To be (a)                  | To be (a)                  |
+| `BL`    | To believe (that)          |
+| `RBLG`  | To call                    |
+| `BG`    | To come (to)               | To come                    |
+| `RP`    | To do (it)                 |
+| `BGS`   | To expect (that)           |
+| `LT`    | To feel (like)             |
+| `PBLG`  | To find (that)             |
+| `RG`    | To forget (to)             |
+| `GS`    | To get (to)                |
+| `GZ`    | To give                    |
+| `G`     | To go (to)                 | To go                      |
+| `PZ`    | To happen                  | To happen                  |
+| `T`     | To have (to)               |
+| `PB`    | To know (that)             |
+| `BLG`   | To like (to)               |
+| `LZ`    | To live                    | To live                    |
+| `L`     | To look                    |
+| `LG`    | To love (to)               |
+| `LS`    | To let                     |
+| `RPBL`  | To make (the)              |
+| `PL`    | May/Might (be)             | May/Might (be)             |
+| `PBL`   | To mean                    |
+| `PLZ`   | To move                    |
+| `PBLGS` | Must (be) -- no past tense | Must (be) -- no past tense |
+| `RPG`   | To need (to)               | To need (to)               |
+| `PS`    | To put (it)                |
+| `RLS`   | To realize (that)          |
+| `RL`    | To recall                  |
+| `RPL`   | To remember (that)         |
+| `R`     | To run                     |
+| `BS`    | To say (that)              |
+| `S`     | To see                     |
+| `PLS`   | To seem (to)               | To seem (to)               |
+| `RBZ`   | To show                    |
+| `RBT`   | To take                    |
+| `BLGT`  | To talk                    |
+| `RLT`   | To tell                    |
+| `PBG`   | To think (that)            |
+| `RT`    | To try (to)                |
+| `RPB`   | To understand (the)        |
+| `Z`     | To use [1]                 | To use                     |
+| `P`     | To want (to)               |
+| `RBG`   | To work (on)               |
+
+[1] - `used to` is special cased as `TZ` and `TDZ` and requires shifting the right
+  hand to press. It doesn't change form like other verbs.
+  * `SWR-TZ` produces `I used to`
+  * `SWRETZ` produces `I am used to` rather than a verb with -ing
+  * `SWRETDZ` produces `I was used to` rather than a verb with -ing
 
 Examples:
 *  `SWRB` produces `I am`
