@@ -12,11 +12,11 @@ key-space freed up, extra flexibility has been added to enable more expressive
 phrases.
 
 Some examples:
-* `SWRGT` produces `I go to`
-* `KWHRGT` produces `he goes to`
+* `SWR-GT` produces `I go to`
+* `KWHR-GT` produces `he goes to`
 * `KWHRUGT` produces `does he go to`
-* `SWRGTD` produces `I went to`
-* `KWHRGTD` produces `he went to`
+* `SWR-GTD` produces `I went to`
+* `KWHR-GTD` produces `he went to`
 * `SWRAFGTD` produces `I could have gone to`
 * `KWHRO*UFGTD` produces `he just shouldn't go to`
 * `KWHRO*EGTD` produces `he shouldn't be going to`
@@ -139,7 +139,7 @@ placeholder `-D`).
 ```
 
 `EUF` controls word ordering and how the words `just`, `still`, `never`,
-`even`, `be` and `have` combine into the sentence.
+`even`, `be` and `have` and `always` combine into the sentence.
 
 * `E` is used for verb forms of `to be`.
 
@@ -213,17 +213,22 @@ Full table:
 | `_ _ * E _ F` | haven't been + -ing verb form                  | `you haven't been going` |
 | `_ _ * E U F` | haven't {starter} + been + -ing verb form      | `haven't you been going` |
 
-Finally, with the empty prefixes `STWR` and `STKPWHR`:
+Finally, with the empty prefixes `STWR` and `STKPWHR`, since there is no starter
+word:
 
-* `-U` will give the infinitive form of the verb.
+* `U` and `*U*` will give the infinitive form of the verb if can/shall/will
+  are not used.
   * `STWRUGT`: `to go to`
   * `STWR*UGT`: `not to go to`
   * `STWRULTS`: `to feel like`
 
-* `-UF` will append `just`
-* `-EU` will append `still`
-* `-EUF` will append `never`
-* `-*EUF` will append `even`
+* `U` will append `always` when used with can/shall will:
+  * `STWROURBD`: `should always ask`
+
+* `UF` will append `just`
+* `EU` will append `still`
+* `EUF` will append `never`
+* `*EUF` will append `even`
 
 ## Verbs and suffix words
 
@@ -242,53 +247,54 @@ stroke includes `-T`, then `-S` is used instead.
 For past tense with suffix words that cause a diagonal to be formed
 (`-TZ` or `-SD`), then `-TSDZ` is used instead.
 
-| Stroke | Meaning (-T)        | Meaning when using `there` |
-| ------ | ------------------- | -------------------------- |
-| ``     | {empty}             | {empty}                    |
-| `D`    | {empty, past tense} | {empty, past tense}        |
-| `B`    | To be (a)           | To be (a)                  |
-| `BL`   | To believe (that)   |
-| `RBLG` | To call             |
-| `BG`   | To come (to)        | To come                    |
-| `RP`   | To do (it)          |
-| `BGS`  | To expect (that)    |
-| `LT`   | To feel (like)      |
-| `PBLG` | To find (that)      |
-| `RG`   | To forget (to)      |
-| `GS`   | To get (to)         |
-| `GZ`   | To give             |
-| `G`    | To go (to)          | To go                      |
-| `PZ`   | To happen           | To happen                  |
-| `T`    | To have (to)        |
-| `PB`   | To know (that)      |
-| `BLG`  | To like (to)        |
-| `LZ`   | To live             | To live                    |
-| `L`    | To look             |
-| `LG`   | To love (to)        |
-| `LS`   | To let              |
-| `RPBL` | To make (the)       |
-| `PL`   | May/Might (have)    | May/Might (have)           |
-| `PBL`  | To mean             |
-| `PLZ`  | To move             |
-| `RPG`  | To need (to)        | To need (to)               |
-| `PS`   | To put (it)         |
-| `RLS`  | To realize (that)   |
-| `RL`   | To recall           |
-| `RPL`  | To remember (that)  |
-| `R`    | To run              |
-| `BS`   | To say (that)       |
-| `S`    | To see              |
-| `PLS`  | To seem (to)        | To seem (to)               |
-| `RBZ`  | To show             |
-| `RBT`  | To take             |
-| `BLGT` | To talk             |
-| `RLT`  | To tell             |
-| `PBG`  | To think (that)     |
-| `RT`   | To try (to)         |
-| `RPB`  | To understand (the) |
-| `Z`    | To use              | To use                     |
-| `P`    | To want (to)        |
-| `RBG`  | To work             |
+| Stroke  | Meaning (-T)                 | Meaning when using `there`   |
+| ------- | ---------------------------- | ---------------------------- |
+| ``      | {empty}                      | {empty}                      |
+| `D`     | {empty, past tense}          | {empty, past tense}          |
+| `B`     | To be (a)                    | To be (a)                    |
+| `BL`    | To believe (that)            |
+| `RBLG`  | To call                      |
+| `BG`    | To come (to)                 | To come                      |
+| `RP`    | To do (it)                   |
+| `BGS`   | To expect (that)             |
+| `LT`    | To feel (like)               |
+| `PBLG`  | To find (that)               |
+| `RG`    | To forget (to)               |
+| `GS`    | To get (to)                  |
+| `GZ`    | To give                      |
+| `G`     | To go (to)                   | To go                        |
+| `PZ`    | To happen                    | To happen                    |
+| `T`     | To have (to)                 |
+| `PB`    | To know (that)               |
+| `BLG`   | To like (to)                 |
+| `LZ`    | To live                      | To live                      |
+| `L`     | To look                      |
+| `LG`    | To love (to)                 |
+| `LS`    | To let                       |
+| `RPBL`  | To make (the)                |
+| `PL`    | May/Might (have)             | May/Might (have)             |
+| `PBL`   | To mean                      |
+| `PLZ`   | To move                      |
+| `PBLGS` | Must (have) -- no past tense | Must (have) -- no past tense |
+| `RPG`   | To need (to)                 | To need (to)                 |
+| `PS`    | To put (it)                  |
+| `RLS`   | To realize (that)            |
+| `RL`    | To recall                    |
+| `RPL`   | To remember (that)           |
+| `R`     | To run                       |
+| `BS`    | To say (that)                |
+| `S`     | To see                       |
+| `PLS`   | To seem (to)                 | To seem (to)                 |
+| `RBZ`   | To show                      |
+| `RBT`   | To take                      |
+| `BLGT`  | To talk                      |
+| `RLT`   | To tell                      |
+| `PBG`   | To think (that)              |
+| `RT`    | To try (to)                  |
+| `RPB`   | To understand (the)          |
+| `Z`     | To use                       | To use                       |
+| `P`     | To want (to)                 |
+| `RBG`   | To work                      |
 
 Examples:
 *  `SWRB` produces `I am`

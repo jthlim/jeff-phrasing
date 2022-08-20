@@ -45,18 +45,20 @@ TO_HAVE = {
 }
 
 THERE_SUFFIXES = {
-  "": True,
-  "D": True,                                                # Past tense
-  "B": True, "BT": True, "BD": True, "BTD": True,           # Be (a)
-  "BG": True, "BGD": True,                                  # Come
-  "G": True, "GD": True,                                    # Go
-  "PZ": True, "PDZ": True,                                  # Happen
-  "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
-  "LZ": True, "TZD": True,                                  # Live
-  "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May/Might (have)
-  "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
-  "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
-  "Z": True, "DZ": True,                                    # Use
+    "": True,
+    "D": True,                                                # Past tense
+    "B": True, "BT": True, "BD": True, "BTD": True,           # Be (a)
+    "BG": True, "BGD": True,                                  # Come
+    "G": True, "GD": True,                                    # Go
+    "PZ": True, "PDZ": True,                                  # Happen
+    "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
+    "LZ": True, "TZD": True,                                  # Live
+    # May/Might (have)
+    "PL": True, "PLT": True, "PLD": True, "PLTD": True,
+    "PBLGS": True, "PBLGTS": True,                            # Must (have)
+    "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
+    "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
+    "Z": True, "DZ": True,                                    # Use
 }
 
 NON_PHRASE_STROKES = {
@@ -86,7 +88,7 @@ STARTERS = {
     "STPHR": ("there", "3pp", THERE_SUFFIXES),
 }
 
-MIDDLES_BASE = {
+MIDDLES = {
     # Map of stroke -> (map[tense][verb-form](string, verb-form)
     "": {"present": {None: (" do", "root"), "3ps": (" does", "root")}, "past": (" did", "root")},
     "*": {"present": {None: (" don't", "root"), "3ps": (" doesn't", "root")}, "past": (" didn't", "root")},
@@ -108,7 +110,7 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "*E": ({"present": {None: "! aren't", "1ps": "! am not", "3ps": "! isn't"}, "past": {None: "! weren't", "1ps": "! wasn't", "3ps": "! wasn't"}}, False, "present-participle"),
     "E": ({"present": {None: "! are", "1ps": "! am", "3ps": "! is"}, "past": {None: "! were", "1ps": "! was", "3ps": "! was"}}, False, "present-participle"),
     "*F": ({"present": {None: "! haven't", "3ps": "! hasn't"}, "past": "! hadn't"}, False, "past-participle"),
-    "F": ({"present": {None: "! have", "3ps": " has"}, "past": "! had"}, False, "past-participle"),
+    "F": ({"present": {None: "! have", "3ps": "! has"}, "past": "! had"}, False, "past-participle"),
     "*EF": ({"present": {None: "! haven't been", "3ps": "! hasn't been"}, "past": "! hadn't been"}, False, "present-participle"),
     "EF": ({"present": {None: "! have been", "3ps": "! has been"}, "past": "! had been"}, False, "present-participle"),
 
@@ -127,7 +129,7 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     # "EF": ({"present": {None: "! have been", "1ps": "!'ve been", "2p": "!'ve been", "3ps": "!'s been", "b3ps": "! has been", "1pp": "!'ve been", "3pp": "!'ve been", "b3pp": "! have been"}, "past": {None: "! had been", "1ps": "!'d been", "2p": "!'d been", "3ps": "!'d been", "b3ps": "! had been", "1pp": "!'d been", "3pp": "!'d been", "b3pp": "! had been"}}, False, "present-participle"),
 
     "*EU": ({"present": {None: " aren't !", "1ps": " am ! not", "3ps": " isn't !"}, "past": {None: " weren't !", "1ps": " wasn't !", "3ps": " wasn't !"}}, False, "present-participle"),
-    "EU": ({"present": {None: " are !", "1ps": " am", "3ps": " is"}, "past": {None: " were !", "1ps": " was !", "3ps": " was !"}}, False, "present-participle"),
+    "EU": ({"present": {None: " are !", "1ps": " am !", "3ps": " is !"}, "past": {None: " were !", "1ps": " was !", "3ps": " was !"}}, False, "present-participle"),
     "*UF": ({"present": {None: " haven't !", "3ps": " hasn't !"}, "past": " hadn't !"}, False, "past-participle"),
     "UF": ({"present": {None: " have !", "3ps": " has !"}, "past": " had !"}, False, "past-participle"),
     "*EUF": ({"present": {None: " haven't ! been", "3ps": " hasn't ! been"}, "past": " hadn't ! been"}, False, "present-participle"),
@@ -162,7 +164,9 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "STKPWHR*EUF": ("even", True, None),
 }
 
-MIDDLES_MODIFIERS = {
+ALWAYS = {None: "* !", "b3ps-root": "* always", "b3pp-root": "* always"}
+
+MIDDLE_MODIFIERS = {
     "": ("!*", True, None),
     "*": ("!*", True, None),
 
@@ -178,8 +182,8 @@ MIDDLES_MODIFIERS = {
     "*EUF": ("!* even", True, None),
     "EUF": ("!* never", True, None),
 
-    "*U": ("* !", True, None),
-    "U": ("* !", True, None),
+    "*U": ({"present": ALWAYS, "past": ALWAYS}, True, None),
+    "U": ({"present": ALWAYS, "past": ALWAYS}, True, None),
     "*UF": ("! just*", True, None),
     "UF": ("!* just", True, None),
 }
@@ -306,12 +310,12 @@ ENDERS = {
     "RPBLD": ("past", {None: " made", "root": " make", "present-participle": " making", "past-participle": " made"}),
     "RPBLTD": ("past", {None: " made the", "root": " make the", "present-participle": " making the", "past-participle": " made the"}),
 
-    # PL - To may
-    # These do not combine well with do/can/shall/will
+    # PL - Auxiliary verb may (have)
+    # These do not combine naturally with middle/modifiers.
     "PL": ("present", " may"),
     "PLT": ("present", " may have"),
-    "PLD": ("past", {None: " might", "root": " may"}),
-    "PLTD": ("past", {None: " might have", "root": " may have"}),
+    "PLD": ("past", " might"),
+    "PLTD": ("past", " might have"),
 
     # PBL - To mean (that)
     "PBL": ("present", {None: " mean", "3ps": " means", "present-participle": " meaning", "past-participle": " meant"}),
@@ -322,6 +326,11 @@ ENDERS = {
     # PLZ - To move
     "PLZ": ("present", {None: " move", "3ps": " moves", "present-participle": " moving", "past-participle": " moved"}),
     "PLDZ": ("past", {None: " moved", "root": " move", "present-participle": " moving", "past-participle": " moved"}),
+
+    # PBLGS - Auxiliary verb must (have)
+    # These do not combine naturally with middle/modifiers.
+    "PBLGS": ("present", " must"),
+    "PBLGTS": ("present", " must have"),
 
     # RPG: To need (to)
     "RPG": ("present", {None: " need", "3ps": " needs", "present-participle": " needing", "past-participle": " needed"}),
@@ -428,47 +437,44 @@ def lookup(key):
         raise KeyError
 
     match = PARTS_MATCHER.match(stroke)
-    starter, vowels1, star, vowels2, f, ender = match.groups()
+    starter_key, v1, star, v2, f, ender_key = match.groups()
     if not match:
         raise KeyError
 
-    starter_lookup = STARTERS.get(starter)
+    starter_lookup = STARTERS.get(starter_key)
     if not starter_lookup:
         raise KeyError
 
-    result, verb_form, valid_enders = starter_lookup
-    if valid_enders and ender not in valid_enders:
+    starter, verb_form, valid_enders = starter_lookup
+    if valid_enders and ender_key not in valid_enders:
         raise KeyError
 
-    ender_lookup = ENDERS.get(ender)
+    ender_lookup = ENDERS.get(ender_key)
     if not ender_lookup:
         raise KeyError
 
     tense, verb = ender_lookup
 
-    base = MIDDLES_BASE[vowels1 + star]
-    middle_word, updated_verb_form = lookup_data(
+    base = MIDDLES[v1 + star]
+    middle_word, middle_verb_form = lookup_data(
         lookup_data(base, tense), verb_form)
 
-    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(
-        starter + vowels1 + star + vowels2 + f)
+    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(starter_key + v1 + star + v2 + f)
     if not modifier:
-        modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(vowels1 + star + vowels2 + f)
+        modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(v1 + star + v2 + f)
     if not modifier:
-        modifier = MIDDLES_MODIFIERS[star + vowels2 + f]
-    modifier_format, use_base_verb_form, modifier_verb_update = modifier
+        modifier = MIDDLE_MODIFIERS[star + v2 + f]
 
-    if use_base_verb_form:
-        if updated_verb_form:
-            verb_form = updated_verb_form
+    modifier_format, use_middle_verb_form, modifier_verb_update = lookup_data(
+        lookup_data(modifier, tense), verb_form)
 
-    middle_word = lookup_data(lookup_data(
-        modifier_format, tense), verb_form).replace('*', middle_word, 1)
+    original_verb_form = verb_form
+    if use_middle_verb_form:
+        if middle_verb_form:
+            verb_form = middle_verb_form
 
-    if '!' in middle_word:
-        result = middle_word.replace('!', result)
-    else:
-        result += middle_word
+    middle_phrase = lookup_data(lookup_data(modifier_format, tense), original_verb_form+"-"+verb_form).replace(
+        '*', middle_word, 1).replace('!', starter)
 
     if modifier_verb_update:
         verb_form = modifier_verb_update
@@ -477,9 +483,7 @@ def lookup(key):
     if ending == None:
         raise KeyError
 
-    result += ending
-
-    return result
+    return middle_phrase + ending
 
 
 def lookup_data(data, key):
@@ -489,6 +493,12 @@ def lookup_data(data, key):
     result = data.get(key)
     if result != None:
         return result
+
+    if '-' in key:
+        key = key.split('-')[1]
+        result = data.get(key)
+        if result != None:
+            return result
 
     if key[0] == 'b':
         result = data.get(key[1:])
@@ -503,7 +513,7 @@ def lookup_data(data, key):
 
 
 REVERSE_STARTERS = {"": {"": True}}
-REVERSE_MIDDLES_BASE = {}
+REVERSE_MIDDLES = {}
 REVERSE_MODIFIERS = {}
 REVERSE_ENDERS = {}
 
@@ -524,8 +534,8 @@ def add_reverse_middles_base(stroke, data):
 
     word = data[0].strip()
 
-    REVERSE_MIDDLES_BASE.setdefault(word, {})
-    REVERSE_MIDDLES_BASE[word][stroke] = True
+    REVERSE_MIDDLES.setdefault(word, {})
+    REVERSE_MIDDLES[word][stroke] = True
 
 
 def add_reverse_middle_modifiers(stroke, data):
@@ -556,25 +566,17 @@ def add_reverse_enders(stroke, data):
     REVERSE_ENDERS[word][stroke] = True
 
 
+for key in MIDDLES:
+    add_reverse_middles_base(key, MIDDLES[key])
+
 for key in MIDDLE_MODIFIER_EXCEPTIONS:
     add_reverse_middle_modifiers(key, MIDDLE_MODIFIER_EXCEPTIONS[key][0])
 
-for key in MIDDLES_BASE:
-    add_reverse_middles_base(key, MIDDLES_BASE[key])
-
-for key in MIDDLES_MODIFIERS:
-    add_reverse_middle_modifiers(key, MIDDLES_MODIFIERS[key][0])
+for key in MIDDLE_MODIFIERS:
+    add_reverse_middle_modifiers(key, MIDDLE_MODIFIERS[key][0])
 
 for key in ENDERS:
     add_reverse_enders(key, ENDERS[key][1])
-
-
-def reverse_match(result, full_text, prefix):
-    try:
-        if lookup([prefix]).strip() == full_text:
-            result.append((prefix,))
-    except KeyError:
-        pass
 
 
 def add_verb_stroke(prefix, suffix):
@@ -583,6 +585,14 @@ def add_verb_stroke(prefix, suffix):
         return prefix + suffix
 
     return prefix + '-' + suffix
+
+
+def reverse_match(result, full_text, prefix):
+    try:
+        if lookup([prefix]).strip() == full_text:
+            result.append((prefix,))
+    except KeyError:
+        pass
 
 
 def reverse_verb_match(result, full_text, text, prefix):
@@ -597,7 +607,7 @@ def reverse_verb_match(result, full_text, text, prefix):
 def reverse_modifier_match(result, full_text, text, prefix):
     words = text.split(' ')
     for i in range(len(words)):
-        phrase = ' '.join(words[:i])
+        phrase = ' '.join(words[:i+1])
         if phrase not in REVERSE_MODIFIERS:
             continue
 
@@ -608,12 +618,12 @@ def reverse_modifier_match(result, full_text, text, prefix):
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):
-    for word in REVERSE_MIDDLES_BASE:
+    for word in REVERSE_MIDDLES:
         if word in text:
-            remainder = text.replace(word, '*', 1)
-            remainder = remainder.replace(' *', '*')
-            for stroke in REVERSE_MIDDLES_BASE[word]:
-                reverse_modifier_match(result, full_text, remainder, prefix + stroke)
+            r = text.replace(word, '*', 1)
+            r = r.replace(' *', '*')
+            for s in REVERSE_MIDDLES[word]:
+                reverse_modifier_match(result, full_text, r, prefix + s)
 
     reverse_modifier_match(result, full_text, text, prefix)
 
