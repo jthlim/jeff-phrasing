@@ -22,9 +22,12 @@ Some examples:
 * `KWHRO*EGTD` produces `he shouldn't be going to`
 * `SWRAOEUFGTD` produces `I would never go to`
 * `SWREFGT` produces `I have been going to`
+* `STWHAOEUGT` produces `that will still go to`
 * `SWR-RPBT` produces `I understand the`
+* `STHRAOBT` produces `there will be a`
 * `SWRA*EURPBT` produces `I still can't understand the`
 * `SWR*UFBGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
+* `WHA/KPWRUPBG/TWROERPD` produces `what do you think we should be doing`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -39,7 +42,7 @@ This is currently a work in progress. Expect changes in future versions.
 
 The phrase is constructed in multiple parts:
 
-1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`)
+1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`, `that`, `this`, `there`)
 2. An optional `do`/`can`/`shall`/`will`
 3. An optional `not`
 4. A optional modifier `just`/`still`/`never`/`even`/`have`/`be`
@@ -60,8 +63,8 @@ Example 1: For the stroke `SWRO*FGTD`:
 6. `T` is `to`
 7. `D` is for past tense
 
-Once the verb forms, tenses and short forms are matched up, this results in:
-`I shouldn't have gone to`
+Once the verb forms and tenses are matched and short form applied, this results
+in: `I shouldn't have gone to`
 
 Example 2: See how the verb 'be' changes:
   * `SWREUFB` produces `I never am`
@@ -86,11 +89,22 @@ Starters are formed using keys on the left hand side of the board:
 * `TWH`: `they`
 * `STKPWHR`: `` (empty -- third person singular form)
 * `STWR`: `` (empty -- third person plural form)
+* `STKH`: `this`
+* `STWH`: `that`
+* `STHR`: `there` (third person singular form -- *)
+* `STPHR`: `there` (third person plural form -- *)
 
-Example usage of of `STWR` and `STKPWHR`:
+(*) Note that `there` can only use a limited set of verbs to avoid collisions
+with the main dictionary.
+
+Examples:
+* `STHR-BG` produces `there comes`
+* `STPHR-BG` produces `there come`
+* `STHRAOEFD` produces `there would have been`
+* `STHRAOEURPGT` produces `there will still need to`
 * `SWR-RPGT/STWR-RPBT` produces 'I need to understand the'
 * `KWHR-PL/STWR-FPBT` produces 'he may have known that'
-* `SKWRAEUPB/STKPWHR-EUFGT` produces 'Jane never goes to'
+* `SKWRAEUPB/STKPWHREUFGT` produces 'Jane never goes to'
 
  # Do, Can, Shall, Will
 ```
@@ -192,6 +206,12 @@ Finally, the special prefix `STWRU` will give the infinitive form of the verb.
 
 ## Verbs and suffix words
 
+```
+🅂🅃🄿🄷 🄾 🄵🅿🅻🆃🅳
+🅂🄺🅆🅁 🄾 🆁🅱🅶🆂🆉
+　　　🄰🄾 🄴🅄
+```
+
 All verbs have a present and past tense version. The past tense is formed by
 adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
 
@@ -201,34 +221,34 @@ stroke includes `-T`, then `-S` is used instead.
 For past tense with suffix words that cause a diagonal to be formed
 (`-TZ` or `-SD`), then `-TSDZ` is used instead.
 
-| Stroke | Meaning (-T)        |
-| ------ | ------------------- |
-| ``     | <empty>             |
-| `D`    | <empty, past tense> |
-| `B`    | To be (a)           |
+| Stroke | Meaning (-T)        | Meaning when using `there` |
+| ------ | ------------------- | -------------------------- |
+| ``     | <empty>             | <empty>                    |
+| `D`    | <empty, past tense> | <empty, past tense>        |
+| `B`    | To be (a)           | To be (a)                  |
 | `BL`   | To believe (that)   |
 | `RBLG` | To call             |
-| `BG`   | To come (to)        |
+| `BG`   | To come (to)        | To come                    |
 | `RP`   | To do (it)          |
 | `BGS`  | To expect (that)    |
-| `LS`   | To feel (like)      |
+| `LT`   | To feel (like)      |
 | `PBLG` | To find (that)      |
 | `RG`   | To forget (to)      |
 | `GS`   | To get (to)         |
 | `GZ`   | To give             |
-| `G`    | To go (to)          |
+| `G`    | To go (to)          | To go                      |
 | `T`    | To have (to)        |
 | `PB`   | To know (that)      |
 | `BLG`  | To like (to)        |
-| `LZ`   | To live             |
+| `LZ`   | To live             | To live                    |
 | `L`    | To look             |
 | `LG`   | To love (to)        |
-| `LT`   | To let              |
+| `LS`   | To let              |
 | `RPBL` | To make (the)       |
-| `PL`   | may/might (have)    |
+| `PL`   | May/Might (have)    | May/Might (have)           |
 | `PBL`  | To mean             |
 | `PLZ`  | To move             |
-| `RPG`  | To need (to)        |
+| `RPG`  | To need (to)        | To need (to)               |
 | `PS`   | To put (it)         |
 | `RLS`  | To realize (that)   |
 | `RL`   | To recall           |
@@ -236,7 +256,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `R`    | To run              |
 | `BS`   | To say (that)       |
 | `S`    | To see              |
-| `PLS`  | To seem (to)        |
+| `PLS`  | To seem (to)        | To seem (to)               |
 | `RBZ`  | To show             |
 | `RBT`  | To take             |
 | `BLGT` | To talk             |
@@ -244,7 +264,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `PBG`  | To think (that)     |
 | `RT`   | To try (to)         |
 | `RPB`  | To understand (the) |
-| `Z`    | To use              |
+| `Z`    | To use              | To use                     |
 | `P`    | To want (to)        |
 | `RBG`  | To work             |
 
@@ -255,7 +275,7 @@ Examples:
 
 Memorization hints:
 * `live`, `give` and `move` use `LZ`, `GZ` and `MZ`.
-* ``get` and `put` use `GS` and `PS`
+* `let`, `get` and `put` use `LS`, `GS` and `PS`
 
 # Installation
 

@@ -45,20 +45,45 @@ TO_HAVE = {
     }
 }
 
+THERE_SUFFIXES = {
+    "": True,
+    "D": True,                                                # Past tense
+    "B": True, "BT": True, "BD": True, "BTD": True,           # Be (a)
+    "BG": True, "BGD": True,                                  # Come
+    "G": True, "GD": True,                                    # Go
+    "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
+    "LZ": True, "TZD": True,                                  # Live
+    "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May/Might (have)
+    "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
+    "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
+    "Z": True, "DZ": True,                                    # Use
+}
+
+NON_PHRASE_STROKES = {
+    "STHR": True,       # "is there"
+    "STHRET": True,     # "stiletto"
+    "STHREUPLT": True,  # "stimulate"
+    "STPHREFPLT": True, # "investment in"
+}
+
 STARTERS = {
-    # Map of stroke -> word, verb-form.
+    # Map of stroke -> word, verb-form, valid enders
     #  * 'b' for blank
     #  * '1p', '2p', '3p' for 1st, 2nd, 3rd person
     #  * 'p/s' for plural/singular
-    "SWR": ("I", "1ps"),
-    "KPWR": ("you", "2p"),
-    "KWHR": ("he", "3ps"),
-    "SKWHR": ("she", "3ps"),
-    "KPWH": ("it", "3ps"),
-    "TWR": ("we", "1pp"),
-    "TWH": ("they", "3pp"),
-    "STKPWHR": ("", "b3ps"),
-    "STWR": ("", "b3pp"),
+    "SWR": ("I", "1ps", None),
+    "KPWR": ("you", "2p", None),
+    "KWHR": ("he", "3ps", None),
+    "SKWHR": ("she", "3ps", None),
+    "KPWH": ("it", "3ps", None),
+    "TWR": ("we", "1pp", None),
+    "TWH": ("they", "3pp", None),
+    "STKPWHR": ("", "b3ps", None),
+    "STWR": ("", "b3pp", None),
+    "STKH": ("this", "3ps", None),
+    "STWH": ("that", "3ps", None),
+    "STHR": ("there", "3ps", THERE_SUFFIXES),
+    "STPHR": ("there", "3pp", THERE_SUFFIXES),
 }
 
 MIDDLES_BASE = {
@@ -87,8 +112,10 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
 
     # The following alternate definitions cause phrases to use contracted forms, e.g.:
     #
-    # * `I'm going to` instead of `I am going to`
-    # * `I've gone to` instead of `I have gone to`
+    # * `I am going to` -> `I'm going to`
+    # * `I have gone to` -> `I've gone to`
+    #
+    # To use contracted forms, uncomment out the next 6 definitions.
     #
     # "*E": ({"present": {None: " are not", "1ps": "'m not", "2p": "'re not", "3ps": " isn't", "1pp": "'re not", "3pp": "'re not", "b3pp": " are not"}, "past": {None: " weren't", "1ps": " wasn't", "3ps": " wasn't"}}, False, "present-participle"),
     # "E": ({"present": {None: " are", "1ps": "'m", "2p": "'re", "3ps": "'s", "b3ps": " is", "1pp": "'re", "3pp": "'re", "b3pp": " are"}, "past": {None: " were", "1ps": " was", "3ps": " was"}}, False, "present-participle"),
@@ -169,10 +196,10 @@ ENDERS = {
     "PGSZ": ("past", {None: " expected", "root": " expect", "present-participle": " expecting", "past-participle": " expected"}),
     "PGTSDZ": ("past", {None: " expected that", "root": " expect that", "present-participle": " expecting that", "past-participle": " expected that"}),
 
-    # LS - To feel (like)
-    "LS": ("present", {None: " feel", "3ps": " feels", "present-participle": " feeling", "past-participle": " felt"}),
+    # LT - To feel (like)
+    "LT": ("present", {None: " feel", "3ps": " feels", "present-participle": " feeling", "past-participle": " felt"}),
     "LTS": ("present", {None: " feel like", "3ps": " feels like", "present-participle": " feeling like", "past-participle": " felt like"}),
-    "LSZ": ("past", {None: " felt", "root": " feel", "present-participle": " feeling", "past-participle": " felt"}),
+    "LTD": ("past", {None: " felt", "root": " feel", "present-participle": " feeling", "past-participle": " felt"}),
     "LTSDZ": ("past", {None: " felt like", "root": " feel like", "present-participle": " feeling like", "past-participle": " felt like"}),
 
     # PBLG - To find (that)
@@ -236,8 +263,8 @@ ENDERS = {
     "LGTD": ("past", {None: " loved to", "root": " love to", "present-participle": " loving to", "past-participle": " loved to"}),
 
     # LT - To let
-    "LT": ("present", {None: " let", "3ps": " lets", "present-participle": " letting", "past-participle": " let"}),
-    "LTD": ("past", {None: " let", "present-participle": " letting", "past-participle": " let"}),
+    "LS": ("present", {None: " let", "3ps": " lets", "present-participle": " letting", "past-participle": " let"}),
+    "LSZ": ("past", {None: " let", "present-participle": " letting", "past-participle": " let"}),
 
     # RPBL - To make (the)
     "RPBL": ("present", {None: " make", "3ps": " makes", "present-participle": " making", "past-participle": " made"}),
@@ -361,7 +388,12 @@ ENDERS = {
 
 
 def lookup(key):
-    match = PARTS_MATCHER.match(key[0])
+    stroke = key[0]
+
+    if stroke in NON_PHRASE_STROKES:
+        raise KeyError
+
+    match = PARTS_MATCHER.match(stroke)
     starter, vowels1, star, vowels2, f, ender = match.groups()
     if not match:
         raise KeyError
@@ -370,11 +402,14 @@ def lookup(key):
     if not starter_lookup:
         raise KeyError
 
+    result, verb_form, valid_enders = starter_lookup
+    if valid_enders and ender not in valid_enders:
+        raise KeyError
+
     ender_lookup = ENDERS.get(ender)
     if not ender_lookup:
         raise KeyError
 
-    result, verb_form = starter_lookup
     tense, verb = ender_lookup
 
     base = MIDDLES_BASE[vowels1 + star]
@@ -433,7 +468,7 @@ def lookup_data(data, key):
 # This will show phrasing strokes in Plover's suggestions window.
 
 
-REVERSE_STARTERS = { "": {"": True}}
+REVERSE_STARTERS = {"": {"": True}}
 REVERSE_MIDDLES_BASE = {}
 REVERSE_MODIFIERS = {}
 REVERSE_ENDERS = {}
@@ -572,13 +607,14 @@ def reverse_modifier_match(result, full_text, text, prefix):
 
         if '_' in word:
             word = word.split('_', 1)[0]
-            for stroke in REVERSE_MODIFIERS[word]:
-                reverse_verb_match(result, full_text, text.replace(
-                    word, '', 1).strip(), add_verb_stroke(prefix, stroke))
+            if word in REVERSE_MODIFIERS:
+                for stroke in REVERSE_MODIFIERS[word]:
+                    reverse_verb_match(result, full_text, text.replace(
+                        word, '', 1).strip(), add_verb_stroke(prefix, stroke))
 
         for stroke in REVERSE_MODIFIERS['']:
             reverse_verb_match(result, full_text, text,
-                            add_verb_stroke(prefix, stroke))
+                               add_verb_stroke(prefix, stroke))
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):
