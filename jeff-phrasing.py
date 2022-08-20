@@ -39,32 +39,31 @@ TO_HAVE = {
     "past": {
         "root": " have",
         None: " had",
-        "3ps": " had",
         "present-participle": " having",
         "past-participle": " had",
     }
 }
 
 THERE_SUFFIXES = {
-    "": True,
-    "D": True,                                                # Past tense
-    "B": True, "BT": True, "BD": True, "BTD": True,           # Be (a)
-    "BG": True, "BGD": True,                                  # Come
-    "G": True, "GD": True,                                    # Go
-    "PZ": True, "PDZ": True,                                  # Happen
-    "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
-    "LZ": True, "TZD": True,                                  # Live
-    "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May/Might (have)
-    "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
-    "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
-    "Z": True, "DZ": True,                                    # Use
+  "": True,
+  "D": True,                                                # Past tense
+  "B": True, "BT": True, "BD": True, "BTD": True,           # Be (a)
+  "BG": True, "BGD": True,                                  # Come
+  "G": True, "GD": True,                                    # Go
+  "PZ": True, "PDZ": True,                                  # Happen
+  "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
+  "LZ": True, "TZD": True,                                  # Live
+  "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May/Might (have)
+  "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
+  "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
+  "Z": True, "DZ": True,                                    # Use
 }
 
 NON_PHRASE_STROKES = {
-    "STHR": True,       # "is there"
-    "STHRET": True,     # "stiletto"
-    "STHREUPLT": True,  # "stimulate"
-    "STPHREFPLT": True, # "investment in"
+    "STHR": True,        # "is there"
+    "STHRET": True,      # "stiletto"
+    "STHREUPLT": True,   # "stimulate"
+    "STPHREFPLT": True,  # "investment in"
 }
 
 STARTERS = {
@@ -545,6 +544,7 @@ def add_reverse_middle_modifiers(stroke, data):
     REVERSE_MODIFIERS.setdefault(word, {})
     REVERSE_MODIFIERS[word][stroke] = True
 
+
 def add_reverse_enders(stroke, data):
     if type(data) is dict:
         for k in data:
@@ -603,7 +603,8 @@ def reverse_modifier_match(result, full_text, text, prefix):
 
         for modifier_stroke in REVERSE_MODIFIERS[phrase]:
             remainder = text.replace(phrase, '', 1).strip()
-            reverse_verb_match(result, full_text, remainder, add_verb_stroke(prefix, modifier_stroke))
+            stroke = add_verb_stroke(prefix, modifier_stroke)
+            reverse_verb_match(result, full_text, remainder, stroke)
 
 
 def reverse_middle_base_match(result, full_text, text, prefix):
@@ -623,9 +624,10 @@ def reverse_lookup(text):
 
     full_text = text
 
-    # Maximum phrase is 6 words, so early out if this isn't valid.
+    # Maximum phrase is 7 words, so early out if being asked for the stroke
+    # for more.
     words = text.split(' ')
-    if len(words) > 6:
+    if len(words) > 7:
         return []
 
     result = []
@@ -644,5 +646,3 @@ def reverse_lookup(text):
         reverse_middle_base_match(result, full_text, text, stroke)
 
     return result
-
-
