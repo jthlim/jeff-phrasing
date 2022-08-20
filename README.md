@@ -258,6 +258,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `GS`   | To get (to)         |
 | `GZ`   | To give             |
 | `G`    | To go (to)          | To go                      |
+| `PZ`   | To happen           | To happen                  |
 | `T`    | To have (to)        |
 | `PB`   | To know (that)      |
 | `BLG`  | To like (to)        |

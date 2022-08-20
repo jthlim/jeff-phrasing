@@ -51,6 +51,7 @@ THERE_SUFFIXES = {
     "B": True, "BT": True, "BD": True, "BTD": True,           # Be (a)
     "BG": True, "BGD": True,                                  # Come
     "G": True, "GD": True,                                    # Go
+    "PZ": True, "PDZ": True,                                  # Happen
     "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
     "LZ": True, "TZD": True,                                  # Live
     "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May/Might (have)
@@ -265,6 +266,10 @@ ENDERS = {
     "TS": ("present", {None: " have to", "3ps": " has to", "present-participle": " having to", "past-participle": " had to"}),
     "TD": ("past", {None: " had", "root": " have", "present-participle": " having", "past-participle": " had"}),
     "TSDZ": ("past", {None: " had to", "root": " have to", "present-participle": " having to", "past-participle": " had to"}),
+
+    # PZ - To happen
+    "PZ": ("present", {None: " happen", "3ps": " happens", "present-participle": " happening", "past-participle": " happened"}),
+    "PDZ": ("past", {None: " happened", "root": " happen", "present-participle": " happening", "past-participle": " happened"}),
 
     # PB: To know (that)
     "PB": ("present", {None: " know", "3ps": " knows", "present-participle": " knowing", "past-participle": " known"}),
