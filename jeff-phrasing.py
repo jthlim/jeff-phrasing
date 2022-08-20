@@ -148,20 +148,20 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "STKPWHR*U": ("not to", False, "root"),
 
     # - single word modifiers
-    "STWRUF": ("just", True, None),
-    "STWR*UF": ("just", True, None),
-    "STKPWHRUF": ("just", True, None),
-    "STKPWHR*UF": ("just", True, None),
+    "STWRUF": ("just", False, None),
+    "STWR*UF": ("just", False, None),
+    "STKPWHRUF": ("just", False, None),
+    "STKPWHR*UF": ("just", False, None),
 
-    "STWREU": ("still", True, None),
-    "STWR*EU": ("still", True, None),
-    "STKPWHREU": ("still", True, None),
-    "STKPWHR*EU": ("still", True, None),
+    "STWREU": ("still", False, None),
+    "STWR*EU": ("still", False, None),
+    "STKPWHREU": ("still", False, None),
+    "STKPWHR*EU": ("still", False, None),
 
-    "STWREUF": ("never", True, None),
-    "STWR*EUF": ("even", True, None),
-    "STKPWHREUF": ("never", True, None),
-    "STKPWHR*EUF": ("even", True, None),
+    "STWREUF": ("never", False, None),
+    "STWR*EUF": ("even", False, None),
+    "STKPWHREUF": ("never", False, None),
+    "STKPWHR*EUF": ("even", False, None),
 }
 
 ALWAYS = {None: "* !", "b3ps-root": "* always", "b3pp-root": "* always"}
