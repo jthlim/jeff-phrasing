@@ -8,8 +8,8 @@ as: `I really doesn't wanted`.
 
 This phrasing dictionary automatically matches tenses and verb forms,
 which makes it easier to learn because there's less to remember. With the
-key-space freed up, extra flexibility has been added to enable more expressive
-phrases.
+key-space freed up, extra flexibility has been added to enable more versatility
+with the phrases.
 
 Some examples:
 * `SWR-GT` produces `I go to`
@@ -44,9 +44,9 @@ This is currently a work in progress. Expect changes in future versions.
 The phrase is constructed in multiple parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`, `that`, `this`, `there`)
-2. An optional `do`/`can`/`shall`/`will`
+2. A choice of `do`/`can`/`shall`/`will`
 3. An optional `not`
-4. An optional modifier `just`/`still`/`never`/`even`/`have`/`be`
+4. Phrase structure, controlling word order and `just`/`still`/`never`/`even`/`have`/`be`/`always`
 5. A verb e.g. `go`, `say`, `understand`, etc.
 6. An optional suffix word
 7. A tense
@@ -60,7 +60,7 @@ Example 1: For the stroke `SWRO*FGTD`:
 2. `O` is `shall`
 3. `*` is `not`
 4. `F` is `have`
-5. `G` is `go`
+5. `G` is the verb `go`
 6. `T` is `to`
 7. `D` is for past tense
 
@@ -130,7 +130,9 @@ get the negative version.
 To get `did`, `should`, `could`, `would`, use a past tense verb (or past tense
 placeholder `-D`).
 
-## Modifiers
+There are special cases in the phrase structure so `do` can be omitted.
+
+## Phrase structure
 
 ```
 🅂🅃🄿🄷 🄾 🅵🄿🄻🅃🄳
@@ -171,23 +173,44 @@ placeholder `-D`).
 
 Full table:
 
-| `* E U F` | Modifier                     | `SWRAGD`                  |
-| --------- | ---------------------------- | ------------------------- |
-| `? _ _ _` | {empty}                      | `I could go`              |
-| `? E _ _` | 'be' + -ing verb form        | `I could be going`        |
-| `? _ _ F` | 'have' + past  verb form     | `I could have gone`       |
-| `? E _ F` | 'have been' + -ing verb form | `I could have been going` |
-| `? _ U _` | {middle} {starter}           | `could I go`              |
-| `_ _ U F` | `{}` j**u**st                | `I could just go`         |
-| `* _ U F` | j**u**st `{}`                | `I just couldn't go`      |
-| `_ E U _` | `{}` st**i**ll               | `I could still go`        |
-| `* E U _` | st**i**ll `{}`               | `I still couldn't go`     |
-| `_ E U F` | `{}` n**ev**er               | `I could never go`        |
-| `* E U F` | `{}` **ev**en                | `I couldn't even go`      |
+| `* E U F` | Modifier                                    | `SWRAGD`                  |
+| --------- | ------------------------------------------- | ------------------------- |
+| `? _ _ _` | {starter} `{}`                              | `I could go`              |
+| `? E _ _` | {starter} `{}` 'be' + -ing verb form        | `I could be going`        |
+| `? _ _ F` | {starter} `{}` 'have' + past verb form      | `I could have gone`       |
+| `? E _ F` | {starter} `{}` 'have been' + -ing verb form | `I could have been going` |
+| `? _ U _` | `{}` {starter}                              | `could I go`              |
+| `_ _ U F` | {starter} `{}` j**u**st                     | `I could just go`         |
+| `* _ U F` | {starter} j**u**st `{}`                     | `I just couldn't go`      |
+| `_ E U _` | {starter} `{}` st**i**ll                    | `I could still go`        |
+| `* E U _` | {starter} st**i**ll `{}`                    | `I still couldn't go`     |
+| `_ E U F` | {starter} `{}` n**ev**er                    | `I could never go`        |
+| `* E U F` | {starter} `{}` **ev**en                     | `I couldn't even go`      |
 
 Note: The `{}` in the table represents `do`/`can`/`shall`/`will`
 
-An exception is for `do`, where:
+For the empty prefixes `STWR` and `STKPWHR`, since there is no starter
+word:
+
+* `U` and `*U` will give the infinitive form of the verb if can/shall/will
+  are not used.
+  * `STWRUGT`: `to go to`
+  * `STWR*UGT`: `not to go to`
+  * `STWRULTS`: `to feel like`
+
+* `U` will append `always` when used with can/shall/will:
+  * `STWROURBD`: `should always ask`
+
+* `UF` will append `just`
+* `EU` will append `still`
+* `EUF` will append `never`
+* `*EUF` will append `even`
+
+### Phrase structure with `do`
+
+`do` (neither `A` nor `E` pressed) is handled slightly differently to enable
+writing phrases that don't use do/can/shall/will:
+
 * `F` always represents the verb `to have`
 * `E` always represents `to be`
 * `U` always swaps the starter
@@ -212,23 +235,6 @@ Full table:
 | `_ _ _ E U F` | <swap word order> + have been + -ing verb form | `have you been going`    |
 | `_ _ * E _ F` | haven't been + -ing verb form                  | `you haven't been going` |
 | `_ _ * E U F` | haven't {starter} + been + -ing verb form      | `haven't you been going` |
-
-Finally, with the empty prefixes `STWR` and `STKPWHR`, since there is no starter
-word:
-
-* `U` and `*U*` will give the infinitive form of the verb if can/shall/will
-  are not used.
-  * `STWRUGT`: `to go to`
-  * `STWR*UGT`: `not to go to`
-  * `STWRULTS`: `to feel like`
-
-* `U` will append `always` when used with can/shall will:
-  * `STWROURBD`: `should always ask`
-
-* `UF` will append `just`
-* `EU` will append `still`
-* `EUF` will append `never`
-* `*EUF` will append `even`
 
 ## Verbs and suffix words
 
