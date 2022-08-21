@@ -123,14 +123,15 @@ get the negative version.
 | `A O` | Word            | Negative forms           |
 | ----- | --------------- | ------------------------ |
 | `_ _` | do / does / did | don't / doesn't / didn't |
-| `_ O` | shall / should  | shall not / shouldn't    |
 | `A _` | can / could     | can't / couldn't         |
+| `_ O` | shall / should  | shall not / shouldn't    |
 | `A O` | will / would    | won't / wouldn't         |
 
 To get `did`, `should`, `could`, `would`, use a past tense verb (or past tense
 placeholder `-D`).
 
-There are special cases in the phrase structure so `do` can be omitted.
+There are special cases in the phrase structure section so that `do` can be
+omitted.
 
 ## Phrase structure
 
@@ -209,7 +210,7 @@ word:
 ### Phrase structure with `do`
 
 `do` (neither `A` nor `E` pressed) is handled slightly differently to enable
-writing phrases that don't use do/can/shall/will:
+writing phrases that don't use any of `do`/`can`/`shall`/`will`:
 
 * `F` always represents the verb `to have`
 * `E` always represents `to be`
@@ -300,6 +301,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RPB`   | To understand (the)        |
 | `Z`     | To use [1]                 | To use                     |
 | `P`     | To want (to)               |
+| `RBS`   | To wish (to)               |
 | `RBG`   | To work (on)               |
 
 [1] - `used to` is special cased as `TZ` and `TDZ` and requires shifting the right

@@ -427,6 +427,12 @@ ENDERS = {
     "PD": ("past", {None: " wanted", "root": " want", "present-participle": " wanting", "past-participle": " wanted"}),
     "PTD": ("past", {None: " wanted to", "root": " want to", "present-participle": " wanting to", "past-participle": " wanted to"}),
 
+    # RBS - To wish (to)
+    "RBS": ("present", {None: " wish", "3ps": " wishes", "present-participle": " wishing", "past-participle": " wished"}),
+    "RBTS": ("present", {None: " wish to", "3ps": " wishes to", "present-participle": " wishing to", "past-participle": " wished to"}),
+    "RBSZ": ("past", {None: " wished", "root": " wish", "present-participle": " wishing", "past-participle": " wished"}),
+    "RBTSDZ": ("past", {None: " wished to", "root": " wish to", "present-participle": " wishing to", "past-participle": " wished to"}),
+
     # RBG - To work (on)
     "RBG": ("present", {None: " work", "3ps": " works", "present-participle": " working", "past-participle": " worked"}),
     "RBGT": ("present", {None: " work on", "3ps": " works on", "present-participle": " working on", "past-participle": " worked on"}),
