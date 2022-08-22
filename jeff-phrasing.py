@@ -115,7 +115,7 @@ MIDDLES = {
 
 # `!` represents the starter
 # `*` represents the middle
-MIDDLE_MODIFIER_EXCEPTIONS = {
+STRUCTURE_EXCEPTIONS = {
     "": ("!", False, None),
 
     # To make reverse look-ups work correctly, longer results must be listed first
@@ -160,7 +160,7 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "STKPWHRU": ("to", False, "root"),
     "STKPWHR*U": ("not to", False, "root"),
 
-    # - single word modifiers
+    # - single word structures
     # "STWRUF": ("just", False, None),
     # "STWR*UF": ("just", False, None),
     # "STKPWHRUF": ("just", False, None),
@@ -179,7 +179,7 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
 
 ALWAYS = {None: "* !", "b3ps-root": "* always", "b3pp-root": "* always"}
 
-MIDDLE_MODIFIERS = {
+STRUCTURES = {
     "": ("!*", True, None),
     "*": ("!*", True, None),
 
@@ -330,7 +330,7 @@ ENDERS = {
     "RPBLTD": ("past", {None: " made the", "root": " make the", "present-participle": " making the", "past-participle": " made the"}),
 
     # PL - Auxiliary verb may (be)
-    # These do not combine naturally with middle/modifiers.
+    # These do not combine naturally with middle/structures.
     "PL": ("present", " may"),
     "PLT": ("present", " may be"),
     "PLD": ("past", " might"),
@@ -347,7 +347,7 @@ ENDERS = {
     "PLDZ": ("past", {None: " moved", "root": " move", "present-participle": " moving", "past-participle": " moved"}),
 
     # PBLGS - Auxiliary verb must (be)
-    # These do not combine naturally with middle/modifiers.
+    # These do not combine naturally with middle/structures.
     "PBLGS": ("present", " must"),
     "PBLGTS": ("present", " must be"),
 
@@ -461,23 +461,23 @@ ENDERS = {
 
 
 def lookup(key):
-    starter_lookup, base, modifier, ender_lookup = determine_parts(key)
+    starter_lookup, middle_lookup, structure_lookup, ender_lookup = determine_parts(key)
 
     starter, verb_form, _ = starter_lookup
     tense, verb = ender_lookup
-    middle_word, middle_verb_form = lookup_data(base, tense, verb_form)
-    modifier_format, use_middle_verb_form, modifier_verb_update = lookup_data(modifier, tense, verb_form)
+    middle_word, middle_verb_form = lookup_data(middle_lookup, tense, verb_form)
+    structure_format, use_middle_verb_form, structure_verb_update = lookup_data(structure_lookup, tense, verb_form)
 
     original_verb_form = verb_form
     if use_middle_verb_form:
         if middle_verb_form:
             verb_form = middle_verb_form
 
-    middle_phrase = lookup_data(modifier_format, tense, original_verb_form+"-"+verb_form).replace(
+    middle_phrase = lookup_data(structure_format, tense, original_verb_form+"-"+verb_form).replace(
         '*', middle_word, 1).replace('!', starter)
 
-    if modifier_verb_update:
-        verb_form = modifier_verb_update
+    if structure_verb_update:
+        verb_form = structure_verb_update
 
     ending = lookup_data(verb, verb_form)
     if ending == None:
@@ -515,15 +515,15 @@ def determine_parts(key):
     if valid_enders and ender_key not in valid_enders:
         raise KeyError
 
-    base = MIDDLES[v1 + star]
+    middle_lookup = MIDDLES[v1 + star]
 
-    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(starter_key + v1 + star + v2 + f)
-    if not modifier:
-        modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(v1 + star + v2 + f)
-    if not modifier:
-        modifier = MIDDLE_MODIFIERS[star + v2 + f]
+    structure_lookup = STRUCTURE_EXCEPTIONS.get(starter_key + v1 + star + v2 + f)
+    if not structure_lookup:
+        structure_lookup = STRUCTURE_EXCEPTIONS.get(v1 + star + v2 + f)
+    if not structure_lookup:
+        structure_lookup = STRUCTURES[star + v2 + f]
 
-    return starter_lookup, base, modifier, ender_lookup
+    return starter_lookup, middle_lookup, structure_lookup, ender_lookup
 
 
 def lookup_data(data, *keys):
@@ -558,7 +558,7 @@ def _lookup_data(data, key):
 
 REVERSE_STARTERS = {"": {"": True}}
 REVERSE_MIDDLES = {}
-REVERSE_MODIFIERS = {}
+REVERSE_STRUCTURES = {}
 REVERSE_ENDERS = {}
 
 for key in STARTERS:
@@ -587,21 +587,21 @@ def add_reverse_middles_base(stroke, data):
     REVERSE_MIDDLES[word][stroke] = True
 
 
-def add_reverse_middle_modifiers(stroke, data):
+def add_reverse_structures(stroke, data):
     if type(data) is dict:
         for k in data:
-            add_reverse_middle_modifiers(stroke, data[k])
+            add_reverse_structures(stroke, data[k])
         return
 
     word = data.strip()
 
-    REVERSE_MODIFIERS.setdefault(word, {})
-    REVERSE_MODIFIERS[word][stroke] = True
+    REVERSE_STRUCTURES.setdefault(word, {})
+    REVERSE_STRUCTURES[word][stroke] = True
 
     # To lookup empty starters, have entries that don't include '!'
     word = word.replace('!', '').strip()
-    REVERSE_MODIFIERS.setdefault(word, {})
-    REVERSE_MODIFIERS[word][stroke] = True
+    REVERSE_STRUCTURES.setdefault(word, {})
+    REVERSE_STRUCTURES[word][stroke] = True
 
 
 def add_reverse_enders(stroke, data):
@@ -618,14 +618,14 @@ def add_reverse_enders(stroke, data):
 for key in MIDDLES:
     add_reverse_middles_base(key, MIDDLES[key])
 
-for key in MIDDLE_MODIFIER_EXCEPTIONS:
-    add_reverse_middle_modifiers(key, MIDDLE_MODIFIER_EXCEPTIONS[key][0])
+for key in STRUCTURE_EXCEPTIONS:
+    add_reverse_structures(key, STRUCTURE_EXCEPTIONS[key][0])
 
-for key in MIDDLE_MODIFIERS:
-    add_reverse_middle_modifiers(key, MIDDLE_MODIFIERS[key][0])
+for key in STRUCTURES:
+    add_reverse_structures(key, STRUCTURES[key][0])
 
 for key in SIMPLE_STARTERS:
-    add_reverse_middle_modifiers(key, SIMPLE_STARTERS[key][0])
+    add_reverse_structures(key, SIMPLE_STARTERS[key][0])
 
 for key in ENDERS:
     add_reverse_enders(key, ENDERS[key][1])
@@ -639,10 +639,10 @@ def add_verb_stroke(prefix, suffix):
     return prefix + '-' + suffix
 
 
-def reverse_match(result, full_text, prefix):
+def reverse_match(result, full_text, stroke):
     try:
-        if lookup([prefix]).strip() == full_text:
-            result.append((prefix,))
+        if lookup([stroke]).strip() == full_text:
+            result.append((stroke,))
     except KeyError:
         pass
 
@@ -656,16 +656,16 @@ def reverse_verb_match(result, full_text, text, prefix):
         reverse_match(result, full_text, add_verb_stroke(prefix, stroke))
 
 
-def reverse_modifier_match(result, full_text, text, prefix, swap):
+def reverse_structure_match(result, full_text, text, prefix, swap):
     words = text.split(' ')
-    for i in range(len(words)):
-        phrase = ' '.join(words[:i+1])
-        if phrase not in REVERSE_MODIFIERS:
+    for i in range(len(words)+1):
+        phrase = ' '.join(words[:i])
+        if phrase not in REVERSE_STRUCTURES:
             continue
 
-        for modifier_stroke in REVERSE_MODIFIERS[phrase]:
+        for structure_stroke in REVERSE_STRUCTURES[phrase]:
             remainder = text.replace(phrase, '', 1).strip()
-            stroke = add_verb_stroke(modifier_stroke, prefix) if swap else add_verb_stroke(prefix, modifier_stroke)
+            stroke = add_verb_stroke(structure_stroke, prefix) if swap else add_verb_stroke(prefix, structure_stroke)
             reverse_verb_match(result, full_text, remainder, stroke)
 
 
@@ -675,9 +675,9 @@ def reverse_middle_base_match(result, full_text, text, prefix, swap):
             r = text.replace(word, '*', 1)
             r = r.replace(' *', '*')
             for s in REVERSE_MIDDLES[word]:
-                reverse_modifier_match(result, full_text, r, prefix + s, swap)
+                reverse_structure_match(result, full_text, r, prefix + s, swap)
 
-    reverse_modifier_match(result, full_text, text, prefix, swap)
+    reverse_structure_match(result, full_text, text, prefix, swap)
 
 
 def reverse_lookup(text):
