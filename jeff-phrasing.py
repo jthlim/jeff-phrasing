@@ -461,7 +461,7 @@ ENDERS = {
 
 
 def lookup(key):
-    starter_lookup, middle_lookup, structure_lookup, ender_lookup = determine_parts(key)
+    starter_lookup, middle_lookup, structure_lookup, ender_lookup = determine_parts(key[0])
 
     starter, verb_form, _ = starter_lookup
     tense, verb = ender_lookup
@@ -469,9 +469,8 @@ def lookup(key):
     structure_format, use_middle_verb_form, structure_verb_update = lookup_data(structure_lookup, tense, verb_form)
 
     original_verb_form = verb_form
-    if use_middle_verb_form:
-        if middle_verb_form:
-            verb_form = middle_verb_form
+    if use_middle_verb_form and middle_verb_form:
+        verb_form = middle_verb_form
 
     middle_phrase = lookup_data(structure_format, tense, original_verb_form+"-"+verb_form).replace(
         '*', middle_word, 1).replace('!', starter)
@@ -485,9 +484,7 @@ def lookup(key):
 
     return middle_phrase + ending
 
-def determine_parts(key):
-    stroke = key[0]
-
+def determine_parts(stroke):
     if stroke in NON_PHRASE_STROKES:
         raise KeyError
 
