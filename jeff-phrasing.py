@@ -80,12 +80,25 @@ STARTERS = {
     "KPWH": ("it", "3ps", None),
     "TWR": ("we", "1pp", None),
     "TWH": ("they", "3pp", None),
-    "STKPWHR": ("", "b3ps", None),
-    "STWR": ("", "b3pp", None),
     "STKH": ("this", "3ps", None),
     "STWH": ("that", "3ps", None),
     "STHR": ("there", "3ps", THERE_SUFFIXES),
     "STPHR": ("there", "3pp", THERE_SUFFIXES),
+    "STKPWHR": ("", "b3ps", None),
+    "STWR": ("", "b3pp", None),
+}
+
+SIMPLE_STARTERS = {
+    "STHA": ("that !", False, None),
+    "STPA": ("if !", False, None),
+    "SWH": ("when !", False, None),
+    "SWHA": ("what !", False, None),
+}
+
+SIMPLE_PRONOUNS = {
+    "E": ("he", "3ps", None),
+    "U": ("you", "2p", None),
+    "EU": ("I", "1ps", None),
 }
 
 MIDDLES = {
@@ -148,10 +161,10 @@ MIDDLE_MODIFIER_EXCEPTIONS = {
     "STKPWHR*U": ("not to", False, "root"),
 
     # - single word modifiers
-    "STWRUF": ("just", False, None),
-    "STWR*UF": ("just", False, None),
-    "STKPWHRUF": ("just", False, None),
-    "STKPWHR*UF": ("just", False, None),
+    # "STWRUF": ("just", False, None),
+    # "STWR*UF": ("just", False, None),
+    # "STKPWHRUF": ("just", False, None),
+    # "STKPWHR*UF": ("just", False, None),
 
     "STWREU": ("still", False, None),
     "STWR*EU": ("still", False, None),
@@ -186,7 +199,7 @@ MIDDLE_MODIFIERS = {
     "U": ({"present": ALWAYS, "past": ALWAYS}, True, None),
     "*UF": ("! just*", True, None),
     "UF": ("!* just", True, None),
-}
+} 
 
 ENDERS = {
     "": ("present", ""),
@@ -273,6 +286,12 @@ ENDERS = {
     # PZ - To happen
     "PZ": ("present", {None: " happen", "3ps": " happens", "present-participle": " happening", "past-participle": " happened"}),
     "PDZ": ("past", {None: " happened", "root": " happen", "present-participle": " happening", "past-participle": " happened"}),
+
+    # PLG - To imagine (that)
+    "PLG": ("present", {None: " imagine", "3ps": " imagines", "present-participle": " imagining", "past-participle": " imagined"}),
+    "PLGT": ("present", {None: " imagine that", "3ps": " imagines that", "present-participle": " imagining that", "past-participle": " imagined that"}),
+    "PLGD": ("past", {None: " imagined", "root": " imagine", "present-participle": " imagining", "past-participle": " imagined"}),
+    "PLGTD": ("past", {None: " imagined that", "root": " imagine that", "present-participle": " imagining that", "past-participle": " imagined that"}),
 
     # PB: To know (that)
     "PB": ("present", {None: " know", "3ps": " knows", "present-participle": " knowing", "past-participle": " known"}),
@@ -442,49 +461,19 @@ ENDERS = {
 
 
 def lookup(key):
-    stroke = key[0]
+    starter_lookup, base, modifier, ender_lookup = determine_parts(key)
 
-    if stroke in NON_PHRASE_STROKES:
-        raise KeyError
-
-    match = PARTS_MATCHER.match(stroke)
-    starter_key, v1, star, v2, f, ender_key = match.groups()
-    if not match:
-        raise KeyError
-
-    starter_lookup = STARTERS.get(starter_key)
-    if not starter_lookup:
-        raise KeyError
-
-    starter, verb_form, valid_enders = starter_lookup
-    if valid_enders and ender_key not in valid_enders:
-        raise KeyError
-
-    ender_lookup = ENDERS.get(ender_key)
-    if not ender_lookup:
-        raise KeyError
-
+    starter, verb_form, _ = starter_lookup
     tense, verb = ender_lookup
-
-    base = MIDDLES[v1 + star]
-    middle_word, middle_verb_form = lookup_data(
-        lookup_data(base, tense), verb_form)
-
-    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(starter_key + v1 + star + v2 + f)
-    if not modifier:
-        modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(v1 + star + v2 + f)
-    if not modifier:
-        modifier = MIDDLE_MODIFIERS[star + v2 + f]
-
-    modifier_format, use_middle_verb_form, modifier_verb_update = lookup_data(
-        lookup_data(modifier, tense), verb_form)
+    middle_word, middle_verb_form = lookup_data(base, tense, verb_form)
+    modifier_format, use_middle_verb_form, modifier_verb_update = lookup_data(modifier, tense, verb_form)
 
     original_verb_form = verb_form
     if use_middle_verb_form:
         if middle_verb_form:
             verb_form = middle_verb_form
 
-    middle_phrase = lookup_data(lookup_data(modifier_format, tense), original_verb_form+"-"+verb_form).replace(
+    middle_phrase = lookup_data(modifier_format, tense, original_verb_form+"-"+verb_form).replace(
         '*', middle_word, 1).replace('!', starter)
 
     if modifier_verb_update:
@@ -496,8 +485,53 @@ def lookup(key):
 
     return middle_phrase + ending
 
+def determine_parts(key):
+    stroke = key[0]
 
-def lookup_data(data, key):
+    if stroke in NON_PHRASE_STROKES:
+        raise KeyError
+
+    match = PARTS_MATCHER.match(stroke)
+    starter_key, v1, star, v2, f, ender_key = match.groups()
+    if not match:
+        raise KeyError
+
+    ender_lookup = ENDERS.get(ender_key)
+    if not ender_lookup:
+        raise KeyError
+
+    # Check short form first.
+    simple_starter_lookup = SIMPLE_STARTERS.get(starter_key + v1)
+    simple_pronoun_lookup = SIMPLE_PRONOUNS.get(star + v2 + f)
+    if simple_starter_lookup and simple_pronoun_lookup:
+        return simple_pronoun_lookup, ("", ""), simple_starter_lookup, ender_lookup
+
+    # Full form lookup.
+    starter_lookup = STARTERS.get(starter_key)
+    if not starter_lookup:
+        raise KeyError
+
+    _, _, valid_enders = starter_lookup
+    if valid_enders and ender_key not in valid_enders:
+        raise KeyError
+
+    base = MIDDLES[v1 + star]
+
+    modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(starter_key + v1 + star + v2 + f)
+    if not modifier:
+        modifier = MIDDLE_MODIFIER_EXCEPTIONS.get(v1 + star + v2 + f)
+    if not modifier:
+        modifier = MIDDLE_MODIFIERS[star + v2 + f]
+
+    return starter_lookup, base, modifier, ender_lookup
+
+
+def lookup_data(data, *keys):
+    for key in keys:
+        data = _lookup_data(data, key)
+    return data
+
+def _lookup_data(data, key):
     if type(data) is not dict:
         return data
 
@@ -506,8 +540,7 @@ def lookup_data(data, key):
         return result
 
     if '-' in key:
-        key = key.split('-')[1]
-        result = data.get(key)
+        result = data.get(key.split('-')[1])
         if result != None:
             return result
 
@@ -530,6 +563,11 @@ REVERSE_ENDERS = {}
 
 for key in STARTERS:
     word = STARTERS[key][0]
+    REVERSE_STARTERS.setdefault(word, {})
+    REVERSE_STARTERS[word][key] = False
+
+for key in SIMPLE_PRONOUNS:
+    word = SIMPLE_PRONOUNS[key][0]
     REVERSE_STARTERS.setdefault(word, {})
     REVERSE_STARTERS[word][key] = True
 
@@ -586,6 +624,9 @@ for key in MIDDLE_MODIFIER_EXCEPTIONS:
 for key in MIDDLE_MODIFIERS:
     add_reverse_middle_modifiers(key, MIDDLE_MODIFIERS[key][0])
 
+for key in SIMPLE_STARTERS:
+    add_reverse_middle_modifiers(key, SIMPLE_STARTERS[key][0])
+
 for key in ENDERS:
     add_reverse_enders(key, ENDERS[key][1])
 
@@ -615,7 +656,7 @@ def reverse_verb_match(result, full_text, text, prefix):
         reverse_match(result, full_text, add_verb_stroke(prefix, stroke))
 
 
-def reverse_modifier_match(result, full_text, text, prefix):
+def reverse_modifier_match(result, full_text, text, prefix, swap):
     words = text.split(' ')
     for i in range(len(words)):
         phrase = ' '.join(words[:i+1])
@@ -624,26 +665,24 @@ def reverse_modifier_match(result, full_text, text, prefix):
 
         for modifier_stroke in REVERSE_MODIFIERS[phrase]:
             remainder = text.replace(phrase, '', 1).strip()
-            stroke = add_verb_stroke(prefix, modifier_stroke)
+            stroke = add_verb_stroke(modifier_stroke, prefix) if swap else add_verb_stroke(prefix, modifier_stroke)
             reverse_verb_match(result, full_text, remainder, stroke)
 
 
-def reverse_middle_base_match(result, full_text, text, prefix):
+def reverse_middle_base_match(result, full_text, text, prefix, swap):
     for word in REVERSE_MIDDLES:
         if word in text:
             r = text.replace(word, '*', 1)
             r = r.replace(' *', '*')
             for s in REVERSE_MIDDLES[word]:
-                reverse_modifier_match(result, full_text, r, prefix + s)
+                reverse_modifier_match(result, full_text, r, prefix + s, swap)
 
-    reverse_modifier_match(result, full_text, text, prefix)
+    reverse_modifier_match(result, full_text, text, prefix, swap)
 
 
 def reverse_lookup(text):
     if not POSSIBLE_REVERSE_MATCH.fullmatch(text):
         return []
-
-    full_text = text
 
     # Maximum phrase is 7 words, so early out if being asked for the stroke
     # for more.
@@ -659,11 +698,12 @@ def reverse_lookup(text):
 
         if word in text:
             remainder = text.replace(word, '!', 1)
-            for stroke in REVERSE_STARTERS[word]:
-                reverse_middle_base_match(result, full_text, remainder, stroke)
+            strokes = REVERSE_STARTERS[word]
+            for stroke in strokes:
+                reverse_middle_base_match(result, text, remainder, stroke, strokes[stroke])
 
     # Testing for empty starters
     for stroke in REVERSE_STARTERS['']:
-        reverse_middle_base_match(result, full_text, text, stroke)
+        reverse_middle_base_match(result, text, text, stroke, False)
 
     return result

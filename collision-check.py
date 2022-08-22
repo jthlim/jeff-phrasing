@@ -10,45 +10,51 @@ PARTS_MATCHER = re.compile(
 
 # These are strokes that are okay to remove, typically because they are mis-stroke entries
 AUDITED_STROKES = {
-    "SWR": True,        # 'Somewhere' -- Use 'SW-R' instead
-    "SWR-S": True,      # 'Somewheres' -- use 'SW-RS' instead
-    "KPWRAEUT": True,   # 'Grate'   -- '`TKPWRAEUT`
-    "KPWROUR": True,    # 'Your'    -- 'KWROUR'
-    "KWHR": True,       # 'Why'     -- 'KWR'
-    "KWHRAOERL": True,  # 'Clearly' -- 'KHRAOERL'
-    "KWHRE": True,      # 'Yes'     -- 'KWRE'
-    "TWHA": True,       # 'That'    -- 'THA'
-    "KWHRAOER": True,   # 'Year'    -- 'KWRAOER'
-    "SKWHRAR": True,    # 'Scholar' -- 'SKHRAR'
-    "TWRAGS": True,     # 'Tradition' -- 'TRAGS'
+    "SWR": True,         # 'Somewhere' -- Use 'SW-R' instead
+    "SWR-S": True,       # 'Somewheres' -- use 'SW-RS' instead
+    "KPWRAEUT": True,    # 'Grate'   -- '`TKPWRAEUT`
+    "KPWROUR": True,     # 'Your'    -- 'KWROUR'
+    "KWHR": True,        # 'Why'     -- 'KWR'
+    "KWHRAOERL": True,   # 'Clearly' -- 'KHRAOERL'
+    "KWHRE": True,       # 'Yes'     -- 'KWRE'
+    "TWHA": True,        # 'That'    -- 'THA'
+    "KWHRAOER": True,    # 'Year'    -- 'KWRAOER'
+    "SKWHRAR": True,     # 'Scholar' -- 'SKHRAR'
+    "TWRAGS": True,      # 'Tradition' -- 'TRAGS'
     "KPWHAOUPBT": True,  # 'Community' -- 'KPHAOUPBT'
     "KPWHEUPBGS": True,  # 'Combination' -- 'KPWHEUPBGS'
-    "SWR-PBT": True,    # 'Haven't' -- 'SR-PBT'
-    "TWRAOEUD": True,   # 'Divide' -- 'TKWAOEUD'
-    "SKWHRAEUB": True,  # 'Jane' -- 'SKWRAEUB'
-    "KWHREBGT": True,   # 'Collect' -- 'KHREBGT'
-    "KPWRAOELD": True,  # 'Yield' -- 'KWRAOELD'
+    "SWR-PBT": True,     # 'Haven't' -- 'SR-PBT'
+    "TWRAOEUD": True,    # 'Divide' -- 'TKWAOEUD'
+    "SKWHRAEUB": True,   # 'Jane' -- 'SKWRAEUB'
+    "KWHREBGT": True,    # 'Collect' -- 'KHREBGT'
+    "KPWRAOELD": True,   # 'Yield' -- 'KWRAOELD'
     "STKPWHRAEU": True,  # 'Display' -- 'STKPHRAUE'
-    "TWRAFR": True,     # 'Transfer' -- 'TRAFR'
-    "TWHEPL": True,     # 'Them' -- 'THEPL'
-    "SKWHREPL": True,   # 'Generally' -- 'SKWHREPBL'
+    "TWRAFR": True,      # 'Transfer' -- 'TRAFR'
+    "TWHEPL": True,      # 'Them' -- 'THEPL'
+    "SKWHREPL": True,    # 'Generally' -- 'SKWHREPBL'
     "KPWHRAEUPB": True,  # 'Complain' -- "KPHRAEUPB"
-    "KPWHRAEUPBG": True,  # 'Complaining' -- "KPHRAEUPBG"
+    "KPWHRAEUPBG": True, # 'Complaining' -- "KPHRAEUPBG"
     "STPHRAEUPB": True,  # 'Explain' -- "SPHRAUEPB"
     "STPHRAOUGS": True,  # 'Institution' -- "STPHAOUGS"
-    "STPHRAOER": True,  # 'Sphere' -- "STPAOER"
+    "STPHRAOER": True,   # 'Sphere' -- "STPAOER"
+    "STPAEUS": True,     # 'Space' -- "SPAEUS"
+    "STPAEURL": True,    # 'Fairly' -- "TPAEURL"
+    "STHAEUR": True,     # 'Their' -- "THAEUR"
 
     # Things that seem better alternates already exist
     "STKPWHR-FPLT": True,  # "!" -- expect TP-BG, or other form to be used.
+    "SWHEPB": True,        # "when is" -- "WH-S" seems easier
 
     # Things that are superceded by this phrasing system.
-    "KPWROEU": True,    # 'I don't' -- Use phrasing version instead.
+    "KPWROEU": True,    # "I don't"
     "KWHROEPB": True,   # "I don't know"
     "SWRAOE": True,     # "we have"
-    "SWROEPBT": True,   # "Won't have"
+    "SWROEPBT": True,   # "won't have"
+    "STHAEUD": True,    # "said that"
 
     # Things that are okay to lose:
-    "TWHAPBG": True     # "thwang"
+    "TWHAPBG": True,    # "thwang"
+    "TWHABG": True,     # "thwack"
 }
 
 
@@ -61,6 +67,7 @@ with open("main.json") as main_data:
     print("Loaded dict with %d entries" % len(main_dict))
 
     defined_strokes = {}
+    simple_defined_strokes = {}
 
     for strokes in main_dict:
         if strokes in AUDITED_STROKES:
@@ -76,7 +83,8 @@ with open("main.json") as main_data:
         if not match:
             continue
 
-        starter, vowels1, star, vowels2, f, ending = match.groups()
+        # Tally full form
+        starter, v1, star, v2, f, ending = match.groups()
         key = starter + "-" + ending
         dict = defined_strokes.get(key)
         if not dict:
@@ -85,10 +93,25 @@ with open("main.json") as main_data:
 
         dict[strokes] = main_dict[strokes]
 
+        # Tally simple form.
+        if star + v2 + f not in jeff_phrasing.SIMPLE_PRONOUNS:
+            continue
+
+        key = starter + v1 + '-' + ending
+        dict = simple_defined_strokes.get(key)
+        if not dict:
+            dict = {}
+            simple_defined_strokes[key] = dict
+
+        dict[strokes] = main_dict[strokes]
+
     starter_collisions = {}
     ender_collisions = {}
+    simple_starter_collisions = {}
+
     count = 0
 
+    # Full form
     for starter in jeff_phrasing.STARTERS:
         enders = jeff_phrasing.STARTERS[starter][2]
         if enders == None:
@@ -106,9 +129,29 @@ with open("main.json") as main_data:
                     ender_collisions, ender, collision_count)
                 count = count + collision_count
 
+    # Simple form
+    for starter in jeff_phrasing.SIMPLE_STARTERS:
+        for ender in jeff_phrasing.ENDERS:
+            key = starter + "-" + ender
+            if key in simple_defined_strokes:
+                collision_count = len(simple_defined_strokes[key])
+                print('Alt match on %s' % key)
+                print(simple_defined_strokes[key])
+                print('')
+                increment_collision_counter(
+                    simple_starter_collisions, starter, collision_count)
+                increment_collision_counter(
+                    ender_collisions, ender, collision_count)
+                count = count + collision_count
+
     print('Collisions caused by starters')
     for k in starter_collisions:
         print(' %s: %d' % (k, starter_collisions[k]))
+
+    print('')
+    print('Collisions caused by simple-starters')
+    for k in simple_starter_collisions:
+        print(' %s: %d' % (k, simple_starter_collisions[k]))
 
     print('')
     print('Collisions caused by enders')

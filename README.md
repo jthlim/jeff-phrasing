@@ -17,6 +17,7 @@ Some examples:
 * `KWHRUGT` produces `does he go to`
 * `SWR-GTD` produces `I went to`
 * `KWHR-GTD` produces `he went to`
+* `SWHEUGTD` produces `when I went to`
 * `SWRAFGTD` produces `I could have gone to`
 * `KWHRO*UFGTD` produces `he just shouldn't go to`
 * `KWHRO*EGTD` produces `he shouldn't be going to`
@@ -41,10 +42,13 @@ This is currently a work in progress. Expect changes in future versions.
 
 # System
 
+There are two ways phrases can be constructed -- full form, and simple form.
+## Full form
+
 The phrase is constructed in multiple parts:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`, `that`, `this`, `there`)
-2. A choice of `do`/`can`/`shall`/`will`
+2. A choice of auxiliary verb `do`/`can`/`shall`/`will`
 3. An optional `not`
 4. Phrase structure, controlling word order and `just`/`still`/`never`/`even`/`have`/`be`/`always`
 5. A verb e.g. `go`, `say`, `understand`, etc.
@@ -75,9 +79,21 @@ Example 2: See how the verb 'be' changes:
   * `SWROB` produces `I shall be`
   * `SWROBD` produces `I should be`
 
- # Starters
+## Simple form
 
-Starters are formed using keys on the left hand side of the board:
+A simple phrase is constructed with:
+
+1. A starter (`what`, `that`, `if`, `when`)
+2. A pronoun (`he`, `you`, `I`)
+3. A verb e.g. `go`, `say`, `understand`, etc.
+4. An optional suffix word
+5. A tense
+
+# Full form parts
+
+## Starters
+
+Full form starters use the keys on the left hand side of the board:
 ```
 🆂🆃🅿🅷 🄾 🄵🄿🄻🅃🄳
 🆂🅺🆆🆁 🄾 🅁🄱🄶🅂🅉
@@ -109,7 +125,7 @@ Examples:
 * `KWHR-PL/STWR-FPBT` produces 'he may have known that'
 * `SKWRAEUPB/STKPWHREUFGT` produces 'Jane never goes to'
 
- # Do, Can, Shall, Will
+## Do, Can, Shall, Will
 ```
 🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
 🅂🄺🅆🅁 🅾 🅁🄱🄶🅂🅉
@@ -218,26 +234,57 @@ writing phrases that don't use any of `do`/`can`/`shall`/`will`:
 
 Full table:
 
-| `A O * E U F` | Result                                         | `KPWR-G`:                |
-| ------------- | ---------------------------------------------- | ------------------------ |
-| `_ _ _ _ _ _` | {empty}                                        | `you go`                 |
-| `_ _ * _ _ _` | {empty}                                        | `you don't go`           |
-| `_ _ _ _ U _` | {middle} {starter}                             | `do you go`              |
-| `_ _ * _ U _` | {middle} {starter}                             | `don't you go`           |
-| `_ _ _ _ _ F` | have + past verb form                          | `you have gone`          |
-| `_ _ _ _ U F` | have + {starter} + past verb form              | `have you gone`          |
-| `_ _ * _ _ F` | haven't + past verb form                       | `you haven't gone`       |
-| `_ _ * _ U F` | haven't + {starter} + past verb form           | `haven't you gone`       |
-| `_ _ _ E _ _` | be + -ing verb form                            | `you are going`          |
-| `_ _ _ E U _` | be + {starter} + -ing verb form                | `are you going`          |
-| `_ _ * E _ _` | not be + -ing verb form                        | `you aren't going`       |
-| `_ _ * E U _` | not be + {starter} + -ing verb form            | `aren't you going`       |
-| `_ _ _ E _ F` | have been + -ing verb form                     | `you have been going`    |
-| `_ _ _ E U F` | <swap word order> + have been + -ing verb form | `have you been going`    |
-| `_ _ * E _ F` | haven't been + -ing verb form                  | `you haven't been going` |
-| `_ _ * E U F` | haven't {starter} + been + -ing verb form      | `haven't you been going` |
+| `A O * E U F` | Result                                    | `KPWR-G`:                |
+| ------------- | ----------------------------------------- | ------------------------ |
+| `_ _ _ _ _ _` | {empty}                                   | `you go`                 |
+| `_ _ * _ _ _` | {empty}                                   | `you don't go`           |
+| `_ _ _ _ U _` | {middle} {starter}                        | `do you go`              |
+| `_ _ * _ U _` | {middle} {starter}                        | `don't you go`           |
+| `_ _ _ _ _ F` | have + past verb form                     | `you have gone`          |
+| `_ _ _ _ U F` | have + {starter} + past verb form         | `have you gone`          |
+| `_ _ * _ _ F` | haven't + past verb form                  | `you haven't gone`       |
+| `_ _ * _ U F` | haven't + {starter} + past verb form      | `haven't you gone`       |
+| `_ _ _ E _ _` | be + -ing verb form                       | `you are going`          |
+| `_ _ _ E U _` | be + {starter} + -ing verb form           | `are you going`          |
+| `_ _ * E _ _` | not be + -ing verb form                   | `you aren't going`       |
+| `_ _ * E U _` | not be + {starter} + -ing verb form       | `aren't you going`       |
+| `_ _ _ E _ F` | have been + -ing verb form                | `you have been going`    |
+| `_ _ _ E U F` | have + {starter} + been + -ing verb form  | `have you been going`    |
+| `_ _ * E _ F` | haven't been + -ing verb form             | `you haven't been going` |
+| `_ _ * E U F` | haven't {starter} + been + -ing verb form | `haven't you been going` |
 
-## Verbs and suffix words
+
+# Simple form
+
+## Starters
+Simple form starters use the keys on the left hand side of the board, including
+the left side vowels:
+
+```
+🆂🆃🅿🅷 🄾 🄵🄿🄻🅃🄳
+🆂🅺🆆🆁 🄾 🅁🄱🄶🅂🅉
+　　　🅰🅾 🄴🅄
+```
+
+* `STHA`: `that`
+* `STPA`: `if`
+* `SWH`: `when`
+* `SWHA`: `what`
+
+## Pronouns
+```
+🅂🅃🄿🄷 🄾 🄵🄿🄻🅃🄳
+🅂🄺🅆🅁 🄾 🅁🄱🄶🅂🅉
+　　　🄰🄾 🅴🆄
+```
+
+Pronouns match their isolated meaning:
+
+* `E`: `he`
+* `U`: `you`
+* `EU`: `I`
+
+# Verbs and suffix words
 
 ```
 🅂🅃🄿🄷 🄾 🄵🅿🅻🆃🅳
@@ -272,6 +319,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `G`     | To go (to)                 | To go                      |
 | `PZ`    | To happen                  | To happen                  |
 | `T`     | To have (to)               |
+| `PLG`   | To imagine (that)          |
 | `PB`    | To know (that)             |
 | `BLG`   | To like (to)               |
 | `LZ`    | To live                    | To live                    |
