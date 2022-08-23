@@ -336,11 +336,11 @@ ENDERS = {
     "PLD": ("past", " might"),
     "PLTD": ("past", " might be"),
 
-    # PBL - To mean (that)
+    # PBL - To mean (to)
     "PBL": ("present", {None: " mean", "3ps": " means", "present-participle": " meaning", "past-participle": " meant"}),
-    "PBLT": ("present", {None: " mean that", "3ps": " means that", "present-participle": " meaning that", "past-participle": " meant that"}),
+    "PBLT": ("present", {None: " mean to", "3ps": " means to", "present-participle": " meaning to", "past-participle": " meant to"}),
     "PBLD": ("past", {None: " meant", "root": " mean", "present-participle": " meaning", "past-participle": " meant"}),
-    "PBLTD": ("past", {None: " meant that", "root": " mean that", "present-participle": " meaning that", "past-participle": " meant that"}),
+    "PBLTD": ("past", {None: " meant to", "root": " mean to", "present-participle": " meaning to", "past-participle": " meant to"}),
 
     # PLZ - To move
     "PLZ": ("present", {None: " move", "3ps": " moves", "present-participle": " moving", "past-participle": " moved"}),

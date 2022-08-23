@@ -328,7 +328,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `LS`    | To let                     |
 | `RPBL`  | To make (the)              |
 | `PL`    | May/Might (be)             | May/Might (be)             |
-| `PBL`   | To mean                    |
+| `PBL`   | To mean (to)               |
 | `PLZ`   | To move                    |
 | `PBLGS` | Must (be) -- no past tense | Must (be) -- no past tense |
 | `RPG`   | To need (to)               | To need (to)               |
