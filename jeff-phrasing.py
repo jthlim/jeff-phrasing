@@ -89,16 +89,21 @@ STARTERS = {
 }
 
 SIMPLE_STARTERS = {
-    "STHA": ("that !", False, None),
-    "STPA": ("if !", False, None),
-    "SWH": ("when !", False, None),
-    "SWHA": ("what !", False, None),
+    "STHA": (" that", None),
+    "STPA": (" if", None),
+    "SWH": (" when", None),
+    "SWHA": (" what", None),
 }
 
 SIMPLE_PRONOUNS = {
     "E": ("he", "3ps", None),
     "U": ("you", "2p", None),
     "EU": ("I", "1ps", None),
+}
+
+SIMPLE_STRUCTURES = {
+    "": ("* !", True, None),
+    "F": ({tense: {form: "* !" + TO_HAVE[tense][form] for form in TO_HAVE[tense]} for tense in TO_HAVE}, True, "past-participle"),
 }
 
 MIDDLES = {
@@ -499,9 +504,10 @@ def determine_parts(stroke):
 
     # Check short form first.
     simple_starter_lookup = SIMPLE_STARTERS.get(starter_key + v1)
-    simple_pronoun_lookup = SIMPLE_PRONOUNS.get(star + v2 + f)
+    simple_pronoun_lookup = SIMPLE_PRONOUNS.get(star + v2)
     if simple_starter_lookup and simple_pronoun_lookup:
-        return simple_pronoun_lookup, ("", ""), simple_starter_lookup, ender_lookup
+        simple_structure = SIMPLE_STRUCTURES[f]
+        return simple_pronoun_lookup, simple_starter_lookup, simple_structure, ender_lookup
 
     # Full form lookup.
     starter_lookup = STARTERS.get(starter_key)
@@ -561,44 +567,47 @@ REVERSE_ENDERS = {}
 for key in STARTERS:
     word = STARTERS[key][0]
     REVERSE_STARTERS.setdefault(word, {})
-    REVERSE_STARTERS[word][key] = False
+    REVERSE_STARTERS[word][key] = "full"
 
 for key in SIMPLE_PRONOUNS:
     word = SIMPLE_PRONOUNS[key][0]
     REVERSE_STARTERS.setdefault(word, {})
-    REVERSE_STARTERS[word][key] = True
+    REVERSE_STARTERS[word][key] = "simple"
 
 POSSIBLE_REVERSE_MATCH = re.compile(r"[a-zI ']+")
 HYPHEN_OMIT_PATTERN = re.compile(r"[AO*EU-]")
 
 
-def add_reverse_middles_base(stroke, data):
+def add_reverse_middles(stroke, data, form):
     if type(data) is dict:
         for k in data:
-            add_reverse_middles_base(stroke, data[k])
+            add_reverse_middles(stroke, data[k], form)
         return
 
     word = data[0].strip()
 
-    REVERSE_MIDDLES.setdefault(word, {})
-    REVERSE_MIDDLES[word][stroke] = True
+    REVERSE_MIDDLES.setdefault(form, {})
+    REVERSE_MIDDLES[form].setdefault(word, {})
+    REVERSE_MIDDLES[form][word][stroke] = True
 
 
-def add_reverse_structures(stroke, data):
+def add_reverse_structures(stroke, data, form):
     if type(data) is dict:
         for k in data:
-            add_reverse_structures(stroke, data[k])
+            add_reverse_structures(stroke, data[k], form)
         return
 
     word = data.strip()
 
-    REVERSE_STRUCTURES.setdefault(word, {})
-    REVERSE_STRUCTURES[word][stroke] = True
+    REVERSE_STRUCTURES.setdefault(form, {})
+
+    REVERSE_STRUCTURES[form].setdefault(word, {})
+    REVERSE_STRUCTURES[form][word][stroke] = form
 
     # To lookup empty starters, have entries that don't include '!'
     word = word.replace('!', '').strip()
-    REVERSE_STRUCTURES.setdefault(word, {})
-    REVERSE_STRUCTURES[word][stroke] = True
+    REVERSE_STRUCTURES[form].setdefault(word, {})
+    REVERSE_STRUCTURES[form][word][stroke] = form
 
 
 def add_reverse_enders(stroke, data):
@@ -613,16 +622,19 @@ def add_reverse_enders(stroke, data):
 
 
 for key in MIDDLES:
-    add_reverse_middles_base(key, MIDDLES[key])
-
-for key in STRUCTURE_EXCEPTIONS:
-    add_reverse_structures(key, STRUCTURE_EXCEPTIONS[key][0])
-
-for key in STRUCTURES:
-    add_reverse_structures(key, STRUCTURES[key][0])
+    add_reverse_middles(key, MIDDLES[key], "full")
 
 for key in SIMPLE_STARTERS:
-    add_reverse_structures(key, SIMPLE_STARTERS[key][0])
+    add_reverse_middles(key, SIMPLE_STARTERS[key], "simple")
+
+for key in STRUCTURE_EXCEPTIONS:
+    add_reverse_structures(key, STRUCTURE_EXCEPTIONS[key][0], "full")
+
+for key in STRUCTURES:
+    add_reverse_structures(key, STRUCTURES[key][0], "full")
+
+for key in SIMPLE_STRUCTURES:
+    add_reverse_structures(key, SIMPLE_STRUCTURES[key][0], "simple")
 
 for key in ENDERS:
     add_reverse_enders(key, ENDERS[key][1])
@@ -653,28 +665,29 @@ def reverse_verb_match(result, full_text, text, prefix):
         reverse_match(result, full_text, add_verb_stroke(prefix, stroke))
 
 
-def reverse_structure_match(result, full_text, text, prefix, swap):
+def reverse_structure_match(result, full_text, text, prefix, form):
     words = text.split(' ')
     for i in range(len(words)+1):
         phrase = ' '.join(words[:i])
-        if phrase not in REVERSE_STRUCTURES:
+        if phrase not in REVERSE_STRUCTURES[form]:
             continue
 
-        for structure_stroke in REVERSE_STRUCTURES[phrase]:
+        for structure_stroke in REVERSE_STRUCTURES[form][phrase]:
             remainder = text.replace(phrase, '', 1).strip()
-            stroke = add_verb_stroke(structure_stroke, prefix) if swap else add_verb_stroke(prefix, structure_stroke)
+            stroke = add_verb_stroke(prefix, structure_stroke)
             reverse_verb_match(result, full_text, remainder, stroke)
 
 
-def reverse_middle_base_match(result, full_text, text, prefix, swap):
-    for word in REVERSE_MIDDLES:
+def reverse_middle_match(result, full_text, text, prefix, form):
+    for word in REVERSE_MIDDLES[form]:
         if word in text:
             r = text.replace(word, '*', 1)
             r = r.replace(' *', '*')
-            for s in REVERSE_MIDDLES[word]:
-                reverse_structure_match(result, full_text, r, prefix + s, swap)
+            for s in REVERSE_MIDDLES[form][word]:
+                stroke = add_verb_stroke(s, prefix) if form == "simple" else add_verb_stroke(prefix, s)
+                reverse_structure_match(result, full_text, r, stroke, form)
 
-    reverse_structure_match(result, full_text, text, prefix, swap)
+    reverse_structure_match(result, full_text, text, prefix, form)
 
 
 def reverse_lookup(text):
@@ -697,10 +710,10 @@ def reverse_lookup(text):
             remainder = text.replace(word, '!', 1)
             strokes = REVERSE_STARTERS[word]
             for stroke in strokes:
-                reverse_middle_base_match(result, text, remainder, stroke, strokes[stroke])
+                reverse_middle_match(result, text, remainder, stroke, strokes[stroke])
 
     # Testing for empty starters
     for stroke in REVERSE_STARTERS['']:
-        reverse_middle_base_match(result, text, text, stroke, False)
+        reverse_middle_match(result, text, text, stroke, "full")
 
     return result

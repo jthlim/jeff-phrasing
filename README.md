@@ -85,6 +85,7 @@ A simple phrase is constructed with:
 
 1. A starter (`what`, `that`, `if`, `when`)
 2. A pronoun (`he`, `you`, `I`)
+3. Optional `have`
 3. A verb e.g. `go`, `say`, `understand`, etc.
 4. An optional suffix word
 5. A tense
@@ -283,6 +284,15 @@ Pronouns match their isolated meaning:
 * `E`: `he`
 * `U`: `you`
 * `EU`: `I`
+
+## Have
+
+Simple form uses `-F` to add the word `have` and uses the past verb form.
+
+* `STPAEUGD`: `if I went`
+* `STPAOUFGD`: `if I had gone`
+* `SWHAURP`: `what you do`
+* `SWHAUFRP`: `what you have done`
 
 # Verbs and suffix words
 

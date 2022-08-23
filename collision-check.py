@@ -94,7 +94,7 @@ with open("main.json") as main_data:
         dict[strokes] = main_dict[strokes]
 
         # Tally simple form.
-        if star + v2 + f not in jeff_phrasing.SIMPLE_PRONOUNS:
+        if star + v2 not in jeff_phrasing.SIMPLE_PRONOUNS:
             continue
 
         key = starter + v1 + '-' + ending
