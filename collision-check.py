@@ -10,36 +10,37 @@ PARTS_MATCHER = re.compile(
 
 # These are strokes that are okay to remove, typically because they are mis-stroke entries
 AUDITED_STROKES = {
-    "SWR": True,         # 'Somewhere' -- Use 'SW-R' instead
-    "SWR-S": True,       # 'Somewheres' -- use 'SW-RS' instead
-    "KPWRAEUT": True,    # 'Grate'   -- '`TKPWRAEUT`
-    "KPWROUR": True,     # 'Your'    -- 'KWROUR'
-    "KWHR": True,        # 'Why'     -- 'KWR'
-    "KWHRAOERL": True,   # 'Clearly' -- 'KHRAOERL'
-    "KWHRE": True,       # 'Yes'     -- 'KWRE'
-    "TWHA": True,        # 'That'    -- 'THA'
-    "KWHRAOER": True,    # 'Year'    -- 'KWRAOER'
-    "SKWHRAR": True,     # 'Scholar' -- 'SKHRAR'
-    "TWRAGS": True,      # 'Tradition' -- 'TRAGS'
-    "KPWHAOUPBT": True,  # 'Community' -- 'KPHAOUPBT'
-    "KPWHEUPBGS": True,  # 'Combination' -- 'KPWHEUPBGS'
-    "SWR-PBT": True,     # 'Haven't' -- 'SR-PBT'
-    "TWRAOEUD": True,    # 'Divide' -- 'TKWAOEUD'
-    "SKWHRAEUB": True,   # 'Jane' -- 'SKWRAEUB'
-    "KWHREBGT": True,    # 'Collect' -- 'KHREBGT'
-    "KPWRAOELD": True,   # 'Yield' -- 'KWRAOELD'
-    "STKPWHRAEU": True,  # 'Display' -- 'STKPHRAUE'
-    "TWRAFR": True,      # 'Transfer' -- 'TRAFR'
-    "TWHEPL": True,      # 'Them' -- 'THEPL'
-    "SKWHREPL": True,    # 'Generally' -- 'SKWHREPBL'
-    "KPWHRAEUPB": True,  # 'Complain' -- "KPHRAEUPB"
-    "KPWHRAEUPBG": True, # 'Complaining' -- "KPHRAEUPBG"
-    "STPHRAEUPB": True,  # 'Explain' -- "SPHRAUEPB"
-    "STPHRAOUGS": True,  # 'Institution' -- "STPHAOUGS"
-    "STPHRAOER": True,   # 'Sphere' -- "STPAOER"
-    "STPAEUS": True,     # 'Space' -- "SPAEUS"
-    "STPAEURL": True,    # 'Fairly' -- "TPAEURL"
-    "STHAEUR": True,     # 'Their' -- "THAEUR"
+    "SWR": True,          # 'Somewhere' -- Use 'SW-R' instead
+    "SWR-S": True,        # 'Somewheres' -- use 'SW-RS' instead
+    "KPWRAEUT": True,     # 'Grate'   -- '`TKPWRAEUT`
+    "KPWROUR": True,      # 'Your'    -- 'KWROUR'
+    "KWHR": True,         # 'Why'     -- 'KWR'
+    "KWHRAOERL": True,    # 'Clearly' -- 'KHRAOERL'
+    "KWHRE": True,        # 'Yes'     -- 'KWRE'
+    "TWHA": True,         # 'That'    -- 'THA'
+    "KWHRAOER": True,     # 'Year'    -- 'KWRAOER'
+    "SKWHRAR": True,      # 'Scholar' -- 'SKHRAR'
+    "TWRAGS": True,       # 'Tradition' -- 'TRAGS'
+    "KPWHAOUPBT": True,   # 'Community' -- 'KPHAOUPBT'
+    "KPWHEUPBGS": True,   # 'Combination' -- 'KPWHEUPBGS'
+    "SWR-PBT": True,      # 'Haven't' -- 'SR-PBT'
+    "TWRAOEUD": True,     # 'Divide' -- 'TKWAOEUD'
+    "SKWHRAEUB": True,    # 'Jane' -- 'SKWRAEUB'
+    "KWHREBGT": True,     # 'Collect' -- 'KHREBGT'
+    "KPWRAOELD": True,    # 'Yield' -- 'KWRAOELD'
+    "STKPWHRAEU": True,   # 'Display' -- 'STKPHRAUE'
+    "TWRAFR": True,       # 'Transfer' -- 'TRAFR'
+    "TWHEPL": True,       # 'Them' -- 'THEPL'
+    "SKWHREPL": True,     # 'Generally' -- 'SKWHREPBL'
+    "KPWHRAEUPB": True,   # 'Complain' -- "KPHRAEUPB"
+    "KPWHRAEUPBG": True,  # 'Complaining' -- "KPHRAEUPBG"
+    "STPHRAEUPB": True,   # 'Explain' -- "SPHRAUEPB"
+    "STPHRAOUGS": True,   # 'Institution' -- "STPHAOUGS"
+    "STPHRAOER": True,    # 'Sphere' -- "STPAOER"
+    "STPAEUS": True,      # 'Space' -- "SPAEUS"
+    "STPAEURL": True,     # 'Fairly' -- "TPAEURL"
+    "STHAEUR": True,      # 'Their' -- "THAEUR"
+    "STKPWHRURBGS": True, # 'Jurisdiction' -- "SKWRURBGS"
 
     # Things that seem better alternates already exist
     "STKPWHR-FPLT": True,  # "!" -- expect TP-BG, or other form to be used.
@@ -94,7 +95,7 @@ with open("main.json") as main_data:
         dict[strokes] = main_dict[strokes]
 
         # Tally simple form.
-        if star + v2 not in jeff_phrasing.SIMPLE_PRONOUNS:
+        if v2 not in jeff_phrasing.SIMPLE_PRONOUNS:
             continue
 
         key = starter + v1 + '-' + ending

@@ -53,8 +53,7 @@ THERE_SUFFIXES = {
     "PZ": True, "PDZ": True,                                  # Happen
     "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
     "LZ": True, "TZD": True,                                  # Live
-    # May/Might (have)
-    "PL": True, "PLT": True, "PLD": True, "PLTD": True,
+    "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May (have)
     "PBLGS": True, "PBLGTS": True,                            # Must (have)
     "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
     "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
@@ -93,12 +92,16 @@ SIMPLE_STARTERS = {
     "STPA": (" if", None),
     "SWH": (" when", None),
     "SWHA": (" what", None),
+    "SWHR": (" where", None),
 }
 
 SIMPLE_PRONOUNS = {
     "E": ("he", "3ps", None),
+    "*E": ("she", "3ps", None),
     "U": ("you", "2p", None),
+    "*U": ("they", "3pp", None),
     "EU": ("I", "1ps", None),
+    "*EU": ("it", "1pp", None),
 }
 
 SIMPLE_STRUCTURES = {
@@ -153,11 +156,6 @@ STRUCTURE_EXCEPTIONS = {
     "*EUF": ({"present": {None: " haven't ! been", "3ps": " hasn't ! been"}, "past": " hadn't ! been"}, False, "present-participle"),
     "EUF": ({"present": {None: " have ! been", "3ps": " has ! been"}, "past": " had ! been"}, False, "present-participle"),
 
-    # "UF": ("*", True, None),
-
-    # "EU": (" still", False, None),
-    # "EUF": (" never", False, None),
-
     # Special cases for empty starters.
     # - infinitive forms.
     "STWRU": ("to", False, "root"),
@@ -166,10 +164,10 @@ STRUCTURE_EXCEPTIONS = {
     "STKPWHR*U": ("not to", False, "root"),
 
     # - single word structures
-    # "STWRUF": ("just", False, None),
-    # "STWR*UF": ("just", False, None),
-    # "STKPWHRUF": ("just", False, None),
-    # "STKPWHR*UF": ("just", False, None),
+    "STWRUF": ("just", False, None),
+    "STWR*UF": ("just", False, None),
+    "STKPWHRUF": ("just", False, None),
+    "STKPWHR*UF": ("just", False, None),
 
     "STWREU": ("still", False, None),
     "STWR*EU": ("still", False, None),
@@ -229,6 +227,11 @@ ENDERS = {
     # BLG - To call
     "RBLG": ("present", {None: " call", "3ps": " calls", "present-participle": " calling", "past-participle": " called"}),
     "RBLGD": ("past", {None: " called", "root": " call", "present-participle": " calling", "past-participle": " called"}),
+
+    # BGS - Can - Auxiliary verb
+    # These do not combine naturally with middle/structures.
+    "BGS": ("present", " can"),
+    "BGSZ": ("past", " could"),
 
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),
@@ -404,6 +407,11 @@ ENDERS = {
     "PLSZ": ("past", {None: " seemed", "root": " seem", "present-participle": " seeming", "past-participle": " seemed"}),
     "PLTSDZ": ("past", {None: " seemed to", "root": " seem to", "present-participle": " seeming to", "past-participle": " seemed to"}),
 
+    # RBL - shall - Auxiliary verb
+    # These do not combine naturally with middle/structures.
+    "RBL": ("present", " shall"),
+    "RBLD": ("past", " should"),
+
     # RBZ - To show
     "RBZ": ("present", {None: " show", "3ps": " shows", "present-participle": " showing", "past-participle": " showed"}),
     "RBDZ": ("past", {None: " showed", "root": " show", "present-participle": " showing", "past-participle": " showed"}),
@@ -450,6 +458,11 @@ ENDERS = {
     "PT": ("present", {None: " want to", "3ps": " wants to", "present-participle": " wanting to", "past-participle": " wanted to"}),
     "PD": ("past", {None: " wanted", "root": " want", "present-participle": " wanting", "past-participle": " wanted"}),
     "PTD": ("past", {None: " wanted to", "root": " want to", "present-participle": " wanting to", "past-participle": " wanted to"}),
+
+    # RBGS - will - Auxiliary verb
+    # These do not combine naturally with middle/structures.
+    "RBGS": ("present", " will"),
+    "RBGSZ": ("past", " would"),
 
     # RBS - To wish (to)
     "RBS": ("present", {None: " wish", "3ps": " wishes", "present-participle": " wishing", "past-participle": " wished"}),
@@ -543,7 +556,8 @@ def _lookup_data(data, key):
         return result
 
     if '-' in key:
-        result = data.get(key.split('-')[1])
+        key = key.split('-')[1]
+        result = data.get(key)
         if result != None:
             return result
 

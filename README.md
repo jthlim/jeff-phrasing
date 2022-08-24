@@ -42,10 +42,33 @@ This is currently a work in progress. Expect changes in future versions.
 
 # System
 
-There are two ways phrases can be constructed -- full form, and simple form.
+There are two ways phrases can be constructed -- simple form and full form.
+
+## Simple form
+
+A simple phrase is constructed with:
+
+1. A starter (`what`, `that`, `if`, `when`, `where`)
+2. A pronoun (`I`, `he`, `she`, `it`, `you`, `they`)
+3. Optional `have`
+3. A verb e.g. `go`, `say`, `understand`, etc.
+4. An optional suffix word
+5. A tense
+
+Example: For the stroke `SWHUFBGT`
+
+1. `SWH` is the starter: `when`
+2. `U` is `you`
+3. `F` is `have`
+4. `BG` is the verb `come`
+5. `T` is the suffix word `to`
+6. Phrase is not using past tense as there is no `-D`
+
+This forms the expected phrase: `when you have come to`
+
 ## Full form
 
-The phrase is constructed in multiple parts:
+The phrase is constructed with:
 
 1. A starter (`I`, `you`, `he`, `she`, `it`, `we`, `they`, `that`, `this`, `there`)
 2. A choice of auxiliary verb `do`/`can`/`shall`/`will`
@@ -79,16 +102,49 @@ Example 2: See how the verb 'be' changes:
   * `SWROB` produces `I shall be`
   * `SWROBD` produces `I should be`
 
-## Simple form
+# Simple form
 
-A simple phrase is constructed with:
+## Starters
+Simple form starters use the keys on the left hand side of the board, including
+the left side vowels:
 
-1. A starter (`what`, `that`, `if`, `when`)
-2. A pronoun (`he`, `you`, `I`)
-3. Optional `have`
-3. A verb e.g. `go`, `say`, `understand`, etc.
-4. An optional suffix word
-5. A tense
+```
+🆂🆃🅿🅷 🄾 🄵🄿🄻🅃🄳
+🆂🅺🆆🆁 🄾 🅁🄱🄶🅂🅉
+　　　🅰🅾 🄴🅄
+```
+
+* `STHA`: `that`
+* `STPA`: `if`
+* `SWH`: `when`
+* `SWHA`: `what`
+* `SWHR`: `where`
+
+## Pronouns
+```
+🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
+🅂🄺🅆🅁 🅾 🅁🄱🄶🅂🅉
+　　　🄰🄾 🅴🆄
+```
+
+Pronouns use the following:
+
+* `EU`: `I`
+* `*EU`: `it`
+* `E`: `he`
+* `*E`: `she`
+* `U`: `you`
+* `*U`: `they`
+
+## Have
+
+Simple form uses `-F` to add the word `have` and causes the verb to change to
+its past verb form.
+
+* `STPAEUGD`: `if I went`
+* `STPAOUFGD`: `if I had gone`
+* `SWHAURP`: `what you do`
+* `SWHAUFRP`: `what you have done`
 
 # Full form parts
 
@@ -255,45 +311,6 @@ Full table:
 | `_ _ * E U F` | haven't {starter} + been + -ing verb form | `haven't you been going` |
 
 
-# Simple form
-
-## Starters
-Simple form starters use the keys on the left hand side of the board, including
-the left side vowels:
-
-```
-🆂🆃🅿🅷 🄾 🄵🄿🄻🅃🄳
-🆂🅺🆆🆁 🄾 🅁🄱🄶🅂🅉
-　　　🅰🅾 🄴🅄
-```
-
-* `STHA`: `that`
-* `STPA`: `if`
-* `SWH`: `when`
-* `SWHA`: `what`
-
-## Pronouns
-```
-🅂🅃🄿🄷 🄾 🄵🄿🄻🅃🄳
-🅂🄺🅆🅁 🄾 🅁🄱🄶🅂🅉
-　　　🄰🄾 🅴🆄
-```
-
-Pronouns match their isolated meaning:
-
-* `E`: `he`
-* `U`: `you`
-* `EU`: `I`
-
-## Have
-
-Simple form uses `-F` to add the word `have` and uses the past verb form.
-
-* `STPAEUGD`: `if I went`
-* `STPAOUFGD`: `if I had gone`
-* `SWHAURP`: `what you do`
-* `SWHAUFRP`: `what you have done`
-
 # Verbs and suffix words
 
 ```
@@ -318,6 +335,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `B`     | To be (a)                  | To be (a)                  |
 | `BL`    | To believe (that)          |
 | `RBLG`  | To call                    |
+| `BGS`   | Can/Could [2]              |
 | `BG`    | To come (to)               | To come                    |
 | `RP`    | To do (it)                 |
 | `BGS`   | To expect (that)           |
@@ -350,6 +368,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BS`    | To say (that)              |
 | `S`     | To see                     |
 | `PLS`   | To seem (to)               | To seem (to)               |
+| `RBL`   | Shall/Should [2]           |
 | `RBZ`   | To show                    |
 | `RBT`   | To take                    |
 | `BLGT`  | To talk                    |
@@ -359,6 +378,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RPB`   | To understand (the)        |
 | `Z`     | To use [1]                 | To use                     |
 | `P`     | To want (to)               |
+| `RBGS`  | Will/Would [2]             |
 | `RBS`   | To wish (to)               |
 | `RBG`   | To work (on)               |
 
@@ -367,6 +387,9 @@ For past tense with suffix words that cause a diagonal to be formed
   * `SWR-TZ` produces `I used to`
   * `SWRETZ` produces `I am used to` rather than a verb with -ing
   * `SWRETDZ` produces `I was used to` rather than a verb with -ing
+
+[2] The auxiliary verbs can/shall/will do not change with subject and are
+present to better support simple form phrases.
 
 Examples:
 *  `SWRB` produces `I am`
