@@ -30,6 +30,7 @@ Some examples:
 * `SWR*UFBGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
 * `WHA/KPWRUPBG/TWROERPD` produces `what do you think we should be doing`
 * `KWR/KPWRURPTD` produces `why did you do it`
+* `SWR*PB/SWHR*EGTD` produces `I don't know where she went to`
 
 Many decisions on the word choices were taken from statistical data and
 Google Books N-gram Viewer.
@@ -52,7 +53,7 @@ A simple phrase is constructed with:
 2. A pronoun (`I`, `he`, `she`, `it`, `you`, `they`)
 3. Optional `have`
 3. A verb e.g. `go`, `say`, `understand`, etc.
-4. An optional suffix word
+4. An optional suffix word. These are specific to each verb.
 5. A tense
 
 Example: For the stroke `SWHUFBGT`
@@ -75,7 +76,7 @@ The phrase is constructed with:
 3. An optional `not`
 4. Phrase structure, controlling word order and `just`/`still`/`never`/`even`/`have`/`be`/`always`
 5. A verb e.g. `go`, `say`, `understand`, etc.
-6. An optional suffix word
+6. An optional suffix word. These are specific to each verb.
 7. A tense
 
 The phrase will generally be constructed in a manner that feels grammatically
@@ -347,6 +348,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `G`     | To go (to)                 | To go                      |
 | `PZ`    | To happen                  | To happen                  |
 | `T`     | To have (to)               |
+| `RPS`   | To hope (to)               |
 | `PLG`   | To imagine (that)          |
 | `PB`    | To know (that)             |
 | `BLG`   | To like (to)               |

@@ -295,6 +295,16 @@ ENDERS = {
     "PZ": ("present", {None: " happen", "3ps": " happens", "present-participle": " happening", "past-participle": " happened"}),
     "PDZ": ("past", {None: " happened", "root": " happen", "present-participle": " happening", "past-participle": " happened"}),
 
+    # RZ - To hear
+    "RZ": ("present", {None: " hear", "3ps": " hears", "present-participle": " hearing", "past-participle": " heard"}),
+    "RDZ": ("past", {None: " heard", "root": " hear", "present-participle": " hearing", "past-participle": " heard"}),
+
+    # RPS - To hope (to)
+    "RPS": ("present", {None: " hope", "3ps": " hopes", "present-participle": " hoping", "past-participle": " hoped"}),
+    "RPTS": ("present", {None: " hope to", "3ps": " hopes to", "present-participle": " hoping to", "past-participle": " hoped to"}),
+    "RPSZ": ("past", {None: " hoped", "root": " hope", "present-participle": " hoping", "past-participle": " hoped"}),
+    "RPTSDZ": ("past", {None: " hoped to", "root": " hope to", "present-participle": " hoping to", "past-participle": " hoped to"}),
+
     # PLG - To imagine (that)
     "PLG": ("present", {None: " imagine", "3ps": " imagines", "present-participle": " imagining", "past-participle": " imagined"}),
     "PLGT": ("present", {None: " imagine that", "3ps": " imagines that", "present-participle": " imagining that", "past-participle": " imagined that"}),
