@@ -149,12 +149,14 @@ STRUCTURE_EXCEPTIONS = {
     # "*EF": ({"present": {None: "! haven't been", "3ps": "! hasn't been"}, "past": "! hadn't been"}, False, "present-participle"),
     # "EF": ({"present": {None: "! have been", "1ps": "!'ve been", "2p": "!'ve been", "3ps": "!'s been", "b3ps": "! has been", "1pp": "!'ve been", "3pp": "!'ve been", "b3pp": "! have been"}, "past": {None: "! had been", "1ps": "!'d been", "2p": "!'d been", "3ps": "!'d been", "b3ps": "! had been", "1pp": "!'d been", "3pp": "!'d been", "b3pp": "! had been"}}, False, "present-participle"),
 
-    "*EU": ({"present": {None: " aren't !", "1ps": " am ! not", "3ps": " isn't !"}, "past": {None: " weren't !", "1ps": " wasn't !", "3ps": " wasn't !"}}, False, "present-participle"),
-    "EU": ({"present": {None: " are !", "1ps": " am !", "3ps": " is !"}, "past": {None: " were !", "1ps": " was !", "3ps": " was !"}}, False, "present-participle"),
-    "*UF": ({"present": {None: " haven't !", "3ps": " hasn't !"}, "past": " hadn't !"}, False, "past-participle"),
-    "UF": ({"present": {None: " have !", "3ps": " has !"}, "past": " had !"}, False, "past-participle"),
-    "*EUF": ({"present": {None: " haven't ! been", "3ps": " hasn't ! been"}, "past": " hadn't ! been"}, False, "present-participle"),
-    "EUF": ({"present": {None: " have ! been", "3ps": " has ! been"}, "past": " had ! been"}, False, "present-participle"),
+    # This is an old system that used 'U' for inverting have/be.
+    # It's been commented out as the never/still/just
+    # "*EU": ({"present": {None: " aren't !", "1ps": " am ! not", "3ps": " isn't !"}, "past": {None: " weren't !", "1ps": " wasn't !", "3ps": " wasn't !"}}, False, "present-participle"),
+    # "EU": ({"present": {None: " are !", "1ps": " am !", "3ps": " is !"}, "past": {None: " were !", "1ps": " was !", "3ps": " was !"}}, False, "present-participle"),
+    # "*UF": ({"present": {None: " haven't !", "3ps": " hasn't !"}, "past": " hadn't !"}, False, "past-participle"),
+    # "UF": ({"present": {None: " have !", "3ps": " has !"}, "past": " had !"}, False, "past-participle"),
+    # "*EUF": ({"present": {None: " haven't ! been", "3ps": " hasn't ! been"}, "past": " hadn't ! been"}, False, "present-participle"),
+    # "EUF": ({"present": {None: " have ! been", "3ps": " has ! been"}, "past": " had ! been"}, False, "present-participle"),
 
     # Special cases for empty starters.
     # - infinitive forms.
@@ -162,6 +164,10 @@ STRUCTURE_EXCEPTIONS = {
     "STWR*U": ("not to", False, "root"),
     "STKPWHRU": ("to", False, "root"),
     "STKPWHR*U": ("not to", False, "root"),
+
+    "EU": ("! still", False, None),
+    "EUF": ("! never", False, None),
+    "UF": ("! just", False, None),
 
     # - single word structures
     "STWRUF": ("just", False, None),
@@ -232,6 +238,10 @@ ENDERS = {
     # These do not combine naturally with middle/structures.
     "BGS": ("present", " can"),
     "BGSZ": ("past", " could"),
+
+    # RZ - To care
+    "RZ": ("present", {None: " care", "3ps": " cares", "present-participle": " caring", "past-participle": " cared"}),
+    "RDZ": ("past", {None: " cared", "root": " care", "present-participle": " caring", "past-participle": " cared"}),
 
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),

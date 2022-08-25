@@ -142,10 +142,10 @@ Pronouns use the following:
 Simple form uses `-F` to add the word `have` and causes the verb to change to
 its past verb form.
 
-* `STPAEUGD`: `if I went`
-* `STPAOUFGD`: `if I had gone`
 * `SWHAURP`: `what you do`
 * `SWHAUFRP`: `what you have done`
+* `STPAEUGD`: `if I went`
+* `STPAOUFGD`: `if I had gone`
 
 # Full form parts
 
@@ -255,12 +255,12 @@ Full table:
 | `? _ _ F` | {starter} `{}` 'have' + past verb form      | `I could have gone`       |
 | `? E _ F` | {starter} `{}` 'have been' + -ing verb form | `I could have been going` |
 | `? _ U _` | `{}` {starter}                              | `could I go`              |
-| `_ _ U F` | {starter} `{}` j**u**st                     | `I could just go`         |
-| `* _ U F` | {starter} j**u**st `{}`                     | `I just couldn't go`      |
-| `_ E U _` | {starter} `{}` st**i**ll                    | `I could still go`        |
-| `* E U _` | {starter} st**i**ll `{}`                    | `I still couldn't go`     |
-| `_ E U F` | {starter} `{}` n**ev**er                    | `I could never go`        |
-| `* E U F` | {starter} `{}` **ev**en                     | `I couldn't even go`      |
+| `_ _ U F` | {starter} `{}` 'j**u**st'                   | `I could just go`         |
+| `* _ U F` | {starter} 'j**u**st' `{}`                   | `I just couldn't go`      |
+| `_ E U _` | {starter} `{}` 'st**i**ll'                  | `I could still go`        |
+| `* E U _` | {starter} 'st**i**ll' `{}`                  | `I still couldn't go`     |
+| `_ E U F` | {starter} `{}` 'n**ev**er'                  | `I could never go`        |
+| `* E U F` | {starter} `{}` '**ev**en'                   | `I couldn't even go`      |
 
 Note: The `{}` in the table represents `do`/`can`/`shall`/`will`
 
@@ -286,30 +286,27 @@ word:
 `do` (neither `A` nor `E` pressed) is handled slightly differently to enable
 writing phrases that don't use any of `do`/`can`/`shall`/`will`:
 
-* `F` always represents the verb `to have`
-* `E` always represents `to be`
-* `U` always swaps the starter
+In some cases, the word `do` or `don't` is omitted as shown in the following
+table.
 
-Full table:
-
-| `A O * E U F` | Result                                    | `KPWR-G`:                |
-| ------------- | ----------------------------------------- | ------------------------ |
-| `_ _ _ _ _ _` | {empty}                                   | `you go`                 |
-| `_ _ * _ _ _` | {empty}                                   | `you don't go`           |
-| `_ _ _ _ U _` | {middle} {starter}                        | `do you go`              |
-| `_ _ * _ U _` | {middle} {starter}                        | `don't you go`           |
-| `_ _ _ _ _ F` | have + past verb form                     | `you have gone`          |
-| `_ _ _ _ U F` | have + {starter} + past verb form         | `have you gone`          |
-| `_ _ * _ _ F` | haven't + past verb form                  | `you haven't gone`       |
-| `_ _ * _ U F` | haven't + {starter} + past verb form      | `haven't you gone`       |
-| `_ _ _ E _ _` | be + -ing verb form                       | `you are going`          |
-| `_ _ _ E U _` | be + {starter} + -ing verb form           | `are you going`          |
-| `_ _ * E _ _` | not be + -ing verb form                   | `you aren't going`       |
-| `_ _ * E U _` | not be + {starter} + -ing verb form       | `aren't you going`       |
-| `_ _ _ E _ F` | have been + -ing verb form                | `you have been going`    |
-| `_ _ _ E U F` | have + {starter} + been + -ing verb form  | `have you been going`    |
-| `_ _ * E _ F` | haven't been + -ing verb form             | `you haven't been going` |
-| `_ _ * E U F` | haven't {starter} + been + -ing verb form | `haven't you been going` |
+| `A O * E U F` | Omit | Result                                    | `KPWR-G`:                |
+| ------------- | ---- | ----------------------------------------- | ------------------------ |
+| `_ _ _ _ _ _` | *    | {starter}                                 | `you go`                 |
+| `_ _ * _ _ _` |      | {starter} `{}`                            | `you don't go`           |
+| `_ _ _ _ U _` |      | {middle} {starter}                        | `do you go`              |
+| `_ _ * _ U _` |      | {middle} {starter}                        | `don't you go`           |
+| `_ _ _ _ _ F` | *    | {starter} 'have' + past verb form         | `you have gone`          |
+| `_ _ * _ _ F` | *    | {starter} 'haven't' + past verb form      | `you haven't gone`       |
+| `_ _ _ _ U F` | *    | {starter} 'j**u**st'                      | `you just go`            |
+| `_ _ * _ U F` |      | {starter} 'j**u**st' `{}`                 | `you just don't go`      |
+| `_ _ _ E _ _` | *    | {starter} be + -ing verb form             | `you are going`          |
+| `_ _ * E _ _` | *    | {starter} not be + -ing verb form         | `you aren't going`       |
+| `_ _ _ E U _` | *    | {starter} 'st**i**ll'                     | `you still go`           |
+| `_ _ * E U _` |      | {starter} 'st**i**ll' `{}`                | `you still don't go`     |
+| `_ _ _ E _ F` | *    | {starter} 'have been' + -ing verb form    | `you have been going`    |
+| `_ _ * E _ F` | *    | {starter} 'haven't been' + -ing verb form | `you haven't been going` |
+| `_ _ _ E U F` | *    | {starter} 'never'                         | `you never go`           |
+| `_ _ * E U F` |      | {starter} `{}` 'even'                     | `you don't even go`      |
 
 
 # Verbs and suffix words
@@ -337,6 +334,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BL`    | To believe (that)          |
 | `RBLG`  | To call                    |
 | `BGS`   | Can/Could [2]              |
+| `RZ`    | To care                    |
 | `BG`    | To come (to)               | To come                    |
 | `RP`    | To do (it)                 |
 | `BGS`   | To expect (that)           |
@@ -392,11 +390,6 @@ For past tense with suffix words that cause a diagonal to be formed
 
 [2] The auxiliary verbs can/shall/will do not change with subject and are
 present to better support simple form phrases.
-
-Examples:
-*  `SWRB` produces `I am`
-*  `KPWRB` produces `you are`
-*  `SWRAB` produces `I can be`
 
 Memorization hints:
 * `live`, `give` and `move` use `LZ`, `GZ` and `MZ`.
