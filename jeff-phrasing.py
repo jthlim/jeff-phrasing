@@ -101,7 +101,7 @@ SIMPLE_PRONOUNS = {
     "U": ("you", "2p", None),
     "*U": ("they", "3pp", None),
     "EU": ("I", "1ps", None),
-    "*EU": ("it", "1pp", None),
+    "*EU": ("we", "1pp", None),
 }
 
 SIMPLE_STRUCTURES = {

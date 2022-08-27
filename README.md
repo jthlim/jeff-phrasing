@@ -50,7 +50,7 @@ There are two ways phrases can be constructed -- simple form and full form.
 A simple phrase is constructed with:
 
 1. A starter (`what`, `that`, `if`, `when`, `where`)
-2. A pronoun (`I`, `he`, `she`, `it`, `you`, `they`)
+2. A pronoun (`I`, `he`, `she`, `you`, `we`, `they`)
 3. Optional `have`
 3. A verb e.g. `go`, `say`, `understand`, etc.
 4. An optional suffix word. These are specific to each verb.
@@ -131,7 +131,7 @@ the left side vowels:
 Pronouns use the following:
 
 * `EU`: `I`
-* `*EU`: `it`
+* `*EU`: `we`
 * `E`: `he`
 * `*E`: `she`
 * `U`: `you`
