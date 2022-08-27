@@ -55,7 +55,7 @@ AUDITED_STROKES = {
     "SWHAE": True,      # "what she"
     "SWHE": True,       # "when she"
     "STHAE": True,      # "that she"
-    "SWRE": True,       # "wher she"
+    "SWRE": True,       # "where she"
 
     # Things that are okay to lose:
     "TWHAPBG": True,    # "thwang"

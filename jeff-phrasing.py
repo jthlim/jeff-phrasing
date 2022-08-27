@@ -404,7 +404,7 @@ ENDERS = {
     # RPL - To remember (that)
     "RPL": ("present", {None: " remember", "3ps": " remembers", "present-participle": " remembering", "past-participle": " remembered"}),
     "RPLT": ("present", {None: " remember that", "3ps": " remembers that", "present-participle": " remembering that", "past-participle": " remembered that"}),
-    "RPLD": ("past", {None: " remembered", "root": " realize", "present-participle": " remembering", "past-participle": " remembered"}),
+    "RPLD": ("past", {None: " remembered", "root": " remember", "present-participle": " remembering", "past-participle": " remembered"}),
     "RPLTD": ("past", {None: " remembered that", "root": " remember that", "present-participle": " remembering that", "past-participle": " remembered that"}),
 
     # R - To run
