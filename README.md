@@ -347,7 +347,10 @@ For past tense with suffix words that cause a diagonal to be formed
 | `T`     | To have (to)               |
 | `RPS`   | To hope (to)               |
 | `PLG`   | To imagine (that)          |
+| `PBGS`  | To keep                    |
 | `PB`    | To know (that)             |
+| `RPBS`  | To learn (to)              |
+| `LGZ`   | To leave                   |
 | `BLG`   | To like (to)               |
 | `LZ`    | To live                    | To live                    |
 | `L`     | To look                    |
@@ -360,6 +363,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `PBLGS` | Must (be) -- no past tense | Must (be) -- no past tense |
 | `RPG`   | To need (to)               | To need (to)               |
 | `PS`    | To put (it)                |
+| `RS`    | To read                    |
 | `RLS`   | To realize (that)          |
 | `RL`    | To recall                  |
 | `RPL`   | To remember (that)         |

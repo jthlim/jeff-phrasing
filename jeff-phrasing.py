@@ -327,11 +327,29 @@ ENDERS = {
     "PLGD": ("past", {None: " imagined", "root": " imagine", "present-participle": " imagining", "past-participle": " imagined"}),
     "PLGTD": ("past", {None: " imagined that", "root": " imagine that", "present-participle": " imagining that", "past-participle": " imagined that"}),
 
+    # PBGS - To keep
+    "PBGS": ("present", {None: " keep", "3ps": " keeps", "present-participle": " keeping", "past-participle": " kept"}),
+    "PBGSZ": ("past", {None: " kept", "root": " keep", "present-participle": " keeping", "past-participle": " kept"}),
+
     # PB: To know (that)
     "PB": ("present", {None: " know", "3ps": " knows", "present-participle": " knowing", "past-participle": " known"}),
     "PBT": ("present", {None: " know that", "3ps": " knows that", "present-participle": " knowing that", "past-participle": " known that"}),
     "PBD": ("past", {None: " knew", "root": " know", "present-participle": " knowing", "past-participle": " known"}),
     "PBTD": ("past", {None: " knew that", "root": " know that", "present-participle": " knowing that", "past-participle": " known that"}),
+
+    # RPBS - To learn (to)
+    "RPBS": ("present", {None: " learn", "3ps": " learns", "present-participle": " learning", "past-participle": " learned"}),
+    "RPBTS": ("present", {None: " learn to", "3ps": " learns to", "present-participle": " learning to", "past-participle": " learned to"}),
+    "RPBSZ": ("past", {None: " learned", "root": " learn", "present-participle": " learning", "past-participle": " learned"}),
+    "RPBTSDZ": ("past", {None: " learned to", "root": "learn to", "present-participle": " learning to", "past-participle": " learned to"}),
+
+    # LGZ - To leave
+    "LGZ": ("present", {None: " leave", "3ps": " leaves", "present-participle": " leaving", "past-participle": " left"}),
+    "LGDZ": ("past", {None: " left", "root": " leave", "present-participle": " leaving", "past-participle": " left"}),
+
+    # LT - To let
+    "LS": ("present", {None: " let", "3ps": " lets", "present-participle": " letting", "past-participle": " let"}),
+    "LSZ": ("past", {None: " let", "present-participle": " letting", "past-participle": " let"}),
 
     # BLG - To like
     "BLG": ("present", {None: " like", "3ps": " likes", "present-participle": " liking", "past-participle": " liked"}),
@@ -352,10 +370,6 @@ ENDERS = {
     "LGT": ("present", {None: " love to", "3ps": " loves to", "present-participle": " loving to", "past-participle": " loved to"}),
     "LGD": ("past", {None: " loved", "root": " love", "present-participle": " loving", "past-participle": " loved"}),
     "LGTD": ("past", {None: " loved to", "root": " love to", "present-participle": " loving to", "past-participle": " loved to"}),
-
-    # LT - To let
-    "LS": ("present", {None: " let", "3ps": " lets", "present-participle": " letting", "past-participle": " let"}),
-    "LSZ": ("past", {None: " let", "present-participle": " letting", "past-participle": " let"}),
 
     # RPBL - To make (the)
     "RPBL": ("present", {None: " make", "3ps": " makes", "present-participle": " making", "past-participle": " made"}),
@@ -396,6 +410,10 @@ ENDERS = {
     "PTS": ("present", {None: " put it", "3ps": " puts it", "present-participle": " putting it", "past-participle": " put it"}),
     "PSZ": ("past", {None: " put", "root": " put", "present-participle": " putting", "past-participle": " put"}),
     "PTSDZ": ("past", {None: " put", "root": " put it", "present-participle": " putting it", "past-participle": " put it"}),
+
+    # RS - To read
+    "RS": ("present", {None: " read", "3ps": " reads", "present-participle": " reading", "past-participle": " read"}),
+    "RSZ": ("past", {None: " read", "root": " read", "present-participle": " reading", "past-participle": " read"}),
 
     # RL - To recall
     "RL": ("present", {None: " recall", "3ps": " recalls", "present-participle": " recalling", "past-participle": " recalled"}),
