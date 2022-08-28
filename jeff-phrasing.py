@@ -218,11 +218,17 @@ ENDERS = {
     "RB": ("present", {None: " ask", "3ps": " asks", "present-participle": " asking", "past-participle": " asked"}),
     "RBD": ("past", {None: " asked", "root": " ask", "present-participle": " asking", "past-participle": " asked"}),
 
-    # B: To be (the)
+    # B: To be (a)
     "B": ("present", TO_BE["present"]),
     "BT": ("present", {key: TO_BE["present"][key] + " a" for key in TO_BE["present"]}),
     "BD": ("past", TO_BE["past"]),
     "BTD": ("past", {key: TO_BE["past"][key] + " a" for key in TO_BE["past"]}),
+
+    # RPBG: To become (a)
+    "RPBG": ("present", {None: " become", "3ps": " becomes", "present-participle": " becoming", "past-participle": " became"}),
+    "RPBGT": ("present", {None: " become a", "3ps": " becomes a", "present-participle": " becoming a", "past-participle": " became a"}),
+    "RPBGD": ("past", {None: " became", "root": " become", "present-participle": " becoming", "past-participle": " became"}),
+    "RPBGTD": ("past", {None: " became a", "root": " become a", "present-participle": " becoming a", "past-participle": " became a"}),
 
     # BL - To believe
     "BL": ("present", {None: " believe", "3ps": " believes", "present-participle": " believing", "past-participle": " believed"}),

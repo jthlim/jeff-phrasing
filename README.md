@@ -331,6 +331,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | ``      | {empty}                    | {empty}                    |
 | `D`     | {empty, past tense}        | {empty, past tense}        |
 | `B`     | To be (a)                  | To be (a)                  |
+| `RPBG`  | To become (a)              |
 | `BL`    | To believe (that)          |
 | `RBLG`  | To call                    |
 | `BGS`   | Can/Could [2]              |
