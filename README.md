@@ -27,7 +27,7 @@ Some examples:
 * `SWR-RPBT` produces `I understand the`
 * `STHRAOBT` produces `there will be a`
 * `SWRA*EURPBT` produces `I still can't understand the`
-* `SWR*UFBGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
+* `SWR*UFPGTSDZ/TWRAOEPBLGTD` produces `I just didn't expect that we would be finding that`
 * `WHA/KPWRUPBG/TWROERPD` produces `what do you think we should be doing`
 * `KWR/KPWRURPTD` produces `why did you do it`
 * `SWR*PB/SWHR*EGTD` produces `I don't know where she went to`
@@ -37,9 +37,6 @@ Google Books N-gram Viewer.
 
 This dictionary also supports full reverse lookup, so you can see how to
 stroke phrases in Plover's suggestions window.
-
-# Warning
-This is currently a work in progress. Expect changes in future versions.
 
 # System
 
@@ -321,7 +318,8 @@ All verbs have a present and past tense version. The past tense is formed by
 adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
 
 Suffix words are indicated in parentheses, and are added by using `-T`. If the
-stroke includes `-T`, then `-S` is used instead.
+stroke includes `-T`, then `-S` is used instead. Note that not every verb has
+a suffix word.
 
 For past tense with suffix words that cause a diagonal to be formed
 (`-TZ` or `-SD`), then `-TSDZ` is used instead.
