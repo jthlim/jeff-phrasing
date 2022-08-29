@@ -223,7 +223,7 @@ omitted.
 
 * `U` is used to swap the order of starter and middle words:
   * `SWROGTD`: `I should go to`
-  * `SWROUGT`: `should I go to`
+  * `SWROUGTD`: `should I go to`
 
 * `EU` gives the word `still` and is used as a suffix in positive form,
   but as a prefix for negative form
