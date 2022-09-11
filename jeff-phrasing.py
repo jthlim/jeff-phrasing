@@ -225,10 +225,10 @@ ENDERS = {
     "BTD": ("past", {key: TO_BE["past"][key] + " a" for key in TO_BE["past"]}),
 
     # RPBG: To become (a)
-    "RPBG": ("present", {None: " become", "3ps": " becomes", "present-participle": " becoming", "past-participle": " became"}),
-    "RPBGT": ("present", {None: " become a", "3ps": " becomes a", "present-participle": " becoming a", "past-participle": " became a"}),
-    "RPBGD": ("past", {None: " became", "root": " become", "present-participle": " becoming", "past-participle": " became"}),
-    "RPBGTD": ("past", {None: " became a", "root": " become a", "present-participle": " becoming a", "past-participle": " became a"}),
+    "RPBG": ("present", {None: " become", "3ps": " becomes", "present-participle": " becoming", "past-participle": " become"}),
+    "RPBGT": ("present", {None: " become a", "3ps": " becomes a", "present-participle": " becoming a", "past-participle": " become a"}),
+    "RPBGD": ("past", {None: " became", "root": " become", "present-participle": " becoming", "past-participle": " become"}),
+    "RPBGTD": ("past", {None: " became a", "root": " become a", "present-participle": " becoming a", "past-participle": " become a"}),
 
     # BL - To believe
     "BL": ("present", {None: " believe", "3ps": " believes", "present-participle": " believing", "past-participle": " believed"}),
