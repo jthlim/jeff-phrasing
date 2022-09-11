@@ -431,6 +431,10 @@ ENDERS = {
     "RPLD": ("past", {None: " remembered", "root": " remember", "present-participle": " remembering", "past-participle": " remembered"}),
     "RPLTD": ("past", {None: " remembered that", "root": " remember that", "present-participle": " remembering that", "past-participle": " remembered that"}),
 
+    # P: To remain
+    "RPLS": ("present", {None: " remain", "3ps": " remains", "present-participle": " remaining", "past-participle": " remained"}),
+    "RPLSZ": ("past", {None: " remained", "root": " remain", "present-participle": " remaining", "past-participle": " remained"}),
+
     # R - To run
     "R": ("present", {None: " run", "3ps": " runs", "present-participle": " running", "past-participle": " run"}),
     "RD": ("past", {None: " ran", "root": " run", "present-participle": " running", "past-participle": " run"}),
