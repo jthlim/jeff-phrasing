@@ -93,6 +93,7 @@ SIMPLE_STARTERS = {
     "SWH": (" when", None),
     "SWHA": (" what", None),
     "SWHR": (" where", None),
+    "SWHO": (" who", None),
 }
 
 SIMPLE_PRONOUNS = {

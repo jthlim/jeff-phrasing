@@ -117,6 +117,7 @@ the left side vowels:
 * `SWH`: `when`
 * `SWHA`: `what`
 * `SWHR`: `where`
+* `SWHO`: `who`
 
 ## Pronouns
 ```
