@@ -46,7 +46,7 @@ There are two ways phrases can be constructed -- simple form and full form.
 
 A simple phrase is constructed with:
 
-1. A starter (`what`, `that`, `if`, `when`, `where`)
+1. A starter (`what`, `that`, `if`, `when`, `where`, `who`)
 2. A pronoun (`I`, `he`, `she`, `you`, `we`, `they`)
 3. Optional `have`
 3. A verb e.g. `go`, `say`, `understand`, etc.
