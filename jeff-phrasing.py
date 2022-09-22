@@ -248,7 +248,7 @@ ENDERS = {
 
     # RZ - To care
     "RZ": ("present", {None: " care", "3ps": " cares", "present-participle": " caring", "past-participle": " cared"}),
-    "RZS": ("past", {None: " cared", "root": " care", "present-participle": " caring", "past-participle": " cared"}),
+    "RDZ": ("past", {None: " cared", "root": " care", "present-participle": " caring", "past-participle": " cared"}),
 
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),
