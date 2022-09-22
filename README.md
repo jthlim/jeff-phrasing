@@ -346,6 +346,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `G`     | To go (to)                 | To go                      |
 | `PZ`    | To happen                  | To happen                  |
 | `T`     | To have (to)               |
+| `PG`    | To hear (that)             |
 | `RPS`   | To hope (to)               |
 | `PLG`   | To imagine (that)          |
 | `PBGS`  | To keep                    |

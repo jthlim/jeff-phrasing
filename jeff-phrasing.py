@@ -248,7 +248,7 @@ ENDERS = {
 
     # RZ - To care
     "RZ": ("present", {None: " care", "3ps": " cares", "present-participle": " caring", "past-participle": " cared"}),
-    "RDZ": ("past", {None: " cared", "root": " care", "present-participle": " caring", "past-participle": " cared"}),
+    "RZS": ("past", {None: " cared", "root": " care", "present-participle": " caring", "past-participle": " cared"}),
 
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),
@@ -312,9 +312,11 @@ ENDERS = {
     "PZ": ("present", {None: " happen", "3ps": " happens", "present-participle": " happening", "past-participle": " happened"}),
     "PDZ": ("past", {None: " happened", "root": " happen", "present-participle": " happening", "past-participle": " happened"}),
 
-    # RZ - To hear
-    "RZ": ("present", {None: " hear", "3ps": " hears", "present-participle": " hearing", "past-participle": " heard"}),
-    "RDZ": ("past", {None: " heard", "root": " hear", "present-participle": " hearing", "past-participle": " heard"}),
+    # PG - To hear (that)
+    "PG": ("present", {None: " hear", "3ps": " hears", "present-participle": " hearing", "past-participle": " heard"}),
+    "PGT": ("present", {None: " hear that", "3ps": " hears that", "present-participle": " hearing that", "past-participle": " heard that"}),
+    "PGD": ("past", {None: " heard", "root": " hear", "present-participle": " hearing", "past-participle": " heard"}),
+    "PGTD": ("past", {None: " heard that", "root": " hear that", "present-participle": " hearing that", "past-participle": " heard that"}),
 
     # RPS - To hope (to)
     "RPS": ("present", {None: " hope", "3ps": " hopes", "present-participle": " hoping", "past-participle": " hoped"}),
