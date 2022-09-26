@@ -118,6 +118,18 @@ the left side vowels:
 * `SWHA`: `what`
 * `SWHR`: `where`
 * `SWHO`: `who`
+* `SKP`: `and` [*]
+
+[*] Using SKP for `and` causes some conflicts with the default dictionary.
+This phrasing module does *NOT* try and replace the following:
+
+* `SKP-UR`: "and you're" (would be "and you run")
+* `SKP-UL`: "and you'll" (would be "and you look")
+* `SKP-EUT`: "and it" (would be "and I have", but this can be stroked with `SKP-EUF`)
+
+If there are other conflicts, you can modify the file and add specific
+exceptions to the `NON_PHRASE_STROKES` section, or remove the `SKP` entry from
+`SIMPLE_STARTERS` altogether.
 
 ## Pronouns
 ```

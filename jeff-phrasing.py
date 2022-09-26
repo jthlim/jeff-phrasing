@@ -65,6 +65,10 @@ NON_PHRASE_STROKES = {
     "STHRET": True,      # "stiletto"
     "STHREUPLT": True,   # "stimulate"
     "STPHREFPLT": True,  # "investment in"
+
+    "SKPUR": True,       # "and you're" -- rather than "and you run"
+    "SKPUL": True,       # "and you'll" -- rather than "and you look"
+    "SKPEUT": True,      # "and it"     -- rather than "and I have"
 }
 
 STARTERS = {
@@ -94,6 +98,9 @@ SIMPLE_STARTERS = {
     "SWHA": (" what", None),
     "SWHR": (" where", None),
     "SWHO": (" who", None),
+
+    # Remove the entry below if you don't want "and" phrases.
+    "SKP": (" and", None),
 }
 
 SIMPLE_PRONOUNS = {

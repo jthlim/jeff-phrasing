@@ -9,6 +9,7 @@ PARTS_MATCHER = re.compile(
 )
 
 # These are strokes that are okay to remove, typically because they are mis-stroke entries
+# spellchecker: disable
 AUDITED_STROKES = {
     "SWR": True,          # 'Somewhere' -- Use 'SW-R' instead
     "SWR-S": True,        # 'Somewheres' -- use 'SW-RS' instead
@@ -45,6 +46,7 @@ AUDITED_STROKES = {
     # Things that seem better alternates already exist
     "STKPWHR-FPLT": True,  # "!" -- expect TP-BG, or other form to be used.
     "SWHEPB": True,        # "when is" -- "WH-S" seems easier
+    "SKPET": True,         # "and the" -- probably a type entry for "SKP-T"
 
     # Things that are superceded by this phrasing system.
     "KPWROEU": True,    # "I don't"
@@ -57,11 +59,24 @@ AUDITED_STROKES = {
     "STHAE": True,      # "that she"
     "SWRE": True,       # "where she"
     "SWHOE": True,      # "who she"
+    "SKPEUBS": True,    # "and I said"
+    "SKPEUBG": True,    # "and I can"
+    "SKPEBG": True,     # "and he can"
+    "SKPUBG": True,     # "and you can"
+    "SKPUF": True,      # "and you have"
+    "SKPEURBD": True,   # "and I should"
+    "SKPEUFS": True,    # "and I was"
+
+    # Things that are identitcal
+    "SKPE": True,       # "and he"
+    "SKPEU": True,      # "and I"
+    "SKPU": True,       # "and you"
 
     # Things that are okay to lose:
     "TWHAPBG": True,    # "thwang"
     "TWHABG": True,     # "thwack"
 }
+# spellchecker: enable
 
 
 def increment_collision_counter(dict, key, collision_count):
