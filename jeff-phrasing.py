@@ -131,6 +131,8 @@ MIDDLES = {
 
 # `!` represents the starter
 # `*` represents the middle
+#
+# (format, use-middle-verb-form, updated-verb-form)
 STRUCTURE_EXCEPTIONS = {
     "": ("!", False, None),
 
@@ -166,6 +168,10 @@ STRUCTURE_EXCEPTIONS = {
     # "*EUF": ({"present": {None: " haven't ! been", "3ps": " hasn't ! been"}, "past": " hadn't ! been"}, False, "present-participle"),
     # "EUF": ({"present": {None: " have ! been", "3ps": " has ! been"}, "past": " had ! been"}, False, "present-participle"),
 
+    "EU": ("! still", False, None),
+    "EUF": ("! never", False, None),
+    "UF": ("! just", False, None),
+
     # Special cases for empty starters.
     # - infinitive forms.
     "STWRU": ("to", False, "root"),
@@ -173,20 +179,16 @@ STRUCTURE_EXCEPTIONS = {
     "STKPWHRU": ("to", False, "root"),
     "STKPWHR*U": ("not to", False, "root"),
 
-    "EU": ("! still", False, None),
-    "EUF": ("! never", False, None),
-    "UF": ("! just", False, None),
-
-    # - single word structures
+    # - empty starter word structures
     "STWRUF": ("just", False, None),
-    "STWR*UF": ("just", False, None),
+    "STWR*UF": ("just don't", True, None),
     "STKPWHRUF": ("just", False, None),
-    "STKPWHR*UF": ("just", False, None),
+    "STKPWHR*UF": ("just doesn't", True, None),
 
     "STWREU": ("still", False, None),
-    "STWR*EU": ("still", False, None),
+    "STWR*EU": ("still don't", True, None),
     "STKPWHREU": ("still", False, None),
-    "STKPWHR*EU": ("still", False, None),
+    "STKPWHR*EU": ("still doesn't", True, None),
 
     "STWREUF": ("never", False, None),
     "STWR*EUF": ("even", False, None),
