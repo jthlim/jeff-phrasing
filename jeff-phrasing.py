@@ -461,6 +461,10 @@ ENDERS = {
     "S": ("present", {None: " see", "3ps": " sees", "present-participle": " seeing", "past-participle": " seen"}),
     "SZ": ("past", {None: " saw", "root": " see", "present-participle": " seeing", "past-participle": " seen"}),
 
+    # BLS - To set
+    "BLS": ("present", {None: " set", "3ps": " sets", "present-participle": " setting", "past-participle": " set"}),
+    "BLSZ": ("past", {None: " set", "root": " set", "present-participle": " setting", "past-participle": " set"}),
+
     # PLS - To seem (to)
     "PLS": ("present", {None: " seem", "3ps": " seems", "present-participle": " seeming", "past-participle": " seemed"}),
     "PLTS": ("present", {None: " seem to", "3ps": " seems to", "present-participle": " seeming to", "past-participle": " seemed to"}),

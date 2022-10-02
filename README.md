@@ -386,6 +386,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `BS`    | To say (that)              |
 | `S`     | To see                     |
 | `PLS`   | To seem (to)               | To seem (to)               |
+| `BLS`   | To set                     |
 | `RBL`   | Shall/Should [2]           |
 | `RBZ`   | To show                    |
 | `RBT`   | To take                    |
