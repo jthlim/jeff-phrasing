@@ -240,7 +240,7 @@ ENDERS = {
     "RPBGD": ("past", {None: " became", "root": " become", "present-participle": " becoming", "past-participle": " become"}),
     "RPBGTD": ("past", {None: " became a", "root": " become a", "present-participle": " becoming a", "past-participle": " become a"}),
 
-    # BL - To believe
+    # BL - To believe (that)
     "BL": ("present", {None: " believe", "3ps": " believes", "present-participle": " believing", "past-participle": " believed"}),
     "BLT": ("present", {None: " believe that", "3ps": " believes that", "present-participle": " believing that", "past-participle": " believed that"}),
     "BLD": ("past", {None: " believed", "root": " believe", "present-participle": " believing", "past-participle": " believed"}),
@@ -427,6 +427,10 @@ ENDERS = {
     "RS": ("present", {None: " read", "3ps": " reads", "present-participle": " reading", "past-participle": " read"}),
     "RSZ": ("past", {None: " read", "root": " read", "present-participle": " reading", "past-participle": " read"}),
 
+    # RLG - really
+    "RLG": ("present", " really"),
+    "RLGD": ("past", " really"),
+
     # RL - To recall
     "RL": ("present", {None: " recall", "3ps": " recalls", "present-participle": " recalling", "past-participle": " recalled"}),
     "RLD": ("past", {None: " recalled", "root": " recall", "present-participle": " recalling", "past-participle": " recalled"}),
@@ -504,7 +508,7 @@ ENDERS = {
     "RTD": ("past", {None: " tried", "root": " try", "present-participle": " trying", "past-participle": " tried"}),
     "RTSDZ": ("past", {None: " tried to", "root": " try to", "present-participle": " trying to", "past-participle": " tried to"}),
 
-    # PBG - To understand (the)
+    # RPB - To understand (the)
     "RPB": ("present", {None: " understand", "3ps": " understands", "present-participle": " understanding", "past-participle": " understood"}),
     "RPBT": ("present", {None: " understand the", "3ps": " understands the", "present-participle": " understanding the", "past-participle": " understood the"}),
     "RPBD": ("past", {None: " understood", "root": " understand", "present-participle": " understanding", "past-participle": " understood"}),

@@ -379,6 +379,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `PS`    | To put (it)                |
 | `RS`    | To read                    |
 | `RLS`   | To realize (that)          |
+| `RLG`   | really                     |
 | `RL`    | To recall                  |
 | `RPL`   | To remember (that)         |
 | `RPLS`  | To remain                  |
