@@ -246,7 +246,7 @@ ENDERS = {
     "BLD": ("past", {None: " believed", "root": " believe", "present-participle": " believing", "past-participle": " believed"}),
     "BLTD": ("past", {None: " believed that", "root": " believe that", "present-participle": " believing that", "past-participle": " believed that"}),
 
-    # BLG - To call
+    # RBLG - To call
     "RBLG": ("present", {None: " call", "3ps": " calls", "present-participle": " calling", "past-participle": " called"}),
     "RBLGD": ("past", {None: " called", "root": " call", "present-participle": " calling", "past-participle": " called"}),
 
@@ -359,11 +359,11 @@ ENDERS = {
     "LGZ": ("present", {None: " leave", "3ps": " leaves", "present-participle": " leaving", "past-participle": " left"}),
     "LGDZ": ("past", {None: " left", "root": " leave", "present-participle": " leaving", "past-participle": " left"}),
 
-    # LT - To let
+    # LS - To let
     "LS": ("present", {None: " let", "3ps": " lets", "present-participle": " letting", "past-participle": " let"}),
     "LSZ": ("past", {None: " let", "present-participle": " letting", "past-participle": " let"}),
 
-    # BLG - To like
+    # BLG - To like (to)
     "BLG": ("present", {None: " like", "3ps": " likes", "present-participle": " liking", "past-participle": " liked"}),
     "BLGT": ("present", {None: " like to", "3ps": " likes to", "present-participle": " liking to", "past-participle": " liked to"}),
     "BLGD": ("past", {None: " liked", "root": " like", "present-participle": " liking", "past-participle": " liked"}),
@@ -447,7 +447,7 @@ ENDERS = {
     "RPLD": ("past", {None: " remembered", "root": " remember", "present-participle": " remembering", "past-participle": " remembered"}),
     "RPLTD": ("past", {None: " remembered that", "root": " remember that", "present-participle": " remembering that", "past-participle": " remembered that"}),
 
-    # P: To remain
+    # RPLS: To remain
     "RPLS": ("present", {None: " remain", "3ps": " remains", "present-participle": " remaining", "past-participle": " remained"}),
     "RPLSZ": ("past", {None: " remained", "root": " remain", "present-participle": " remaining", "past-participle": " remained"}),
 
@@ -484,13 +484,13 @@ ENDERS = {
     "RBZ": ("present", {None: " show", "3ps": " shows", "present-participle": " showing", "past-participle": " showed"}),
     "RBDZ": ("past", {None: " showed", "root": " show", "present-participle": " showing", "past-participle": " showed"}),
 
-    # RT - To take
+    # RBT - To take
     "RBT": ("present", {None: " take", "3ps": " takes", "present-participle": " taking", "past-participle": " taken"}),
     "RBTD": ("past", {None: " took", "root": " take", "present-participle": " taking", "past-participle": " taken"}),
 
-    # BLGT - To talk
-    "BLGT": ("present", {None: " talk", "3ps": " talks", "present-participle": " talking", "past-participle": " talked"}),
-    "BLGTD": ("past", {None: " talked", "root": " talk", "present-participle": " talking", "past-participle": " talked"}),
+    # BLGT - To talk -- conflict with like to.
+    # "BLGT": ("present", {None: " talk", "3ps": " talks", "present-participle": " talking", "past-participle": " talked"}),
+    # "BLGTD": ("past", {None: " talked", "root": " talk", "present-participle": " talking", "past-participle": " talked"}),
 
     # RLT - To tell
     "RLT": ("present", {None: " tell", "3ps": " tells", "present-participle": " telling", "past-participle": " told"}),

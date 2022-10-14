@@ -391,7 +391,6 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RBL`   | Shall/Should [2]           |
 | `RBZ`   | To show                    |
 | `RBT`   | To take                    |
-| `BLGT`  | To talk                    |
 | `RLT`   | To tell                    |
 | `PBG`   | To think (that)            |
 | `RT`    | To try (to)                |
