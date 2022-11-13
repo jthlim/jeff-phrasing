@@ -126,6 +126,7 @@ This phrasing module does *NOT* try and replace the following:
 * `SKPUR`: "and you're" (would be "and you run")
 * `SKPUL`: "and you'll" (would be "and you look")
 * `SKPEUT`: "and it" (would be "and I have", but this can be stroked with `SKPEUF`)
+* `SKP*`: Fingerspelling "&".
 
 If there are other conflicts, you can modify the file and add specific
 exceptions to the `NON_PHRASE_STROKES` section, or remove the `SKP` entry from
@@ -146,6 +147,7 @@ Pronouns use the following:
 * `*E`: `she`
 * `U`: `you`
 * `*U`: `they`
+* `*`: `it`
 
 ## Have
 
@@ -379,7 +381,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `PS`    | To put (it)                |
 | `RS`    | To read                    |
 | `RLS`   | To realize (that)          |
-| `RLG`   | really                     |
+| `RLG`   | really                     | really
 | `RL`    | To recall                  |
 | `RPL`   | To remember (that)         |
 | `RPLS`  | To remain                  |

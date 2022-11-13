@@ -56,6 +56,7 @@ THERE_SUFFIXES = {
     "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May (have)
     "PBLGS": True, "PBLGTS": True,                            # Must (have)
     "RPG": True, "RPGD": True, "RPGT": True, "RPGTD": True,   # Need (to)
+    "RLG": True, "RLGD": True,                                # Really
     "PLS": True, "PLSZ": True, "PLTS": True, "PLTSDZ": True,  # Seem (to)
     "Z": True, "DZ": True, "TZ": True, "TDZ": True,           # Use (to)
 }
@@ -69,6 +70,8 @@ NON_PHRASE_STROKES = {
     "SKPUR": True,       # "and you're" -- rather than "and you run"
     "SKPUL": True,       # "and you'll" -- rather than "and you look"
     "SKPEUT": True,      # "and it"     -- rather than "and I have"
+
+    "SKP*": True,        # {&&}
 }
 
 STARTERS = {
@@ -110,6 +113,7 @@ SIMPLE_PRONOUNS = {
     "*U": ("they", "3pp", None),
     "EU": ("I", "1ps", None),
     "*EU": ("we", "1pp", None),
+    "*": ("it", "3ps", None),
 }
 
 SIMPLE_STRUCTURES = {
