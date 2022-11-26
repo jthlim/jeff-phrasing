@@ -351,7 +351,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RZ`    | To care                    |
 | `BG`    | To come (to)               | To come                    |
 | `RP`    | To do (it)                 |
-| `BGS`   | To expect (that)           |
+| `PGS`   | To expect (that)           |
 | `LT`    | To feel (like)             |
 | `PBLG`  | To find (that)             |
 | `RG`    | To forget (to)             |
