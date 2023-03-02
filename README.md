@@ -156,7 +156,7 @@ Pronouns use the following:
 ## Have
 
 Simple form uses `-F` to add the word `have` and causes the verb to change to
-its past verb form.
+its past participle form.
 
 - `SWHAURP`: `what you do`
 - `SWHAUFRP`: `what you have done`
