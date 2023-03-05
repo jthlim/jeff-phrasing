@@ -180,6 +180,7 @@ Full form starters use the keys on the left hand side of the board:
 - `KWHR`: `he`
 - `SKWHR`: `she`
 - `KPWH`: `it`
+- `TWR` : `we`
 - `TWH`: `they`
 - `STKH`: `this`
 - `STWH`: `that`
