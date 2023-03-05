@@ -23,7 +23,7 @@ AUDITED_STROKES = {
     "SKWHRAR": True,      # 'Scholar' -- 'SKHRAR'
     "TWRAGS": True,       # 'Tradition' -- 'TRAGS'
     "KPWHAOUPBT": True,   # 'Community' -- 'KPHAOUPBT'
-    "KPWHEUPBGS": True,   # 'Combination' -- 'KPWHEUPBGS'
+    "KPWHEUPBGS": True,   # 'Combination' -- 'KPWEUPBGS'
     "SWR-PBT": True,      # 'Haven't' -- 'SR-PBT'
     "TWRAOEUD": True,     # 'Divide' -- 'TKWAOEUD'
     "SKWHRAEUB": True,    # 'Jane' -- 'SKWRAEUB'
@@ -46,7 +46,7 @@ AUDITED_STROKES = {
     # Things that seem better alternates already exist
     "STKPWHR-FPLT": True,  # "!" -- expect TP-BG, or other form to be used.
     "SWHEPB": True,        # "when is" -- "WH-S" seems easier
-    "SKPET": True,         # "and the" -- probably a type entry for "SKP-T"
+    "SKPET": True,         # "and the" -- probably a typo entry for "SKP-T"
 
     # Things that are superceded by this phrasing system.
     "KPWROEU": True,    # "I don't"
