@@ -413,6 +413,10 @@ ENDERS = {
     "PBLD": ("past", {None: " meant", "root": " mean", "present-participle": " meaning", "past-participle": " meant"}),
     "PBLTD": ("past", {None: " meant to", "root": " mean to", "present-participle": " meaning to", "past-participle": " meant to"}),
 
+    # PBLS - To mind
+    "PBLS": ("present", {None: " mind", "3ps": " minds", "present-participle": " minding", "past-participle": " minded"}),
+    "PBLSZ": ("past", {None: " minded", "root": " mind", "present-participle": " minding", "past-participle": " minded"}),
+
     # PLZ - To move
     "PLZ": ("present", {None: " move", "3ps": " moves", "present-participle": " moving", "past-participle": " moved"}),
     "PLDZ": ("past", {None: " moved", "root": " move", "present-participle": " moving", "past-participle": " moved"}),
