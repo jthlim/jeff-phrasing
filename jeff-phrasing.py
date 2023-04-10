@@ -185,22 +185,6 @@ STRUCTURE_EXCEPTIONS = {
     "STWR*U": ("not to", False, "root"),
     "STKPWHRU": ("to", False, "root"),
     "STKPWHR*U": ("not to", False, "root"),
-
-    # - empty starter word structures
-    "STWRUF": ("just", False, None),
-    "STWR*UF": ("just don't", True, None),
-    "STKPWHRUF": ("just", False, None),
-    "STKPWHR*UF": ("just doesn't", True, None),
-
-    "STWREU": ("still", False, None),
-    "STWR*EU": ("still don't", True, None),
-    "STKPWHREU": ("still", False, None),
-    "STKPWHR*EU": ("still doesn't", True, None),
-
-    "STWREUF": ("never", False, None),
-    "STWR*EUF": ("even", False, None),
-    "STKPWHREUF": ("never", False, None),
-    "STKPWHR*EUF": ("even", False, None),
 }
 
 ALWAYS = {None: "* !", "b3ps-root": "* always", "b3pp-root": "* always"}
