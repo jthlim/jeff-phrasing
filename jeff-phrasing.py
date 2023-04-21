@@ -480,8 +480,8 @@ ENDERS = {
     "RBLD": ("past", " should"),
 
     # RBZ - To show
-    "RBZ": ("present", {None: " show", "3ps": " shows", "present-participle": " showing", "past-participle": " showed"}),
-    "RBDZ": ("past", {None: " showed", "root": " show", "present-participle": " showing", "past-participle": " showed"}),
+    "RBZ": ("present", {None: " show", "3ps": " shows", "present-participle": " showing", "past-participle": " shown"}),
+    "RBDZ": ("past", {None: " showed", "root": " show", "present-participle": " showing", "past-participle": " shown"}),
 
     # RBT - To take
     "RBT": ("present", {None: " take", "3ps": " takes", "present-participle": " taking", "past-participle": " taken"}),
