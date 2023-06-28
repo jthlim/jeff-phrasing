@@ -348,7 +348,7 @@ ENDERS = {
     "RPBS": ("present", {None: " learn", "3ps": " learns", "present-participle": " learning", "past-participle": " learned"}),
     "RPBTS": ("present", {None: " learn to", "3ps": " learns to", "present-participle": " learning to", "past-participle": " learned to"}),
     "RPBSZ": ("past", {None: " learned", "root": " learn", "present-participle": " learning", "past-participle": " learned"}),
-    "RPBTSDZ": ("past", {None: " learned to", "root": "learn to", "present-participle": " learning to", "past-participle": " learned to"}),
+    "RPBTSDZ": ("past", {None: " learned to", "root": " learn to", "present-participle": " learning to", "past-participle": " learned to"}),
 
     # LGZ - To leave
     "LGZ": ("present", {None: " leave", "3ps": " leaves", "present-participle": " leaving", "past-participle": " left"}),
@@ -788,7 +788,7 @@ def reverse_lookup(text):
             continue
 
         if word in text:
-            remainder = text.replace(word, '!', 1)
+            remainder = re.sub("\\b%s\\b" % word, '!', text, 1)
             strokes = REVERSE_STARTERS[word]
             for stroke in strokes:
                 reverse_middle_match(result, text, remainder, stroke, strokes[stroke])
