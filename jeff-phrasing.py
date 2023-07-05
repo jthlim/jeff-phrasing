@@ -105,6 +105,8 @@ SIMPLE_STARTERS = {
 
     "STKWH": (" why", None),
 
+    "SPWH": (" but", None),
+
     # Remove the entry below if you don't want "and" phrases.
     "SKP": (" and", None),
 }
@@ -250,11 +252,19 @@ ENDERS = {
     "RZ": ("present", {None: " care", "3ps": " cares", "present-participle": " caring", "past-participle": " cared"}),
     "RDZ": ("past", {None: " cared", "root": " care", "present-participle": " caring", "past-participle": " cared"}),
 
+    # PBGZ - To change
+    "PBGZ": ("present", {None: " change", "3ps": " changes", "present-participle": " changing", "past-participle": " changed"}),
+    "PBGDZ": ("past", {None: " changed", "root": " change", "present-participle": " changing", "past-participle": " changed"}),
+
     # BG - To come (to)
     "BG": ("present", {None: " come", "3ps": " comes", "present-participle": " coming", "past-participle": " come"}),
     "BGT": ("present", {None: " come to", "3ps": " comes to", "present-participle": " coming to", "past-participle": " come to"}),
     "BGD": ("past", {None: " came", "root": " come", "present-participle": " coming", "past-participle": " come"}),
     "BGTD": ("past", {None: " came to", "root": " come to", "present-participle": " coming to", "past-participle": " come to"}),
+
+    # RBGZ - To consider
+    "RBGZ": ("present", {None: " consider", "3ps": " considers", "present-participle": " considering", "past-participle": " considered"}),
+    "RBGDZ": ("past", {None: " considered", "root": " consider", "present-participle": " considering", "past-participle": " considered"}),
 
     # RP - To do (it)
     "RP": ("present", {None: " do", "3ps": " does", "present-participle": " doing", "past-participle": " done"}),

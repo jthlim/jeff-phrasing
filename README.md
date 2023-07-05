@@ -121,6 +121,7 @@ the left side vowels:
 - `SWHA`: `what`
 - `SWHR`: `where`
 - `SWHO`: `who`
+- `SPWH`: `but`
 - `SKP`: `and` [*]
 
 [*] Using SKP for `and` causes some conflicts with the default dictionary.
@@ -359,7 +360,9 @@ For past tense with suffix words that cause a diagonal to be formed
 | `RBLG`   | To call                    |
 | `BGS`    | Can/Could [2]              |
 | `RZ`     | To care                    |
+| `PBGZ`   | To change                  |
 | `BG`     | To come (to)               | To come                    |
+| `RBGZ`   | To consider                |
 | `RP`     | To do (it)                 |
 | `PGS`    | To expect (that)           |
 | `LT`     | To feel (like)             |
