@@ -386,7 +386,7 @@ For past tense with suffix words that cause a diagonal to be formed
 | `L`      | To look                    |
 | `LG`     | To love (to)               |
 | `LS`     | To let                     |
-| `RPBL`   | To make (the)              |
+| `RPBL`   | To make (a)                |
 | `PL`     | May/Might (be)             | May/Might (be)             |
 | `PBL`    | To mean (to)               |
 | `PBLS`   | To mind                    |

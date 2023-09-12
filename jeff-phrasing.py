@@ -388,11 +388,11 @@ ENDERS = {
     "LGD": ("past", {None: " loved", "root": " love", "present-participle": " loving", "past-participle": " loved"}),
     "LGTD": ("past", {None: " loved to", "root": " love to", "present-participle": " loving to", "past-participle": " loved to"}),
 
-    # RPBL - To make (the)
+    # RPBL - To make (a)
     "RPBL": ("present", {None: " make", "3ps": " makes", "present-participle": " making", "past-participle": " made"}),
-    "RPBLT": ("present", {None: " make the", "3ps": " makes the", "present-participle": " making the", "past-participle": " made the"}),
+    "RPBLT": ("present", {None: " make a", "3ps": " makes a", "present-participle": " making a", "past-participle": " made a"}),
     "RPBLD": ("past", {None: " made", "root": " make", "present-participle": " making", "past-participle": " made"}),
-    "RPBLTD": ("past", {None: " made the", "root": " make the", "present-participle": " making the", "past-participle": " made the"}),
+    "RPBLTD": ("past", {None: " made a", "root": " make a", "present-participle": " making a", "past-participle": " made a"}),
 
     # PL - Auxiliary verb may (be)
     # These do not combine naturally with middle/structures.
