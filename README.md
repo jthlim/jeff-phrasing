@@ -104,16 +104,12 @@ Example 2: See how the verb 'be' changes:
 
 # Simple form
 
+![Simple Form Image](image/simple-form.png)
+
 ## Starters
 
 Simple form starters use the keys on the left hand side of the board, including
 the left side vowels:
-
-```
-🆂🆃🅿🅷 🄾 🄵🄿🄻🅃🄳
-🆂🅺🆆🆁 🄾 🅁🄱🄶🅂🅉
-　　　🅰🅾 🄴🅄
-```
 
 - `STHA`: `that`
 - `STPA`: `if`
@@ -138,12 +134,6 @@ exceptions to the `NON_PHRASE_STROKES` section, or remove the `SKP` entry from
 
 ## Pronouns
 
-```
-🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
-🅂🄺🅆🅁 🅾 🅁🄱🄶🅂🅉
-　　　🄰🄾 🅴🆄
-```
-
 Pronouns use the following:
 
 - `EU`: `I`
@@ -164,17 +154,17 @@ its past participle form.
 - `STPAEUGD`: `if I went`
 - `STPAOUFGD`: `if I had gone`
 
+## Verb & suffix words
+
+The verb and suffix words follow the same schema as the full form detailed below.
+
 # Full form parts
+
+![Full Form Image](image/full-form.png)
 
 ## Starters
 
 Full form starters use the keys on the left hand side of the board:
-
-```
-🆂🆃🅿🅷 🄾 🄵🄿🄻🅃🄳
-🆂🅺🆆🆁 🄾 🅁🄱🄶🅂🅉
-　　　🄰🄾 🄴🅄
-```
 
 - `SWR`: `I`
 - `KPWR`: `you`
@@ -205,12 +195,6 @@ Examples:
 
 ## Do, Can, Shall, Will
 
-```
-🅂🅃🄿🄷 🅾 🄵🄿🄻🅃🄳
-🅂🄺🅆🅁 🅾 🅁🄱🄶🅂🅉
-　　　🅰🅾 🄴🅄
-```
-
 The keys `AO*` are used to determine which of the additional words are added.
 The form that is added depends on the tense of the verb. `*` is added to
 get the negative version.
@@ -229,12 +213,6 @@ There are special cases in the phrase structure section so that `do` can be
 omitted.
 
 ## Phrase structure
-
-```
-🅂🅃🄿🄷 🄾 🅵🄿🄻🅃🄳
-🅂🄺🅆🅁 🄾 🅁🄱🄶🅂🅉
-　　　🄰🄾 🅴🆄
-```
 
 `EUF` controls word ordering and how the words `just`, `still`, `never`,
 `even`, `be` and `have` and `always` combine into the sentence.
@@ -333,12 +311,6 @@ table.
 | `_ _ * E U F` |      | {starter} `{}` 'even'                     | `you don't even go`      |
 
 # Verbs and suffix words
-
-```
-🅂🅃🄿🄷 🄾 🄵🅿🅻🆃🅳
-🅂🄺🅆🅁 🄾 🆁🅱🅶🆂🆉
-　　　🄰🄾 🄴🅄
-```
 
 All verbs have a present and past tense version. The past tense is formed by
 adding `-D`, unless the verb includes `-S`, in which case `-Z` is used instead.
