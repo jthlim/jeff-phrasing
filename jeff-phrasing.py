@@ -52,7 +52,7 @@ THERE_SUFFIXES = {
     "G": True, "GD": True,                                    # Go
     "PZ": True, "PDZ": True,                                  # Happen
     "T": True, "TD": True, "TS": True, "TSDZ": True,          # Have (to)
-    "LZ": True, "TZD": True,                                  # Live
+    "LZ": True, "LZD": True,                                  # Live
     "PL": True, "PLT": True, "PLD": True, "PLTD": True,       # May (have)
     "PBLGS": True, "PBLGTS": True,                            # Must (have)
     "PBLGSZ": True, "PBLGTSDZ": True,                         # Just
