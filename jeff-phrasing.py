@@ -424,13 +424,13 @@ ENDERS = {
     "RPG": ("present", {None: " need", "3ps": " needs", "present-participle": " needing", "past-participle": " needed"}),
     "RPGT": ("present", {None: " need to", "3ps": " needs to", "present-participle": " needing to", "past-participle": " needed to"}),
     "RPGD": ("past", {None: " needed", "root": " need", "present-participle": " needing", "past-participle": " needed"}),
-    "RPGTD": ("past", {None: " needed to", "root": " need to", "present-participle": " needing", "past-participle": " needed to"}),
+    "RPGTD": ("past", {None: " needed to", "root": " need to", "present-participle": " needing to", "past-participle": " needed to"}),
 
     # PS: To put (it)
     "PS": ("present", {None: " put", "3ps": " puts", "present-participle": " putting", "past-participle": " put"}),
     "PTS": ("present", {None: " put it", "3ps": " puts it", "present-participle": " putting it", "past-participle": " put it"}),
     "PSZ": ("past", {None: " put", "root": " put", "present-participle": " putting", "past-participle": " put"}),
-    "PTSDZ": ("past", {None: " put", "root": " put it", "present-participle": " putting it", "past-participle": " put it"}),
+    "PTSDZ": ("past", {None: " put it", "root": " put it", "present-participle": " putting it", "past-participle": " put it"}),
 
     # RS - To read
     "RS": ("present", {None: " read", "3ps": " reads", "present-participle": " reading", "past-participle": " read"}),
