@@ -106,6 +106,7 @@ SIMPLE_STARTERS = {
     "STKWH": (" why", None),
 
     "SPWH": (" but", None),
+    "STPR": (" for", None),
 
     # Remove the entry below if you don't want "and" phrases.
     "SKP": (" and", None),
