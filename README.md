@@ -47,7 +47,7 @@ There are two ways phrases can be constructed -- simple form and full form.
 
 A simple phrase is constructed with:
 
-1. A starter (`what`, `that`, `if`, `when`, `where`, `who`, `for`)
+1. A starter (`what`, `that`, `if`, `when`, `where`, `who`, `why`, `for`)
 2. A pronoun (`I`, `he`, `she`, `you`, `we`, `they`)
 3. Optional `have`
 4. A verb e.g. `go`, `say`, `understand`, etc.
@@ -117,6 +117,7 @@ the left side vowels:
 - `SWHA`: `what`
 - `SWHR`: `where`
 - `SWHO`: `who`
+- `SWHAO`: `why`
 - `SPWH`: `but`
 - `STPR`: `for`
 - `SKP`: `and` [*]
