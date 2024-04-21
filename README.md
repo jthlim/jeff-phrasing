@@ -39,6 +39,10 @@ Google Books N-gram Viewer.
 This dictionary also supports full reverse lookup, so you can see how to
 stroke phrases in Plover's suggestions window.
 
+# Interactive Learning Tool
+
+There's an excellent tool for practicing jeff-phrasing [here](https://github.com/lynn/phrasing-trainer).
+
 # System
 
 There are two ways phrases can be constructed -- simple form and full form.
